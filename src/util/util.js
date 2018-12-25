@@ -18,7 +18,7 @@ export default {
     }
 
     return queryMap[code];
-  }
+  },
   weixinauth() {
     var realLocation = window.location
     console.log(realLocation,11111)
