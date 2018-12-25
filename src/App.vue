@@ -1,8 +1,9 @@
 <template>
   <div id="app" class="app-bg">
-    <router-view>
+    <!-- <router-view>
 
-    </router-view>
+    </router-view> -->
+     11111111
       
   </div>
 </template>

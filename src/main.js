@@ -31,7 +31,7 @@ router.beforeEach((to, from, next) => {
   alert(222)
   if(!code) {
     console.log('进来这里了！')
-    //  util.weixinauth()
+     util.weixinauth()
   }else {
      alert('发送code')
   }
