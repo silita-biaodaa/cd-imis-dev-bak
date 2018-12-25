@@ -37,6 +37,7 @@ router.beforeEach((to, from, next) => {
     util.weixinauth()
   }else {
     queryList({code:code}).then(res => {
+      console.log(res,1)
       alert(res)
     })
   }
