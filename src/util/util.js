@@ -16,7 +16,6 @@ export default {
       var v = queryArr[index].split("=")[1];
       queryMap[k] = v;
     }
-
     return queryMap[code];
   },
   weixinauth() {
@@ -25,7 +24,7 @@ export default {
     var real = encodeURIComponent(realLocation)
       // wxUrl = encodeURIComponent('http://imis.biaodaa.com' + real)
     window.location.href =
-      "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxe147d2d39076d54c&redirect_uri=" +
+      "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8cba2f85ea47c6a6&redirect_uri=" +
       real +
       "&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
   },

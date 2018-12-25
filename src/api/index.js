@@ -1,9 +1,14 @@
 import axios from 'axios'
-// const baseURL = 'http://192.168.1.161:8080/biaodaa-back/'
-// const baseURL = 'http://192.168.1.131:8080/'
-// const baseURL = 'http://api.biaodaa.com/'
-// const baseURL = 'http://120.78.253.169/'
+import qs from 'qs'
+var baseURL = 'http://imis.biaodaa.com/'
+// var baseURL = 'http://192.168.1.131:8081/'
+
 axios.defaults.baseURL = baseURL
+
+
+export const queryList = params => {
+  return axios.post('authorize/user', params).then(res => res.data)
+}
 
 // export const getJsonData = (url, params) => {
 //     return new Promise((resolve, reject) => {

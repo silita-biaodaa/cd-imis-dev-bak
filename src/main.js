@@ -4,6 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router/router'
 
+// import axios from './api/index';
+// Vue.prototype.$axios = axios
 
 Vue.config.productionTip = false
 
@@ -24,15 +26,17 @@ new Vue({
 //   return value;
 // });
 
+import { queryList } from "./api/index"
 import util from "./util/util";
 router.beforeEach((to, from, next) => {
   let code = util.getCode('code')
-  console.log(code,30)
+  alert(code)
   if(!code) {
-    console.log('进来这里了！')
-     util.weixinauth()
+    util.weixinauth()
   }else {
-     alert('发送code')
+    queryList({code:code}).then(res => {
+      alert(res)
+    })
   }
 }
 )
