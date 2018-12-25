@@ -19,13 +19,6 @@ export default {
     return queryMap[code];
   },
   weixinauth() {
-    var realLocation = window.location
-    // realLocation = realLocation == 'http://auction.yjwh.shop/#/' ? "http://auction.yjwh.shop/#/home" : realLocation
-    var real = encodeURIComponent(realLocation)
-      // wxUrl = encodeURIComponent('http://imis.biaodaa.com' + real)
-    window.location.href =
-      "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8cba2f85ea47c6a6&redirect_uri=" +
-      real +
-      "&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
+    window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8cba2f85ea47c6a6&redirect_uri=http%3a%2f%2fimis.biaodaa.com%2f%23%2findex&response_type=code&scope=snsapi_base&state=CD-IMIS#wechat_redirect'
   },
 }
