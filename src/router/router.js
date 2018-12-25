@@ -12,8 +12,6 @@ const routes = [
 ]
 
 export default new Router({
-  linkActiveClass: 'mui-active',
-  mode: 'history',
   routes,
   strict: process.env.NODE_ENV !== 'production',
 })
