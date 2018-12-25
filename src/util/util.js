@@ -21,7 +21,6 @@ export default {
   },
   weixinauth() {
     var realLocation = window.location
-    console.log(realLocation,11111)
     // realLocation = realLocation == 'http://auction.yjwh.shop/#/' ? "http://auction.yjwh.shop/#/home" : realLocation
     var real = encodeURIComponent(realLocation)
       // wxUrl = encodeURIComponent('http://imis.biaodaa.com' + real)
