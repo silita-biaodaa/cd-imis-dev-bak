@@ -30,12 +30,12 @@ import { queryList } from "./api/index"
 import util from "./util/util";
 router.beforeEach((to, from, next) => {
   let code = util.getCode('code')
-  console.log(code, 111)
+  console.log(code, new data() )
   if (!code) {
-    console.log(2222)
+    console.log(2222, new data())
     util.weixinauth()
   } else {
-    console.log(3333)
+    console.log(3333, new data())
     queryList({ code: code }).then(res => {
       alert(res)
     })
