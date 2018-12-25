@@ -18,17 +18,16 @@ export default {
     }
 
     return queryMap[code];
-  }, 
-
-  weixinauth() {
-    var realLocation = window.location
-    // console.log(realLocation,11111)
-    // realLocation = realLocation == 'http://auction.yjwh.shop/#/' ? "http://auction.yjwh.shop/#/home" : realLocation
-    var real = encodeURIComponent(realLocation),
-      wxUrl = encodeURIComponent('http://imis.biaodaa.com' + real)
-    window.location.href =
-      "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxe147d2d39076d54c&redirect_uri=" +
-      wxUrl +
-      "&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect";
-  },
+  }
+  // weixinauth() {
+  //   var realLocation = window.location
+  //   console.log(realLocation,11111)
+  //   // realLocation = realLocation == 'http://auction.yjwh.shop/#/' ? "http://auction.yjwh.shop/#/home" : realLocation
+  //   var real = encodeURIComponent(realLocation)
+  //     // wxUrl = encodeURIComponent('http://imis.biaodaa.com' + real)
+  //   window.location.href =
+  //     "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxe147d2d39076d54c&redirect_uri=" +
+  //     real +
+  //     "&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
+  // },
 }

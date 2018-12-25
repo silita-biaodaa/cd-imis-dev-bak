@@ -25,17 +25,15 @@ new Vue({
 // });
 
 import util from "./util/util";
-
 router.beforeEach((to, from, next) => {
   let code = util.getCode('code')
   console.log(111111)
   alert(222)
   if(!code) {
     console.log('进来这里了！')
-     util.weixinauth()
+    //  util.weixinauth()
   }else {
      alert('发送code')
   }
-
-   }
- )
+}
+)
