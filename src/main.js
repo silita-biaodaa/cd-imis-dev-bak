@@ -40,6 +40,7 @@ router.beforeEach((to, from, next) => {
       console.log(res,1)
       alert(res)
     })
+    next()
   }
 }
 )
