@@ -32,7 +32,7 @@ router.beforeEach((to, from, next) => {
   } else {
     queryList({ code: code }).then(res => {
       console.log(res, 36)
-      alert(res)
+      alert(res.data.openid, res.data.nickname)
     })
     next()
   }
