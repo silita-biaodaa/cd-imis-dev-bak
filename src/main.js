@@ -10,12 +10,7 @@ import router from './router/router'
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  template: '<App/>',
-  components: { App }
-})
+
 
 // Vue.filter('phoneFilter', function(value) {
 //   if(value&&value.indexOf(";")!=-1){ 
@@ -29,17 +24,24 @@ new Vue({
 import { queryList } from "./api/index"
 import util from "./util/util";
 router.beforeEach((to, from, next) => {
+  // console.log(1111)
   let code = util.getCode('code')
-  console.log(code, new data() )
+  alert(code)
   if (!code) {
-    console.log(2222, new data())
     util.weixinauth()
   } else {
-    console.log(3333, new data())
     queryList({ code: code }).then(res => {
+      console.log(res, 36)
       alert(res)
     })
     next()
   }
 }
 )
+
+new Vue({
+  el: '#app',
+  router,
+  template: '<App/>',
+  components: { App }
+})

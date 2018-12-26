@@ -5,7 +5,6 @@ var baseURL = 'http://imis.biaodaa.com/'
 
 axios.defaults.baseURL = baseURL
 
-
 export const queryList = params => {
   return axios.post('authorize/user', params).then(res => res.data)
 }
