@@ -50,7 +50,7 @@ router.beforeEach((to, from, next) => {
       alert(res.data.openid + '' + res.data.nickname)
        if ( res.code == 1 ) {
          localStorage.setItem('Authorization', res.data.token) 
-          if (res.data.isFirst) {
+          if (!res.data.isFirst) {
                return  this.$router.push({
                           path: '/index' // 到登录页重新获取token
                         })
