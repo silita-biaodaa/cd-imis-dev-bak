@@ -86,8 +86,8 @@
         <div class="volunteer-put">
             <x-textarea placeholder='请输入您的志愿' :rows='4' v-model="values"> </x-textarea>
         </div>
-        <div class="btn">
-           <x-button  @click='record'>提交</x-button>
+        <div class="btn" @click='record'>
+           <x-button  >提交</x-button>
         </div>
       </div>
    </div>
@@ -126,6 +126,7 @@ export default {
        }
     },
     record () {
+      console.log(11111)
       recordBook({name: this.username, phone: this.mobile, company: this.company, post: this.post, pushStart: this.tiems,total: this.count, bonaStart: this.begin, bonaEnd: this.end, bonaCount: this.number, bonaTotal: this.alls, volunteer: this.values, books: this.first}).then( res => {
          alert(res.code)
          console.log(res,131)
