@@ -33,7 +33,7 @@ Vue.component('x-button', XButton)
 //   routes // (缩写) 相当于 routes: routes
 // })
 
-// import { queryList } from "./api/index"
+import { queryList } from "./api/index"
 import util from "./util/util"
 router.beforeEach((to, from, next) => {
   let code = util.getCode('code')
@@ -50,6 +50,11 @@ router.beforeEach((to, from, next) => {
       alert(res.data.openid + '' + res.data.nickname)
        if ( res == 1 ) {
          localStorage.setItem('X-TOKEN', res.data.token) 
+          if (res.isFirst) {
+               return  this.$router.push({
+                          path: '/login' // 到登录页重新获取token
+                        })
+          }
        }
     })
 

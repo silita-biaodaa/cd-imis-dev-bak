@@ -20,6 +20,6 @@ export default {
     return queryMap[code];
   },
   weixinauth () {
-    window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8cba2f85ea47c6a6&redirect_uri=http%3a%2f%2fimis.biaodaa.com%2f%23%2findex&response_type=code&scope=snsapi_base&state=CD-IMIS#wechat_redirect'
+    window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8cba2f85ea47c6a6&redirect_uri=http%3a%2f%2fimis.biaodaa.com%2findex.html&response_type=code&scope=snsapi_base&state=CD-IMIS#wechat_redirect'
   },
 }

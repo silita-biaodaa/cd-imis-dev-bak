@@ -16,10 +16,10 @@ export default new Router({
       name: 'home',
       component: Home
     }
-    // {
-    //   path: '/index',
-    //   name: 'index',
-    //   component: index
-    // }
+    {
+      path: '/index',
+      name: 'index',
+      component: index
+    }
   ]
 })
