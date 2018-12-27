@@ -18,7 +18,7 @@ export default new Router({
     },
     {
       path: '/text',
-      name: 'index',
+      name: 'text',
       component: text
     }
   ]
