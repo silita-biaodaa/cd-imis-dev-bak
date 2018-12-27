@@ -16,7 +16,7 @@ export default {
       var v = queryArr[index].split("=")[1];
       queryMap[k] = v;
     }
-    console.log(queryMap,19)
+    console.log(queryMap[code],19)
     return queryMap[code];
   },
   weixinauth () {
