@@ -48,7 +48,7 @@ router.beforeEach((to, from, next) => {
     queryList({ code: code }).then(res => {
       console.log(res, 36)
       alert(res.data.openid + '' + res.data.nickname)
-       if ( res == 1 ) {
+       if ( res.code == 1 ) {
          localStorage.setItem('Authorization', res.data.token) 
           if (res.isFirst) {
                return  this.$router.push({
