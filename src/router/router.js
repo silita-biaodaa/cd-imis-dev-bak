@@ -1,17 +1,25 @@
+
 import Vue from 'vue'
 import Router from 'vue-router'
-// import index from '@/page/index'
+import index from '@/page/text'
+import Home from '@/page/index'
 Vue.use(Router)
 
-const routes = [
-  // {
-  //   path: '/index',
-  //   name: 'index',
-  //   component:index
-  // }
-]
-
 export default new Router({
-  routes,
-  strict: process.env.NODE_ENV !== 'production',
+  routes: [
+    {
+      path: '/',
+      redirect: '/index',
+    },
+    {
+      path: '/home',
+      name: 'home',
+      component: Home
+    },
+    {
+      path: '/index',
+      name: 'index',
+      component: index
+    }
+  ]
 })

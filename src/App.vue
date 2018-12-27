@@ -3,8 +3,6 @@
     <router-view>
 
     </router-view>
-     11111111
-      
   </div>
 </template>
 
