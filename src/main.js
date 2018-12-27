@@ -50,11 +50,10 @@ router.beforeEach((to, from, next) => {
       alert(res.data.openid + '' + res.data.nickname)
        if ( res.code == 1 ) {
          localStorage.setItem('Authorization', res.data.token) 
-          if (!(res.data.isFirst)) {
-      
-               next({path: '/text'}) 
+          if (res.data.isFirst) {
+               next()               
           } else {
-               next()
+               next({path: '/text'})               
           }
        }
     }) 
