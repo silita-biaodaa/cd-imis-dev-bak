@@ -52,7 +52,7 @@ router.beforeEach((to, from, next) => {
          localStorage.setItem('Authorization', res.data.token) 
           if (res.isFirst) {
                return  this.$router.push({
-                          path: '/login' // 到登录页重新获取token
+                          path: '/index' // 到登录页重新获取token
                         })
           }
        }
