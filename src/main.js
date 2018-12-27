@@ -38,7 +38,7 @@ import util from "./util/util"
 router.beforeEach((to, from, next) => {
   let code = util.getCode('code')
   console.log(555)
-  alert(code)
+  // alert(code)
   if (!code) {
     util.weixinauth()
     // console.log(1111)
@@ -46,7 +46,7 @@ router.beforeEach((to, from, next) => {
     // next()
   } else {
     queryList({ code: code }).then(res => {
-      console.log(res, 36)
+      // console.log(res, 36)
       alert(res.data.openid + '' + res.data.nickname)
        if ( res.code == 1 ) {
          localStorage.setItem('Authorization', res.data.token) 
@@ -54,7 +54,7 @@ router.beforeEach((to, from, next) => {
               //  return  this.$router.push({
               //             path: '/index' // 到登录页重新获取token
               //           })   
-              next({path: '/index'}) 
+               next({path: '/text'}) 
           }
        }
     })
