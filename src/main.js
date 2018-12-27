@@ -49,7 +49,7 @@ router.beforeEach((to, from, next) => {
       console.log(res, 36)
       alert(res.data.openid + '' + res.data.nickname)
        if ( res == 1 ) {
-         localStorage.setItem('X-TOKEN', res.data.token) 
+         localStorage.setItem('Authorization', res.data.token) 
           if (res.isFirst) {
                return  this.$router.push({
                           path: '/login' // 到登录页重新获取token
