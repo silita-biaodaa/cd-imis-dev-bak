@@ -33,7 +33,7 @@ Vue.component('x-button', XButton)
 //   routes // (缩写) 相当于 routes: routes
 // })
 
-// import { queryList } from "./api/index"
+import { queryList } from "./api/index"
 import util from "./util/util"
 router.beforeEach((to, from, next) => {
   let code = util.getCode('code')
