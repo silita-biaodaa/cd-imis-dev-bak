@@ -1,7 +1,7 @@
 
 import Vue from 'vue'
 import Router from 'vue-router'
-// import index from '@/page/text'
+import index from '@/page/text'
 import Home from '@/page/index'
 Vue.use(Router)
 
