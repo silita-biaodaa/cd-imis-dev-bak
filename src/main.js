@@ -54,7 +54,7 @@ router.beforeEach((to, from, next) => {
               //  return  this.$router.push({
               //             path: '/index' // 到登录页重新获取token
               //           })   
-               next({path: '/text'}) 
+               return  next({path: '/text'}) 
           }
        }
     })
