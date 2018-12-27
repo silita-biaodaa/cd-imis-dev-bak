@@ -51,9 +51,10 @@ router.beforeEach((to, from, next) => {
        if ( res.code == 1 ) {
          localStorage.setItem('Authorization', res.data.token) 
           if (!res.data.isFirst) {
-               return  this.$router.push({
-                          path: '/index' // 到登录页重新获取token
-                        })
+              //  return  this.$router.push({
+              //             path: '/index' // 到登录页重新获取token
+              //           })   
+              next({path: '/index'}) 
           }
        }
     })
