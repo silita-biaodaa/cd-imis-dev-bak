@@ -43,7 +43,7 @@ router.beforeEach((to, from, next) => {
     // next()
   } else {
     queryList({ code: code }).then(res => {
-      // console.log(res, 36)
+      console.log(res, 36)
       alert(res.data.openid + '' + res.data.nickname)
        if( res == 1 ) {
          localStorage.setItem('Authorization', res.data.token) 
