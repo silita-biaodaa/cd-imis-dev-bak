@@ -1,7 +1,6 @@
 export default {
   getCode(code) {
     var locations = location + "" 
-    console.log( locations, 44)
     // if (locations.indexOf('/?#/') > 0) {//处理在支付页面授权时，获取code失败
     // 	locations = locations.replace('/?#/', '/#/')
     // }
@@ -16,7 +15,6 @@ export default {
       var v = queryArr[index].split("=")[1];
       queryMap[k] = v;
     }
-    console.log(queryMap[code],19)
     return queryMap[code];
   },
   weixinauth () {

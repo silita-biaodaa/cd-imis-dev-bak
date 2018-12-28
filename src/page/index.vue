@@ -68,7 +68,8 @@
            
         </div>
         <div class="add-b" @click='addbook'>
-           <x-button  ><x-icon type="ios-plus-empty" size="30" class="add-a"></x-icon>增加书本</x-button>
+           <x-button class="sign">增加书本</x-button>
+           <span class="add-img"><img src="../assets/img/add (2).png" alt=""></span>
         </div>
       </div>
 
@@ -175,19 +176,6 @@ export default {
                           content: '请填写或者删除多余空白书本',
                    })
                } 
-              //  else {
-              //     Object.keys(el).forEach(function(key){
-              //         //  console.log(key, el[key],1)
-              //           if(!el[key]) {
-              //               this.pass = true
-              //             this.$vux.alert.show({
-              //               title: '请输入必填选项',
-              //               content: '请填写或者删除多余空白书本',
-              //               })
-              //               return false 
-              //           } 
-              //     });
-              //  }         
             })
         }  
       //  console.log(this.pass)
@@ -209,7 +197,7 @@ export default {
 </script>
 <style lang="less" scoped>
 .home {
-  height: 1200px;
+  // height: 1200px;
   background: #F5F5F5;
    .img-post {
       position: absolute;
@@ -230,9 +218,9 @@ export default {
    .person-top {
     //  padding-bottom: 8px; 
       // margin-bottom: 20px;
-      height: 48px;
-      line-height: 48px;
-      font-size: 19px;
+      height: 58px;
+      line-height: 58px;
+      font-size: 24px;
       border-bottom: 1px solid #F2F2F2;
       position: relative;
       // align-items: center;
@@ -253,14 +241,14 @@ export default {
    }
 }
 .add {
-   margin-top: 8px;
-  background: #FFF;
+    margin-top: 10px;
+    background: #FFF;
   .add-top {
       padding-left: 18px;
       padding-right: 18px;
-      height: 48px;
-      line-height: 48px;
-      font-size: 19px;
+      height: 58px;
+      line-height: 58px;
+      font-size: 24px;
       border-bottom: 1px solid #F2F2F2;
       position: relative;
       img {
@@ -285,6 +273,9 @@ export default {
        background: #FFF;
         color: red;
      }
+     img {
+       height: 100%;
+     }
       .add-a{
         position: absolute;
         top: 50%;
@@ -299,14 +290,14 @@ export default {
    }
 }
 .time{
-  margin-top: 8px;
+  margin-top: 10px;
   padding-left: 18px;
   padding-right: 18px;
   background: #FFF;
   .time-top {
-      height: 48px;
-      line-height: 48px;
-      font-size: 19px;
+      height: 58px;
+      line-height: 58px;
+      font-size: 24px;
       border-bottom: 1px solid #F2F2F2;
       position: relative;
       img {
@@ -318,14 +309,14 @@ export default {
   }
 }
 .well {
-    margin-top: 8px;
+    margin-top: 10px;
   padding-left: 18px;
   padding-right: 18px;
   background: #FFF;
   .well-top {
-    height: 48px;
-      line-height: 48px;
-      font-size: 19px;
+    height: 58px;
+      line-height: 58px;
+      font-size: 24px;
       border-bottom: 1px solid #F2F2F2;
       position: relative;
       img {
@@ -337,14 +328,14 @@ export default {
   }
 }
 .volunteer{
-  margin-top: 8px;
+  margin-top: 10px;
   padding-left: 18px;
   padding-right: 18px;
   background: #FFF;
   .volunteer-top {
-      height: 48px;
-      line-height: 48px;
-      font-size: 19px;
+      height: 58px;
+      line-height: 58px;
+      font-size: 24px;
       border-bottom: 1px solid #F2F2F2;
       position: relative;
       img {
@@ -371,6 +362,14 @@ export default {
        transform:translateY(-50%);
        top: 50%;
        left: -2px;
+     }
+     .add-img{
+        position: absolute;
+        transform:translateY(-50%);
+        top: 50%;
+        left: 41%;
+        height: 18px;
+        width: 20px;
      }
   .left {
     padding-left: 18px;
