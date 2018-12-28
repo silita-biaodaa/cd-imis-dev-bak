@@ -10,14 +10,14 @@
          <div class="person-put">
            <div class="sign"> 
              <img src="../assets/img/sign1.png" alt="" class="sign-img">
-             <x-input title='姓名' v-model='username' placeholder='请输入你的真实姓名' placeholder-align='center' text-align='right' ></x-input>
+             <x-input title='姓名' v-model='username' placeholder='请输入你的真实姓名' placeholder-align='center' text-align='right' class="cc" ></x-input>
            </div>
             <div class="sign"> 
              <img src="../assets/img/sign1.png" alt="" class="sign-img">
-            <x-input title='手机' v-model='mobile' placeholder='请输入你的联系方式' placeholder-align='center' type='number' text-align='right' ></x-input>
+            <x-input title='手机' v-model='mobile' placeholder='请输入你的联系方式' placeholder-align='center' type='number' text-align='right' class="cc" ></x-input>
            </div>
-           <x-input title='企业' v-model='company' placeholder='请输入你的企业名称' placeholder-align='center' text-align='right' ></x-input>
-           <x-input title='职位' v-model='post' placeholder='请输入你的职位名称' placeholder-align='center' text-align='right' ></x-input>
+           <x-input title='企业' v-model='company' placeholder='请输入你的企业名称' placeholder-align='center' text-align='right' class="cc" ></x-input>
+           <x-input title='职位' v-model='post' placeholder='请输入你的职位名称' placeholder-align='center' text-align='right' class="cc" ></x-input>
          </div> 
       </div>
       <div class="time">
@@ -30,12 +30,12 @@
         <div class="time-put">
           <div class="sign"> 
              <img src="../assets/img/sign1.png" alt="" class="sign-img">
-            <datetime title='打开始于时间' v-model="tiems" placeholder='请选择' ></datetime>
+            <datetime title='打开始于时间' v-model="tiems" placeholder='请选择' class="cc" ></datetime>
            </div>
         </div>
         <div class="sign"> 
              <img src="../assets/img/sign1.png" alt="" class="sign-img">
-             <x-input title='打卡次数' v-model='count' placeholder='请输入打开次数' type='number' placeholder-align='right' text-align='right' ></x-input>
+             <x-input title='打卡次数' v-model='count' placeholder='请输入打开次数' type='number' placeholder-align='right' text-align='right' class="cc" ></x-input>
            </div>
       </div>
 
@@ -54,15 +54,15 @@
            <div class="left">
               <div class="sign "> 
                 <img src="../assets/img/sign1.png" alt="" class="sign-img">
-                <x-input title='书本名称' v-model='item.title' placeholder='请输入书本名称' placeholder-align='right' text-align='right' ></x-input>
+                <x-input title='书本名称' v-model='item.title' placeholder='请输入书本名称' placeholder-align='right' text-align='right' class="cc" ></x-input>
               </div>
               <div class="sign"> 
                 <img src="../assets/img/sign1.png" alt="" class="sign-img">
-                <x-input title='每日诵读遍数' v-model='item.readCount' placeholder='请输入' placeholder-align='right' text-align='right' type='number' ></x-input>
+                <x-input title='每日诵读遍数' v-model='item.readCount' placeholder='请输入' placeholder-align='right' text-align='right' type='number' class="cc" ></x-input>
               </div>
               <div class="sign" > 
                 <img src="../assets/img/sign1.png" alt="" class="sign-img">
-                <x-input title='总朗读遍数' v-model='item.readTotal' placeholder='请输入' placeholder-align='right' text-align='right' type='number' ></x-input>
+                <x-input title='总朗读遍数' v-model='item.readTotal' placeholder='请输入' placeholder-align='right' text-align='right' type='number' class="cc" ></x-input>
               </div>
            </div>
            
@@ -82,10 +82,10 @@
            <span>打卡时间</span>
         </div>
         <div class="well-put">
-            <datetime title='积善开始时间' v-model="begin" placeholder='请选择' text-align='right' ></datetime>
-            <datetime title='积善结束时间' v-model="end" placeholder='请选择' text-align='right' ></datetime>
-             <x-input title='积善件数' v-model='number' placeholder='请输入' placeholder-align='right' text-align='right' type='number' ></x-input>
-             <x-input title='累计积善件数' v-model='alls' placeholder='请输入' placeholder-align='right' text-align='right' type='number' ></x-input>
+            <datetime title='积善开始时间' v-model="begin" placeholder='请选择' text-align='right' class="cc" ></datetime>
+            <datetime title='积善结束时间' v-model="end" placeholder='请选择' text-align='right'  class="cc"></datetime>
+             <x-input title='积善件数' v-model='number' placeholder='请输入' placeholder-align='right' text-align='right' type='number'  class="cc"></x-input>
+             <x-input title='累计积善件数' v-model='alls' placeholder='请输入' placeholder-align='right' text-align='right' type='number'class="cc"  ></x-input>
         </div>
       </div>
       <div class="volunteer">
@@ -96,7 +96,7 @@
            <span>立志愿</span>
         </div>
         <div class="volunteer-put">
-            <x-textarea placeholder='请输入您的志愿' :rows='4' v-model="values"> </x-textarea>
+            <x-textarea placeholder='请输入您的志愿' :rows='4' v-model="values" class="ccc" :autosize='true' ></x-textarea>
         </div>
         <div class="btn" @click='record'>
            <x-button  >提交</x-button>
@@ -197,17 +197,24 @@ export default {
 </script>
 <style lang="less" scoped>
 .home {
+  .cc {
+    height: 96px;
+    font-size: 32px;
+    box-sizing: border-box;
+  }
+  .ccc {
+     font-size: 32px;
+  }
   // height: 1200px;
   background: #F5F5F5;
    .img-post {
       position: absolute;
       transform:translateY(-50%);
       top: 50%;
-     //  padding-right: 12px;
    }
    .img-time {
-      height: 25px;
-      width: 20px;
+      height: 30px;
+      width: 30px;
    }
    
 .person {
@@ -218,16 +225,16 @@ export default {
    .person-top {
     //  padding-bottom: 8px; 
       // margin-bottom: 20px;
-      height: 58px;
-      line-height: 58px;
-      font-size: 24px;
+      height: 96px;
+      line-height: 96px;
+      font-size: 28px;
       border-bottom: 1px solid #F2F2F2;
       position: relative;
       // align-items: center;
       // text-align: center;
       .img-book {
-         width: 20px;
-         height: 25px;
+         width: 30px;
+         height: 30px;
       } 
       img {
         height: 100%;
@@ -237,18 +244,17 @@ export default {
       }
    }
    .person-put {
-    
    }
 }
 .add {
-    margin-top: 10px;
+    margin-top: 16px;
     background: #FFF;
   .add-top {
       padding-left: 18px;
       padding-right: 18px;
-      height: 58px;
-      line-height: 58px;
-      font-size: 24px;
+      height: 96px;
+      line-height: 96px;
+      font-size: 32px;
       border-bottom: 1px solid #F2F2F2;
       position: relative;
       img {
@@ -260,16 +266,22 @@ export default {
   }
    .add-put{
      .add-book {
+       height: 96px;
        padding-left: 30px;
        padding-right: 30px;
        background: #F5F5F5;
        display: flex;
        justify-content:space-between;
+       line-height: 96px;
+       font-size: 28px;
      }
    }
    .add-b {
      position: relative;
+     height: 76px;
      .weui-btn_default {
+       height: 76px;
+       font-size: 32px;
        background: #FFF;
         color: red;
      }
@@ -281,8 +293,7 @@ export default {
         top: 50%;
         transform:translateY(-50%);
         left: 41%;
-        //  line-height: 48px;
-        top: 50%;
+        // top: 50%;
       }
    }
    .del {
@@ -290,14 +301,14 @@ export default {
    }
 }
 .time{
-  margin-top: 10px;
+  margin-top: 16px;
   padding-left: 18px;
   padding-right: 18px;
   background: #FFF;
   .time-top {
-      height: 58px;
-      line-height: 58px;
-      font-size: 24px;
+      height: 96px;
+      line-height: 96px;
+      font-size: 28px;
       border-bottom: 1px solid #F2F2F2;
       position: relative;
       img {
@@ -309,14 +320,14 @@ export default {
   }
 }
 .well {
-    margin-top: 10px;
+    margin-top: 16px;
   padding-left: 18px;
   padding-right: 18px;
   background: #FFF;
   .well-top {
-    height: 58px;
-      line-height: 58px;
-      font-size: 24px;
+    height: 96px;
+      line-height: 96px;
+      font-size: 32px;
       border-bottom: 1px solid #F2F2F2;
       position: relative;
       img {
@@ -328,14 +339,14 @@ export default {
   }
 }
 .volunteer{
-  margin-top: 10px;
+  margin-top: 16px;
   padding-left: 18px;
   padding-right: 18px;
   background: #FFF;
   .volunteer-top {
-      height: 58px;
-      line-height: 58px;
-      font-size: 24px;
+      height: 96px;
+      line-height: 96px;
+      font-size: 28px;
       border-bottom: 1px solid #F2F2F2;
       position: relative;
       img {
@@ -346,9 +357,12 @@ export default {
       }
   }
   .btn {
-    margin-top: 55px;
-    padding-bottom: 18px;
+    margin-top: 110px;
+    
+    padding-bottom: 32px;
     .weui-btn_default {
+      height: 96px;
+    font-size: 36px;
       color: #fff;
       background-color: red;
     }
@@ -356,6 +370,7 @@ export default {
 }
  .sign {
        position: relative;
+      //  height: 96px;
      }
      .sign-img {
        position: absolute;
@@ -367,9 +382,9 @@ export default {
         position: absolute;
         transform:translateY(-50%);
         top: 50%;
-        left: 41%;
-        height: 18px;
-        width: 20px;
+        left: 37%;
+        height: 26px;
+        width: 26px;
      }
   .left {
     padding-left: 18px;
