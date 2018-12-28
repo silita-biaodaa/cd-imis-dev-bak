@@ -32,46 +32,32 @@ Vue.component('x-button', XButton)
 // const router = new VueRouter({
 //   routes // (缩写) 相当于 routes: routes
 // })
-var isFirst = true
 import { queryList } from "./api/index"
 import util from "./util/util"
 router.beforeEach((to, from, next) => {
   let code = util.getCode('code')
-  console.log(code, 40)
-  console.log(555)
-  // alert(code)
   if (!code) {
     util.weixinauth()
-    // console.log(1111)
-    // console.log(code, 44)
-    // next()
+
   } else {
-    // console.log(1111)
-    //   if(isFirst) {
-    //     console.log(2222)
-    //       // next()
-    //       this.$router.replace({path:'/text'})
 
-    //   } else {
-    //     console.log(3333)
-    //     next()
-
-    //   }
-
-    queryList({ code: '1234' }).then(res => {
+    queryList({ code: code }).then(res => {
       console.log(11111)
       // console.log(res, 36)
       alert(res.data.openid + '' + res.data.nickname)
        if ( res.code == 1 ) {
          localStorage.setItem('Authorization', res.data.token) 
-          // if (res.data.isFirst) {
-          //      next()               
-          // } else {
-          //      next({name: 'text'})               
-          // }
+          if (res.data.isFirst) {
+              next()               
+          } else {
+            if(to.fullPath==='/text'){
+              next();
+            }else{
+              next('/text')
+            }            
+          }
        }
     }) 
-    next()
   }
 })
 
