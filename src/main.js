@@ -1,44 +1,28 @@
 
 import Vue from 'vue'
 import App from './App'
-// import VueRouter from 'vue-router'
 import router from './router/router'
-// import router from 'vue-router'
-// Vue.use(VueRouter);
 import axios from './axios/index'
 Vue.prototype.$axios = axios
 
-import { InlineCalendar, XInput, Datetime, XTextarea, XButton } from 'vux'
+import { InlineCalendar, XInput, Datetime, XTextarea, XButton, AlertPlugin } from 'vux'
 Vue.component('inline-calendar', InlineCalendar)
 Vue.component('x-input', XInput)
 Vue.component('datetime', Datetime)
 Vue.component('x-textarea', XTextarea)
 Vue.component('x-button', XButton)
+Vue.use(AlertPlugin)
 // import Mint from 'mint-ui';
 // Vue.use(Mint);
 
-// var router = new VueRouter()
-
-// new Vue({
-//   // el: '#app',
-//   router
-//   // components: { App },
-//   // template: '<App/>'
-// })
-// new Vue({
-//   router
-// }).$mount('#app')
-
-// const router = new VueRouter({
-//   routes // (缩写) 相当于 routes: routes
-// })
 import { queryList } from "./api/index"
 import util from "./util/util"
 router.beforeEach((to, from, next) => {
   let code = util.getCode('code')
+  console.log(code)
   if (!code) {
     util.weixinauth()
-
+      // next()
   } else {
 
     queryList({ code: code }).then(res => {
@@ -58,15 +42,14 @@ router.beforeEach((to, from, next) => {
           }
        }
     }) 
+    // next()
   }
 })
 
 /* eslint-disable no-new */
-// router.start(App, '#app')
 new Vue({
   el: '#app',
   router,
   components: { App },
   template: '<App/>'
 })
-// router.start(App, '#app')  

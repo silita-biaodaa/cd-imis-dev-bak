@@ -2,25 +2,29 @@
    <div class="home">
       <div class="person"> 
          <div class="person-top">
-             <img src="../assets/img/book2.png" alt=""> 
+             <div class="img-post img-book">
+               <img src="../assets/img/book3.png" alt=""> 
+             </div>
             <span>个人信息</span>
          </div>
          <div class="person-put">
            <div class="sign"> 
              <img src="../assets/img/sign1.png" alt="" class="sign-img">
-             <x-input title='姓名' v-model='username' placeholder='请输入你的真实姓名' placeholder-align='center' ></x-input>
+             <x-input title='姓名' v-model='username' placeholder='请输入你的真实姓名' placeholder-align='center' text-align='right' ></x-input>
            </div>
             <div class="sign"> 
              <img src="../assets/img/sign1.png" alt="" class="sign-img">
-            <x-input title='手机' v-model='mobile' placeholder='请输入你的联系方式' placeholder-align='center' ></x-input>
+            <x-input title='手机' v-model='mobile' placeholder='请输入你的联系方式' placeholder-align='center' type='number' text-align='right' ></x-input>
            </div>
-           <x-input title='企业' v-model='company' placeholder='请输入你的企业名称' placeholder-align='center' ></x-input>
-           <x-input title='职位' v-model='post' placeholder='请输入你的职位名称' placeholder-align='center' ></x-input>
+           <x-input title='企业' v-model='company' placeholder='请输入你的企业名称' placeholder-align='center' text-align='right' ></x-input>
+           <x-input title='职位' v-model='post' placeholder='请输入你的职位名称' placeholder-align='center' text-align='right' ></x-input>
          </div> 
       </div>
       <div class="time">
         <div class="time-top">
-           <img src="../assets/img/time (1).png" alt=""> 
+           <div class="img-post img-time">
+            <img src="../assets/img/time (3).png" alt=""> 
+           </div>
            <span>打卡时间</span>
         </div>
         <div class="time-put">
@@ -31,13 +35,15 @@
         </div>
         <div class="sign"> 
              <img src="../assets/img/sign1.png" alt="" class="sign-img">
-             <x-input title='打卡次数' v-model='count' placeholder='请输入打开次数' placeholder-align='right' ></x-input>
+             <x-input title='打卡次数' v-model='count' placeholder='请输入打开次数' type='number' placeholder-align='right' text-align='right' ></x-input>
            </div>
       </div>
 
       <div class="add">
         <div class="add-top">
-           <img src="../assets/img/buuk (1).png" alt=""> 
+           <div class="img-post img-time">
+            <img src="../assets/img/buuk (2).png" alt="">              
+           </div>
            <span>打卡时间</span>
         </div>
         <div class="add-put" v-for="(item,index) in first" :key="index">
@@ -48,15 +54,15 @@
            <div class="left">
               <div class="sign "> 
                 <img src="../assets/img/sign1.png" alt="" class="sign-img">
-                <x-input title='书本名称' v-model='item.title' placeholder='请输入书本名称' placeholder-align='right' ></x-input>
+                <x-input title='书本名称' v-model='item.title' placeholder='请输入书本名称' placeholder-align='right' text-align='right' ></x-input>
               </div>
               <div class="sign"> 
                 <img src="../assets/img/sign1.png" alt="" class="sign-img">
-                <x-input title='每日诵读遍数' v-model='item.readCount' placeholder='请输入' placeholder-align='right' ></x-input>
+                <x-input title='每日诵读遍数' v-model='item.readCount' placeholder='请输入' placeholder-align='right' text-align='right' type='number' ></x-input>
               </div>
               <div class="sign" > 
                 <img src="../assets/img/sign1.png" alt="" class="sign-img">
-                <x-input title='总朗读遍数' v-model='item.readTotal' placeholder='请输入' placeholder-align='right' ></x-input>
+                <x-input title='总朗读遍数' v-model='item.readTotal' placeholder='请输入' placeholder-align='right' text-align='right' type='number' ></x-input>
               </div>
            </div>
            
@@ -68,19 +74,24 @@
 
       <div class="well">
         <div class="well-top">
+          <div class="img-post img-time">
            <img src="../assets/img/gift (2).png" alt=""> 
+
+          </div>
            <span>打卡时间</span>
         </div>
         <div class="well-put">
-            <datetime title='积善开始时间' :v-model="begin" placeholder='请选择' ></datetime>
-            <datetime title='积善结束时间' :v-model="end" placeholder='请选择' ></datetime>
-             <x-input title='积善件数' :v-model='number' placeholder='请输入' placeholder-align='right' ></x-input>
-             <x-input title='累计积善件数' :v-model='alls' placeholder='请输入' placeholder-align='right' ></x-input>
+            <datetime title='积善开始时间' v-model="begin" placeholder='请选择' text-align='right' ></datetime>
+            <datetime title='积善结束时间' v-model="end" placeholder='请选择' text-align='right' ></datetime>
+             <x-input title='积善件数' v-model='number' placeholder='请输入' placeholder-align='right' text-align='right' type='number' ></x-input>
+             <x-input title='累计积善件数' v-model='alls' placeholder='请输入' placeholder-align='right' text-align='right' type='number' ></x-input>
         </div>
       </div>
       <div class="volunteer">
         <div class="volunteer-top">
-           <img src="../assets/img/star (2).png" alt=""> 
+          <div class="img-post img-time" >
+            <img src="../assets/img/star (2).png" alt=""> 
+          </div>
            <span>立志愿</span>
         </div>
         <div class="volunteer-put">
@@ -94,6 +105,7 @@
 </template>
 <script>
 import { recordBook } from "@/api/index";
+import { dateFormat } from 'vux'
 export default {
   data () {
     return {
@@ -108,7 +120,8 @@ export default {
       number: '',
       alls: '',
       values: '',
-      first: [{}]
+      first: [{title:'京瓷哲学'}],
+      pass: true
     }
   },
   methods: {
@@ -118,6 +131,10 @@ export default {
     delbook (i) {
       this.first.splice(i,1)
     },
+    getTime () {
+       this.tiems = dateFormat(new Date(), 'YYYY-MM-DD')
+       this.begin = dateFormat(new Date(), 'YYYY-MM-DD')
+    },
     func (index) {
        if (index == 0) {
           return false 
@@ -126,12 +143,65 @@ export default {
        }
     },
     record () {
-      console.log(11111)
-      recordBook({name: this.username, phone: this.mobile, company: this.company, post: this.post, pushStart: this.tiems,total: this.count, bonaStart: this.begin, bonaEnd: this.end, bonaCount: this.number, bonaTotal: this.alls, volunteer: this.values, books: this.first}).then( res => {
-         alert(res.code)
-         console.log(res,131)
-      })
+      this.pass = true
+        if(!this.username) {
+           return this.$vux.alert.show({
+                  title: '请输入必填选项',
+                  content: '请输入用户名',
+                })
+        } else if(!this.mobile) {
+          return this.$vux.alert.show({
+                  title: '请输入必填选项',
+                  content: '请输入手机号',
+                })
+
+        } else if(!this.tiems) {
+          return this.$vux.alert.show({
+                  title: '请输入必填选项',
+                  content: '请输入打卡始于时间',
+                })
+        } else if(!this.count) {
+           return this.$vux.alert.show({
+                  title: '请输入必填选项',
+                  content: '请输入打卡次数',
+                })
+        } else {
+            this.first.forEach( el => {
+              var arr = Object.keys(el)
+               if( el == {} || arr.length !== 3 ) {
+                  this.pass = false;
+                     return  this.$vux.alert.show({
+                          title: '请输入必填选项',
+                          content: '请填写或者删除多余空白书本',
+                   })
+               } 
+              //  else {
+              //     Object.keys(el).forEach(function(key){
+              //         //  console.log(key, el[key],1)
+              //           if(!el[key]) {
+              //               this.pass = true
+              //             this.$vux.alert.show({
+              //               title: '请输入必填选项',
+              //               content: '请填写或者删除多余空白书本',
+              //               })
+              //               return false 
+              //           } 
+              //     });
+              //  }         
+            })
+        }  
+      //  console.log(this.pass)
+        if(this.pass  )  {
+           recordBook({name: this.username, phone: this.mobile, company: this.company, post: this.post, pushStart: this.tiems,total: this.count, bonaStart: this.begin, bonaEnd: this.end, bonaCount: this.number, bonaTotal: this.alls, volunteer: this.values, books: this.first}).then( res => {
+              alert(res.code)
+              console.log(res,131)
+            })
+        }
+      
     }
+  },
+  created () {
+    this.getTime()
   },
   components: {
   }
@@ -141,11 +211,17 @@ export default {
 .home {
   height: 1200px;
   background: #F5F5F5;
-  ::-webkit-scrollbar {
-  width: 0px;
-  height: 0px;
-  background-color: #F5F5F5;
-}
+   .img-post {
+      position: absolute;
+      transform:translateY(-50%);
+      top: 50%;
+     //  padding-right: 12px;
+   }
+   .img-time {
+      height: 25px;
+      width: 20px;
+   }
+   
 .person {
   //  height: 48px;
    padding-left: 18px;
@@ -161,14 +237,15 @@ export default {
       position: relative;
       // align-items: center;
       // text-align: center;
+      .img-book {
+         width: 20px;
+         height: 25px;
+      } 
       img {
-         position: absolute;
-         transform:translateY(-50%);
-         top: 50%;
-        //  padding-right: 12px;
+        height: 100%;
       }
       span{
-        padding-left: 34px;
+        padding-left: 35px;
       }
    }
    .person-put {
@@ -187,9 +264,7 @@ export default {
       border-bottom: 1px solid #F2F2F2;
       position: relative;
       img {
-         position: absolute;
-         transform:translateY(-50%);
-         top: 50%;
+         height: 100%;
       }
       span{
         padding-left: 38px;
@@ -235,9 +310,7 @@ export default {
       border-bottom: 1px solid #F2F2F2;
       position: relative;
       img {
-         position: absolute;
-         transform:translateY(-50%);
-         top: 50%;
+        height: 100%;
       }
       span{
         padding-left: 38px;
@@ -256,9 +329,7 @@ export default {
       border-bottom: 1px solid #F2F2F2;
       position: relative;
       img {
-         position: absolute;
-         transform:translateY(-50%);
-         top: 50%;
+         height: 100%;
       }
       span{
         padding-left: 35px;
@@ -277,9 +348,7 @@ export default {
       border-bottom: 1px solid #F2F2F2;
       position: relative;
       img {
-         position: absolute;
-         transform:translateY(-50%);
-         top: 50%;
+         height: 100%;
       }
       span{
         padding-left: 38px;
