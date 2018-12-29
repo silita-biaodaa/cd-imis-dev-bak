@@ -22,25 +22,25 @@ import util from "./util/util"
 router.beforeEach((to, from, next) => {
   let code = util.getCode('code')
   if (!code) {
-    util.weixinauth()
-      // next()
+    // util.weixinauth()
+      next()
   } else {
 
-    queryList({ code: code }).then(res => {
-       if ( res.code == 1 ) {
-         localStorage.setItem('Authorization', res.data.token) 
-          if (!res.data.isFirst) {
-              next()               
-          } else {
-            if(to.fullPath==='/text'){
-              next();
-            }else{
-              next('/text')
-            }            
-          }
-       }
-    }) 
-    // next()
+    // queryList({ code: code }).then(res => {
+    //    if ( res.code == 1 ) {
+    //      localStorage.setItem('Authorization', res.data.token) 
+    //       if (!res.data.isFirst) {
+    //           next()               
+    //       } else {
+    //         if(to.fullPath==='/text'){
+    //           next();
+    //         }else{
+    //           next('/text')
+    //         }            
+    //       }
+    //    }
+    // }) 
+    next()
   }
 })
 

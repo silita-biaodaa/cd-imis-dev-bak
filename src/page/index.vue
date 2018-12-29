@@ -437,5 +437,10 @@ export default {
   line-height: 70px !important;
   font-size: 25px !important;
 }
+.dp-header .dp-item{
+  font-size: 26px !important; 
+  height: 55px !important;
+  line-height: 55px !important;
+}
 // ..scroller-item
 </style>
