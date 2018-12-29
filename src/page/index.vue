@@ -87,7 +87,7 @@
         <div class="well-put">
             <datetime title='积善开始时间' v-model="begin" placeholder='请选择' text-align='right' class="cc" ></datetime>
             <datetime title='积善结束时间' v-model="end" placeholder='请选择' text-align='right'  class="cc"></datetime>
-             <x-input title='积善件数' v-model='number' placeholder='请输入' placeholder-align='right' text-align='right' type='number'  class="cc"></x-input>
+             <x-input title='每日积善件数' v-model='number' placeholder='请输入' placeholder-align='right' text-align='right' type='number'  class="cc"></x-input>
              <x-input title='累计积善件数' v-model='alls' placeholder='请输入' placeholder-align='right' text-align='right' type='number'class="cc"  ></x-input>
         </div>
       </div>
