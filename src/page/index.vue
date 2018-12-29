@@ -30,7 +30,10 @@
         <div class="time-put">
           <div class="sign"> 
              <img src="../assets/img/sign1.png" alt="" class="sign-img">
-            <datetime title='打开始于时间' v-model="tiems" placeholder='请选择' class="cc" ></datetime>
+            <!-- <datetime title='打开始于时间' v-model="tiems" placeholder='请选择' class="cc" ></datetime> -->
+            <div class="l-put">
+             <div class="label">打开始于时间:</div> <input type="text" placeholder="请输入用户姓名" @click="openPicker" v-model="tiems" >
+            </div>
            </div>
         </div>
         <div class="sign"> 
@@ -102,9 +105,15 @@
            <x-button  >提交</x-button>
         </div>
       </div>
+      <mt-datetime-picker
+          ref="picker"
+          type="date"
+          v-model="pickerValue">
+      </mt-datetime-picker>
    </div>
 </template>
 <script>
+import  util  from '../util/util'
 import { recordBook } from "@/api/index";
 import { dateFormat } from 'vux'
 export default {
@@ -122,7 +131,8 @@ export default {
       alls: '',
       values: '',
       first: [{title:'京瓷哲学'}],
-      pass: true
+      pass: true,
+      pickerValue: ''
     }
   },
   methods: {
@@ -186,6 +196,14 @@ export default {
             })
         }
       
+    },
+    openPicker() {
+        this.$refs.picker.open();
+      },
+  },
+   watch:{
+    pickerValue(val) {
+       this.tiems = util.itcTiem(this.pickerValue)
     }
   },
   created () {
@@ -197,6 +215,29 @@ export default {
 </script>
 <style lang="less" scoped>
 .home {
+  .l-put {
+   height: 96px;
+   font-size: 32px;
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+  //  border: 1px solid red;
+   .label {
+     width: 290px;
+     padding-left: 10px;
+     color:#000;  
+   }
+   input {
+      width: 100%;
+      text-align: right;
+      background:none;  
+	    outline:none;  
+      border:0px;
+      caret-color:blue;
+      padding: 20px 0px;
+   }
+
+}
   .cc {
     height: 96px;
     font-size: 32px;

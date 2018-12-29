@@ -5,15 +5,17 @@ import router from './router/router'
 import axios from './axios/index'
 Vue.prototype.$axios = axios
 
-import { InlineCalendar, XInput, Datetime, XTextarea, XButton, AlertPlugin } from 'vux'
+import { InlineCalendar, XInput, Datetime, XTextarea, XButton, AlertPlugin, Group } from 'vux'
 Vue.component('inline-calendar', InlineCalendar)
 Vue.component('x-input', XInput)
 Vue.component('datetime', Datetime)
 Vue.component('x-textarea', XTextarea)
 Vue.component('x-button', XButton)
+Vue.component('group', Group)
 Vue.use(AlertPlugin)
-// import Mint from 'mint-ui';
-// Vue.use(Mint);
+import Mint from 'mint-ui';
+import 'mint-ui/lib/style.css'
+Vue.use(Mint);
 
 import { queryList } from "./api/index"
 import util from "./util/util"
