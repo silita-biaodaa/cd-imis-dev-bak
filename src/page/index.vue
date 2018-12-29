@@ -30,10 +30,10 @@
         <div class="time-put">
           <div class="sign"> 
              <img src="../assets/img/sign1.png" alt="" class="sign-img">
-            <!-- <datetime title='打开始于时间' v-model="tiems" placeholder='请选择' class="cc" ></datetime> -->
-            <div class="l-put">
+            <datetime title='打开始于时间' v-model="tiems" placeholder='请选择' class="cc" ></datetime>
+            <!-- <div class="l-put">
              <div class="label">打开始于时间:</div> <input type="text" placeholder="请输入用户姓名" @click="openPicker" v-model="tiems" >
-            </div>
+            </div> -->
            </div>
         </div>
         <div class="sign"> 
@@ -213,31 +213,9 @@ export default {
   }
 }
 </script>
-<style lang="less" scoped>
+<style lang="less" >
 .home {
-  .l-put {
-   height: 96px;
-   font-size: 32px;
-   display: flex;
-   justify-content: flex-start;
-   align-items: center;
-  //  border: 1px solid red;
-   .label {
-     width: 290px;
-     padding-left: 10px;
-     color:#000;  
-   }
-   input {
-      width: 100%;
-      text-align: right;
-      background:none;  
-	    outline:none;  
-      border:0px;
-      caret-color:blue;
-      padding: 20px 0px;
-   }
-
-}
+  box-sizing: border-box;
   .cc {
     height: 96px;
     font-size: 32px;
@@ -259,6 +237,7 @@ export default {
    }
    
 .person {
+  box-sizing: border-box;
   //  height: 48px;
    padding-left: 18px;
    padding-right: 18px;
@@ -288,6 +267,7 @@ export default {
    }
 }
 .add {
+  box-sizing: border-box;
     margin-top: 16px;
     background: #FFF;
   .add-top {
@@ -342,6 +322,7 @@ export default {
    }
 }
 .time{
+  box-sizing: border-box;
   margin-top: 16px;
   padding-left: 18px;
   padding-right: 18px;
@@ -361,6 +342,7 @@ export default {
   }
 }
 .well {
+  box-sizing: border-box;
     margin-top: 16px;
   padding-left: 18px;
   padding-right: 18px;
@@ -380,6 +362,7 @@ export default {
   }
 }
 .volunteer{
+  box-sizing: border-box;
   margin-top: 16px;
   padding-left: 18px;
   padding-right: 18px;
@@ -430,5 +413,13 @@ export default {
   .left {
     padding-left: 18px;
   }
+  
 }
+.dp-content {
+      padding: 200px 0 !important;
+  }
+.scroller-item {
+   font-size: 40px !important;
+}
+// ..scroller-item
 </style>
