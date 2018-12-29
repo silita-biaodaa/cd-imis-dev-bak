@@ -343,7 +343,7 @@ export default {
 }
 .well {
   box-sizing: border-box;
-    margin-top: 16px;
+  margin-top: 16px;
   padding-left: 18px;
   padding-right: 18px;
   background: #FFF;
@@ -381,8 +381,7 @@ export default {
       }
   }
   .btn {
-    margin-top: 110px;
-    
+    margin-top: 110px;    
     padding-bottom: 32px;
     .weui-btn_default {
       height: 96px;
@@ -420,6 +419,23 @@ export default {
   }
 .scroller-item {
    font-size: 40px !important;
+}
+.weui-dialog__title{
+   font-size: 32px !important;
+}
+.weui-dialog__hd {
+  padding: 55px 38px 36px !important;
+}
+.weui-dialog{
+   max-width: 540px !important;
+}
+.weui-dialog__bd {
+  min-height: 60px !important;
+  font-size: 26px !important;
+}
+.weui-dialog__ft {
+  line-height: 70px !important;
+  font-size: 25px !important;
 }
 // ..scroller-item
 </style>
