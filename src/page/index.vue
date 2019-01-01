@@ -374,7 +374,6 @@ export default {
         top: 50%;
         transform:translateY(-50%);
         left: 41%;
-        // top: 50%;
       }
    }
    .del {
@@ -501,5 +500,4 @@ export default {
   height: 55px !important;
   line-height: 55px !important;
 }
-// ..scroller-item
 </style>
