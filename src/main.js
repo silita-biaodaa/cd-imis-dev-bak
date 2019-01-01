@@ -28,8 +28,8 @@ router.beforeEach((to, from, next) => {
   let code = util.getCode('code')
   if (!code) {
     //用户授权
-    // util.weixinauth()
-    next()
+    util.weixinauth()
+    // next()
   } else {
     var auth = localStorage.getItem('Authorization');
 
