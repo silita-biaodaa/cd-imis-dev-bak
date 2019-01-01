@@ -22,7 +22,7 @@ import Mint from 'mint-ui';
 import 'mint-ui/lib/style.css'
 Vue.use(Mint);
 
-// import { queryList } from "./api/index"
+import { queryList } from "./api/index"
 import util from "./util/util"
 router.beforeEach((to, from, next) => {
   let code = util.getCode('code')
