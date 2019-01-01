@@ -142,7 +142,7 @@ export default {
       number: 0,
       alls: '',
       values: '',
-      first: [{title:'《六项精进》',readCount:0}],
+      first: [{title:'六项精进',readCount:0}],
       pass: true,
       pickerValue: ''
     }
