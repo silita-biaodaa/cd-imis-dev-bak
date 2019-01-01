@@ -30,7 +30,7 @@ router.beforeEach((to, from, next) => {
     util.weixinauth()
     // next()
   } else {
-    queryList({ code: '1234' }).then(res => {
+    queryList({ code: code }).then(res => {
        if ( res.code == 1 ) {
          localStorage.setItem('Authorization', res.data.token) 
           if (!res.data.isFirst) {
