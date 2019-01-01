@@ -10,14 +10,14 @@
          <div class="person-put">
            <div class="sign"> 
              <img src="../assets/img/sign1.png" alt="" class="sign-img">
-             <x-input title='姓名' v-model='username' placeholder='请输入你的真实姓名' placeholder-align='center' text-align='right' class="cc" ></x-input>
+             <x-input title='姓名' v-model='username' placeholder='请输入您的姓名' placeholder-align='right' text-align='right' class="cc" ></x-input>
            </div>
             <div class="sign"> 
              <img src="../assets/img/sign1.png" alt="" class="sign-img">
-            <x-input title='手机' v-model='mobile' placeholder='请输入你的联系方式' placeholder-align='center'  text-align='right' class="cc" type='tel' ></x-input>
+            <x-input title='手机' v-model='mobile' placeholder='请输入您的联系方式' placeholder-align='right'  text-align='right' class="cc" type='tel' ></x-input>
            </div>
-           <x-input title='企业' v-model='company' placeholder='请输入你的企业名称' placeholder-align='center' text-align='right' class="cc" ></x-input>
-           <x-input title='职位' v-model='post' placeholder='请输入你的职位名称' placeholder-align='center' text-align='right' class="cc" ></x-input>
+           <x-input title='企业' v-model='company' placeholder='请输入您的企业名称' placeholder-align='right' text-align='right' class="cc" ></x-input>
+           <x-input title='职位' v-model='post' placeholder='请输入您的职位名称' placeholder-align='right' text-align='right' class="cc" ></x-input>
          </div> 
       </div>
       <div class="time">
@@ -25,7 +25,7 @@
            <div class="img-post img-time">
             <img src="../assets/img/time (3).png" alt=""> 
            </div>
-           <span>打卡时间</span>
+           <span>知学习</span>
         </div>
         <div class="time-put">
           <div class="sign"> 
@@ -88,7 +88,7 @@
            <img src="../assets/img/gift (2).png" alt=""> 
 
           </div>
-           <span>打卡时间</span>
+           <span>积善行</span>
         </div>
         <div class="well-put">
             <datetime title='积善开始时间' v-model="begin" placeholder='请选择' text-align='right' class="cc" ></datetime>
@@ -142,7 +142,7 @@ export default {
       number: 0,
       alls: '',
       values: '',
-      first: [{title:'六项精进',readCount:0}],
+      first: [{title:'《六项精进》',readCount:0}],
       pass: true,
       pickerValue: ''
     }
