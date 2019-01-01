@@ -189,7 +189,8 @@ export default {
             })
         }  
       //  console.log(this.pass)
-        if(this.pass  )  {
+        if(this.pass  ) {
+          console.log(1111)
            recordBook({name: this.username, phone: this.mobile, company: this.company, post: this.post, pushStart: this.tiems,total: this.count, bonaStart: this.begin, bonaEnd: this.end, bonaCount: this.number, bonaTotal: this.alls, volunteer: this.values, books: this.first}).then( res => {
               alert(res.code)
               console.log(res,131)
@@ -204,6 +205,12 @@ export default {
    watch:{
     pickerValue(val) {
        this.tiems = util.itcTiem(this.pickerValue)
+    },
+    times(val) {
+        var s1 = new Date(val.replace(/-/g, "/"));
+        var s2 = new Date();//当前日期：2017-04-24
+        var days = s2.getTime() - s1.getTime();
+        this.count = parseInt(days / (1000 * 60 * 60 * 24));
     }
   },
   created () {
@@ -385,7 +392,7 @@ export default {
     padding-bottom: 32px;
     .weui-btn_default {
       height: 96px;
-    font-size: 36px;
+      font-size: 36px;
       color: #fff;
       background-color: red;
     }

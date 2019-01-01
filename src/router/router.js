@@ -1,9 +1,11 @@
 
 import Vue from 'vue'
 import Router from 'vue-router'
-import text from '@/page/text'
 import Home from '@/page/index'
-import Lab from '@/page/lab'
+import Card from '@/page/Card'
+import friend from '@/page/friend'
+import Nav from '@/page/Nav'
+
 Vue.use(Router)
 
 export default new Router({
@@ -12,20 +14,26 @@ export default new Router({
       path: '/',
       redirect: '/home'
     },
-    {
+    
+   {
       path: '/home',
       name: 'home',
       component: Home
     },
     {
-      path: '/text',
-      name: 'text',
-      component: text
-    },
-    {
-      path: '/lab',
-      name: 'lab',
-      component: Lab
+      path: '/nav',
+      name: 'nav',
+      component: Nav,
+      children: [
+        {
+          path: 'friend',
+          component: friend
+        },         
+        {
+          path: 'card',
+          component: Card
+        }
+      ]
     }
   ]
 })

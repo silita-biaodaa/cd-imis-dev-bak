@@ -5,12 +5,43 @@ var baseURL = 'http://imis.biaodaa.com/'
 
 axios.defaults.baseURL = baseURL
 
+// export const getJsonData = (url, params) => {
+//   return new Promise((resolve, reject) => {
+//     // let token = localStorage.getItem("Authorization")
+//     let token = '8A252C3C1EB6DF29DBA4BB879AC4A1C8.eyJ1c2VySWQiOiI1ODU2OTZkYzY5ZTE0N2VlYjU4MTAzOTc4YzJlYzczZCJ9'
+
+//     if (params != null) {
+//       axios.post(url, params, {
+//         headers: { 'Content-Type': 'application/json', 'Authorization': token }
+//       }).then(res => {
+//         resolve(res.data)
+//       }).catch(error => {
+//         reject(error)
+//       })
+//     } else {
+//       axios.post(url, null, {
+//         headers: { 'Content-Type': 'application/json', 'Authorization': token }
+//       }).then(res => {
+//         resolve(res.data)
+//       }).catch(error => {
+//         reject(error)
+//       })
+//     }
+//   })
+
+// }
+// axios.defaults.headers.common['Authorization'] = '8A252C3C1EB6DF29DBA4BB879AC4A1C8.eyJ1c2VySWQiOiI1ODU2OTZkYzY5ZTE0N2VlYjU4MTAzOTc4YzJlYzczZCJ9'
+
 axios.interceptors.request.use(function (config) {
   // 将token给到一个前后台约定好的key中，作为请求发送
-  let token = localStorage.getItem('Authorization')
-
+  // let token = localStorage.getItem('Authorization')
+  let token = '8A252C3C1EB6DF29DBA4BB879AC4A1C8.eyJ1c2VySWQiOiI1ODU2OTZkYzY5ZTE0N2VlYjU4MTAzOTc4YzJlYzczZCJ9'
   if (token) {
+  //   // config.headers['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8'
+    
     config.headers['X-TOKEN'] = token
+
+  //   // headers.set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
   }
   return config
 }, function (error) {
@@ -38,6 +69,21 @@ export const recordBook = params => {
   return axios.post('user/tmp/create', params).then(res => res.data)
 }
 
+export const recordPer = params => {
+  return axios.post('user/tmp/detail', params).then(res => res.data)
+}
+
+export const pushCard = params => {
+  return axios.post('user/push', params).then(res => res.data)
+}
+
+export const User = params => {
+  return axios.post('user/count', params).then(res => res.data)
+}
+
+export const Friends = params => {
+  return axios.post('user/push/list', params).then(res => res.data)
+}
 
 // export const getJsonData = (url, params) => {
 //     return new Promise((resolve, reject) => {
