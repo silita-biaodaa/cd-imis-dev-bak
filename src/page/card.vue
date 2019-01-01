@@ -217,14 +217,14 @@ export default {
          height: 56px;
       }
       .van-stepper__minus::before, .van-stepper__plus::before {
-        width: 30px ;
-        height: 2px ;
-        color: #999 ;
+        width: 30px !important;
+        height: 2px !important;
+        color: #999 !important;
       }
       .van-stepper__minus::after, .van-stepper__plus::after {
-        height: 30px ;
-        width: 2px ;
-        color: #999 ;
+        height: 30px !important;
+        width: 2px !important;
+        color: #999 !important;
       }
       .van-stepper__input {
         font-size: 36px;
@@ -332,10 +332,14 @@ export default {
  .card-put {
     font-size: 32px;
     background: #fff;
-    height: ;
+
+    // height: ;
  }
  .card-ma {
     margin-top: 10px;
+ }
+ .weui-cell {
+   padding: 10px 36px;
  }
  .card-btn {
    margin-top: 110px;    
