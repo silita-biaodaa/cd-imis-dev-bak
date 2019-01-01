@@ -19,7 +19,7 @@
           </div>
           <div class="c-content">
               <p class="c-name"><span class="fc-n">{{item.user.name}}</span>-{{item.user.company}}</p>
-              <p class="c-time">{{item.pushd}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp打卡第{{item.pushCount.pushDays}}天</p>
+              <p class="c-time">{{item.pushd}}&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp打卡第{{item.pushCount.pushADays}}天</p>
               <div class="c-text" > 
                   <p>【知～学习】</p>
                   <div v-for="(el,index) in item.books" :key="index">
