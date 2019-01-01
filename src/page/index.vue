@@ -14,7 +14,7 @@
            </div>
             <div class="sign"> 
              <img src="../assets/img/sign1.png" alt="" class="sign-img">
-            <x-input title='手机' v-model='mobile' placeholder='请输入你的联系方式' placeholder-align='center' type='number' text-align='right' class="cc" ></x-input>
+            <x-input title='手机' v-model='mobile' placeholder='请输入你的联系方式' placeholder-align='center'  text-align='right' class="cc" type='tel' ></x-input>
            </div>
            <x-input title='企业' v-model='company' placeholder='请输入你的企业名称' placeholder-align='center' text-align='right' class="cc" ></x-input>
            <x-input title='职位' v-model='post' placeholder='请输入你的职位名称' placeholder-align='center' text-align='right' class="cc" ></x-input>
@@ -38,7 +38,7 @@
         </div>
         <div class="sign"> 
              <img src="../assets/img/sign1.png" alt="" class="sign-img">
-             <x-input title='打卡次数' v-model='count' placeholder='请输入打开次数' type='number' placeholder-align='right' text-align='right' class="cc" ></x-input>
+             <x-input title='打卡次数' v-model='count' placeholder='请输入打开次数' type='tel' placeholder-align='right' text-align='right' class="cc" ></x-input>
            </div>
       </div>
 
@@ -60,12 +60,18 @@
                 <x-input title='书本名称' v-model='item.title' placeholder='请输入书本名称' placeholder-align='right' text-align='right' class="cc" ></x-input>
               </div>
               <div class="sign"> 
-                <img src="../assets/img/sign1.png" alt="" class="sign-img">
-                <x-input title='每日诵读遍数' v-model='item.readCount' placeholder='请输入' placeholder-align='right' text-align='right' type='number' class="cc" ></x-input>
+                 <div class="card-com">
+                   <div class="l-pu">
+                        <div class="label label-f">今日朗读遍数</div> 
+                        <van-stepper  v-model.number="item.readCount" class="l-mi" :min="0" />                    
+                   </div>
+                </div>
+                <!-- <img src="../assets/img/sign1.png" alt="" class="sign-img">
+                <x-input title='每日诵读遍数' v-model='item.readCount' placeholder='请输入' placeholder-align='right' text-align='right' type='tel' class="cc" ></x-input> -->
               </div>
               <div class="sign" > 
                 <img src="../assets/img/sign1.png" alt="" class="sign-img">
-                <x-input title='总朗读遍数' v-model='item.readTotal' placeholder='请输入' placeholder-align='right' text-align='right' type='number' class="cc" ></x-input>
+                <x-input title='总朗读遍数' v-model='item.readTotal' placeholder='请输入' placeholder-align='right' text-align='right' type='tel' class="cc" ></x-input>
               </div>
            </div>
            
@@ -87,8 +93,14 @@
         <div class="well-put">
             <datetime title='积善开始时间' v-model="begin" placeholder='请选择' text-align='right' class="cc" ></datetime>
             <datetime title='积善结束时间' v-model="end" placeholder='请选择' text-align='right'  class="cc"></datetime>
-             <x-input title='每日积善件数' v-model='number' placeholder='请输入' placeholder-align='right' text-align='right' type='number'  class="cc"></x-input>
-             <x-input title='累计积善件数' v-model='alls' placeholder='请输入' placeholder-align='right' text-align='right' type='number'class="cc"  ></x-input>
+             <!-- <x-input title='每日积善件数' v-model='number' placeholder='请输入' placeholder-align='right' text-align='right' type='tel'  class="cc"></x-input> -->
+             <div class="card-com">
+                   <div class="l-pu">
+                        <div class="label label-f">每日积善件数</div> 
+                        <van-stepper  v-model.number="number" class="l-mi" :min="0" />                    
+                   </div>
+            </div>
+             <x-input title='累计积善件数' v-model='alls' placeholder='请输入' placeholder-align='right' text-align='right' type='tel' class="cc"  ></x-input>
         </div>
       </div>
       <div class="volunteer">
@@ -120,17 +132,17 @@ export default {
   data () {
     return {
       username: '',
-      mobile: '',
       company: '',
       post: '',
+      mobile: '',
       tiems: '',
       count: '',
       begin: '',
       end: '',
-      number: '',
+      number: 0,
       alls: '',
       values: '',
-      first: [{title:'京瓷哲学'}],
+      first: [{title:'六项精进',readCount:0}],
       pass: true,
       pickerValue: ''
     }
@@ -154,38 +166,23 @@ export default {
        }
     },
     record () {
-      alert(this.mobile)
-      console.log(this.mobile)
-      this.pass = true
+      
+      this.pass = true;
+      
         if(!this.username) {
           this.pass = false
            return this.$vux.alert.show({
                   title: '请输入必填选项',
                   content: '请输入您的姓名',
                 })
-        } 
+        } ;
          if (!this.mobile) {
            this.pass = false
           return this.$vux.alert.show({
                   title: '请输入必填选项',
                   content: '请输入手机号',
                 })
-        } 
-         if (!this.tiems) {
-           this.pass = false
-          return this.$vux.alert.show({
-                  title: '请输入必填选项',
-                  content: '请输入打卡始于时间',
-                })
-        } 
-         if (!this.count) {
-           this.pass = false
-           return this.$vux.alert.show({
-                  title: '请输入必填选项',
-                  content: '请输入打卡次数',
-                })
-        }  
-         
+        } ;
             this.first.forEach( el => {
               var arr = Object.keys(el)
                if( el == {} || arr.length !== 3 ) {
@@ -195,13 +192,15 @@ export default {
                           content: '请填写或者删除多余空白书本',
                    })
                } 
-            })
+            }
+            
+            );
     
-      //  console.log(this.pass)
-        if(this.pass  ) {
-          // console.log(1111)
+      if ( this.pass ) {
+           console.log(11111)
            recordBook({name: this.username, phone: this.mobile, company: this.company, post: this.post, pushStart: this.tiems,total: this.count, bonaStart: this.begin, bonaEnd: this.end, bonaCount: this.number, bonaTotal: this.alls, volunteer: this.values, books: this.first}).then( res => {
                if(res.code == 1) {
+                 console.log(res,191)
                  this.$router.replace({path:'nav/card'})
                }
             })
@@ -218,7 +217,7 @@ export default {
     },
     tiems(val) {
         var s1 = new Date(val.replace(/-/g, "/"));
-        var s2 = new Date();//当前日期：2017-04-24
+        var s2 = new Date();//当前日期
         var days = s2.getTime() - s1.getTime();
         this.count = parseInt(days / (1000 * 60 * 60 * 24));
     }
@@ -252,6 +251,46 @@ export default {
       height: 30px;
       width: 30px;
    }
+ .l-pu {
+    height: 96px;
+   font-size: 32px;
+  line-height: 96px; 
+   display: flex;
+   justify-content: space-between;
+   text-align: center;
+   .l-mi {
+      margin:  auto  0;
+      .van-stepper__minus, .van-stepper__plus {
+        width: 62px;
+        height: 56px;
+        border-color: #ccc;
+        
+      }
+      .van-stepper__minus {
+        border-radius: 18px 0 0 18px;
+      }
+      .van-stepper__plus {
+        border-radius: 0 18px 18px 0;
+      }
+      .van-stepper__input{
+         width: 62px;
+         height: 56px;
+      }
+      .van-stepper__minus::before, .van-stepper__plus::before {
+        width: 30px;
+        height: 2px;
+        color: #999;
+      }
+      .van-stepper__minus::after, .van-stepper__plus::after {
+        height: 30px;
+        width: 2px;
+        color: #999;
+      }
+      .van-stepper__input {
+        font-size: 36px;
+      }
+   }
+}  
    
 .person {
   box-sizing: border-box;

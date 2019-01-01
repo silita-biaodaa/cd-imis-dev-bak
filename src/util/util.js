@@ -16,7 +16,8 @@ export default {
     for (var index in queryArr) {
       var k = queryArr[index].split("=")[0];
       var v = queryArr[index].split("=")[1];
-      queryMap[k] = v;
+      var s =v.split("#");
+      queryMap[k] = s[0];
     }
     return queryMap[code];
   },

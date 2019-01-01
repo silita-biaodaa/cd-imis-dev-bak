@@ -10,7 +10,7 @@
            <p class="name">{{this.name}}</p>
            <p class="company" >{{this.compang}}</p>
            <p class="start s-top">打卡始于<span class="p-ye">{{this.pushStart}}</span>，持续打卡于<span class="p-ye">{{this.pushEnd}}</span>,</p>
-           <p class="start">  日精进打卡第天<span class="p-ye">{{this.time}}</span>天，共打卡<span class="p-ye">{{this.total}}</span>次,缺卡<span>{{this.que}}</span>次</p>
+           <p class="start">  日精进打卡第天<span class="p-ye">{{this.time}}</span>天，共打卡<span class="p-ye">{{this.total}}</span>次,缺卡<span class="p-ye" >{{this.que}}</span>次</p>
          </div>
       </div>
       <div class="f-content" v-for="( item, index ) in list" :key="index">
@@ -76,10 +76,8 @@ export default {
           this.pushStart = res.data.pushStart
           this.pushEnd = res.data.pushEnd
           this.total = res.data.total
-          var s1 = new Date(res.data.pushEnd.replace(/-/g, "/")) - new Date(res.data.pushStart.replace(/-/g, "/"))
-          this.time = parseInt(s1 / (1000 * 60 * 60 * 24));
-          this.que = this.time - this.total
-          
+          this.time = res.data.pushDays
+          this.que = res.data.lostCount
        })
     },
     gainList() {

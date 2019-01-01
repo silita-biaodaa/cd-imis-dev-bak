@@ -31,10 +31,10 @@
             </div> 
            <div class="pdd">
               <div class="l-put put-bot">
-               <div class="label label-f">书本名称</div> <input type="text" placeholder="请输入书本名称"  >
+               <div class="label label-f">书本名称</div> <input type="text" placeholder="请输入书本名称" v-model='item.bookName' >
               </div>
               <div class="l-put">
-               <div class="label label-f">朗读章节</div> <input type="text" placeholder="请输入"  >
+               <div class="label label-f">朗读章节</div> <input type="text" placeholder="请输入" v-model='item.section' >
               </div>
            </div>           
         </div>
@@ -84,13 +84,16 @@
        </div>
        <div class="card-b">
           <div class="card-book">
-            发愿从{{pushCount.bonaStart}}起，{{pushCount.years}}年内{{pushCount.bonaTotal}}善事，累计{{pushCount.bonaCount}}善。
+            发愿从{{pushCount.bonaStart}}起，{{pushCount.years}}年内{{pushCount.days * pushCount.bonaCount }}善事，累计{{pushCount.bonaTotal+pushCount.bonaDays}}善。
           </div>
        </div>
         <div class="card-com">
-          <div class="l-put">
-               <div class="label label-f">今日行善件数</div> <input type="text" placeholder="1善" v-model="pushCount.bonaDays" >
-          </div>
+
+               <!-- <div class="label label-f">今日行善件数</div> <input type="text" placeholder="1善" v-model="pushCount.bonaDays" > -->
+               <div class="l-pu">
+                    <div class="label label-f">今日行善次数</div> 
+                    <van-stepper  v-model="pushCount.bonaDays" class="l-mi" :min="0" />                    
+               </div>
        </div>
        <div class="card-top card-com laca card-ma">
            <div class="siz">
@@ -112,7 +115,7 @@
           </div>
        </div>
        <div class="card-put">
-            <x-textarea placeholder='请输入您要分享的经典名句' :rows='4' v-model="introspective" ></x-textarea>
+            <x-textarea placeholder='请输入您的反省及觉悟' :rows='4' v-model="introspective" ></x-textarea>
         </div>
          <div class="card-top card-com laca card-ma">
            <div class="siz">
@@ -123,11 +126,11 @@
           </div>
        </div>
        <div class="card-put">
-            <x-textarea placeholder='请输入您要分享的经典名句' :rows='4' v-model="thanks" ></x-textarea>
+            <x-textarea placeholder='请输入您的感谢' :rows='4' v-model="thanks" ></x-textarea>
         </div>
         
         <div class="card-btn" @click="punch" >
-           <x-button   >提交</x-button>
+           <x-button>提交</x-button>
         </div>
    </div>
 </template>
@@ -136,7 +139,7 @@ import { recordPer , pushCard } from '@/api/index'
 export default {
   data () {
     return {
-      books:[{}],
+      books:[],
       // booksss:[],
       num:'',
       bookss:[],
@@ -152,7 +155,7 @@ export default {
     gainPer() {
        recordPer({}).then( res => {
           if(res.code == 1) {
-            //  console.log(res)
+             console.log(res)
               this.thanks = res.data.thanks
               this.practice = res.data.practice ? res.data.practice : this.practices
               this.classic = res.data.classic
@@ -164,10 +167,10 @@ export default {
        })
     },
     punch(){
-      console.log(111)
-      this.pushCount.bonaDays = this.pushCount.bonaDays ? this.pushCount.bonaDays : 1;
       pushCard({thanks:this.thanks,practice:this.practices,books:this.bookss,classic:this.classic,introspective:this.introspective,volunteer:this.volunteer,pushCount:this.pushCount,isPub:'1',bookish:this.books}).then( res => {
-           console.log(res)
+           if(res.code == 1) {
+              this.$router.push({path:'/nav/friend'})
+           }
       })
     },
     cardBook () {
@@ -181,7 +184,8 @@ export default {
      this.gainPer()
   },
   components: {
-  }
+  },
+  
 }
 </script>
 <style lang="less" >
@@ -226,27 +230,6 @@ export default {
         font-size: 36px;
       }
    }
-  // .de-ad {
-  //    height: 56px;
-  //    width: 186px;
-  //    border: 1px solid #ccc;
-  //    border-radius: 10px;
-  //    margin:  auto 0;
-  //   //  ul {
-  //   //    li {
-  //   //       float: left;
-  //   //       width: 62px;
-  //   //       height: 56px;
-  //   //       line-height: 56px;
-  //   //       input {
-  //   //         width: 100%;
-  //   //         height: 100%;
-  //   //         text-align: center;
-  //   //         border: none;
-  //   //       }
-  //   //    }
-  //   //  }
-  // }
 }
 .l-put {
    height: 96px;
