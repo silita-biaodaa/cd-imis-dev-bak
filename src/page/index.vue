@@ -272,11 +272,14 @@ export default {
       }
       .van-stepper__minus {
         border-radius: 18px 0 0 18px;
+        box-sizing: border-box;
       }
       .van-stepper__plus {
         border-radius: 0 18px 18px 0;
+        box-sizing: border-box;
       }
       .van-stepper__input{
+        line-height: 56px;
          width: 62px;
          height: 56px;
       }

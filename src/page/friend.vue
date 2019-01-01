@@ -9,8 +9,8 @@
          <div class="p-name">
            <p class="name">{{this.name}}</p>
            <p class="company" >{{this.compang}}</p>
-           <p class="start s-top">打卡始于<span class="p-ye">{{this.pushStart}}</span>，持续打卡于<span class="p-ye">{{this.pushEnd}}</span>,</p>
-           <p class="start">  日精进打卡第天<span class="p-ye">{{this.time}}</span>天，共打卡<span class="p-ye">{{this.total}}</span>次,缺卡<span class="p-ye" >{{this.que}}</span>次</p>
+           <p class="start s-top">打卡始于<span class="p-ye">{{this.pushStart}}</span>,持续打卡于<span class="p-ye">{{this.pushEnd}}</span>,</p>
+           <p class="start">  日精进打卡第天<span class="p-ye">{{this.time}}</span>天,共打卡<span class="p-ye">{{this.total}}</span>次,缺卡<span class="p-ye" >{{this.que}}</span>次</p>
          </div>
       </div>
       <div class="f-content" v-for="( item, index ) in list" :key="index">
