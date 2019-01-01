@@ -5,7 +5,7 @@
              <div class="img-post img-book">
                <img src="../assets/img/book3.png" alt=""> 
              </div>
-            <span>个人信息</span>
+            <span class='home-size'>个人信息</span>
          </div>
          <div class="person-put">
            <div class="sign"> 
@@ -25,7 +25,7 @@
            <div class="img-post img-time">
             <img src="../assets/img/time (3).png" alt=""> 
            </div>
-           <span>知学习</span>
+           <span class='home-size' >打卡时间</span>
         </div>
         <div class="time-put">
           <div class="sign"> 
@@ -47,7 +47,7 @@
            <div class="img-post img-time">
             <img src="../assets/img/buuk (2).png" alt="">              
            </div>
-           <span>打卡时间</span>
+           <span  class='home-size' >知学习</span>
         </div>
         <div class="add-put" v-for="(item,index) in first" :key="index">
            <div class="add-book">
@@ -88,7 +88,7 @@
            <img src="../assets/img/gift (2).png" alt=""> 
 
           </div>
-           <span>积善行</span>
+           <span  class='home-size' >积善行</span>
         </div>
         <div class="well-put">
             <datetime title='积善开始时间' v-model="begin" placeholder='请选择' text-align='right' class="cc" ></datetime>
@@ -108,7 +108,7 @@
           <div class="img-post img-time" >
             <img src="../assets/img/star (2).png" alt=""> 
           </div>
-           <span>立志愿</span>
+           <span  class='home-size' >立志愿</span>
         </div>
         <div class="volunteer-put">
             <x-textarea placeholder='请输入您的志愿' :rows='4' v-model="values" class="ccc" :autosize='true' ></x-textarea>
@@ -232,6 +232,10 @@ export default {
 <style lang="less" >
 .home {
   box-sizing: border-box;
+  .home-size {
+     font-size: 28px;
+     color:#666;
+  }
   .cc {
     height: 96px;
     font-size: 32px;
@@ -455,7 +459,7 @@ export default {
        position: absolute;
        transform:translateY(-50%);
        top: 50%;
-       left: -2px;
+       left: -4px;
      }
      .add-img{
         position: absolute;
