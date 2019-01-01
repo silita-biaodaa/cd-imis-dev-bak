@@ -154,29 +154,38 @@ export default {
        }
     },
     record () {
+      alert(this.mobile)
+      console.log(this.mobile)
       this.pass = true
         if(!this.username) {
+          this.pass = false
            return this.$vux.alert.show({
                   title: '请输入必填选项',
-                  content: '请输入用户名',
+                  content: '请输入您的姓名',
                 })
-        } else if(!this.mobile) {
+        } 
+         if (!this.mobile) {
+           this.pass = false
           return this.$vux.alert.show({
                   title: '请输入必填选项',
                   content: '请输入手机号',
                 })
-
-        } else if(!this.tiems) {
+        } 
+         if (!this.tiems) {
+           this.pass = false
           return this.$vux.alert.show({
                   title: '请输入必填选项',
                   content: '请输入打卡始于时间',
                 })
-        } else if(!this.count) {
+        } 
+         if (!this.count) {
+           this.pass = false
            return this.$vux.alert.show({
                   title: '请输入必填选项',
                   content: '请输入打卡次数',
                 })
-        } else {
+        }  
+         
             this.first.forEach( el => {
               var arr = Object.keys(el)
                if( el == {} || arr.length !== 3 ) {
@@ -187,14 +196,14 @@ export default {
                    })
                } 
             })
-        }  
+    
       //  console.log(this.pass)
         if(this.pass  ) {
-          console.log(1111)
+          // console.log(1111)
            recordBook({name: this.username, phone: this.mobile, company: this.company, post: this.post, pushStart: this.tiems,total: this.count, bonaStart: this.begin, bonaEnd: this.end, bonaCount: this.number, bonaTotal: this.alls, volunteer: this.values, books: this.first}).then( res => {
-              // alert(res.code)
-              // console.log(res,131)
-              this.$router.replace({path:'nav/card'})
+               if(res.code == 1) {
+                 this.$router.replace({path:'nav/card'})
+               }
             })
         }
       
@@ -207,7 +216,7 @@ export default {
     pickerValue(val) {
        this.tiems = util.itcTiem(this.pickerValue)
     },
-    times(val) {
+    tiems(val) {
         var s1 = new Date(val.replace(/-/g, "/"));
         var s2 = new Date();//当前日期：2017-04-24
         var days = s2.getTime() - s1.getTime();
