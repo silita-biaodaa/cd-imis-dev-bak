@@ -217,14 +217,14 @@ export default {
          height: 56px;
       }
       .van-stepper__minus::before, .van-stepper__plus::before {
-        width: 30px !important;
-        height: 2px !important;
-        color: #999 !important;
+        width: 30px ;
+        height: 2px ;
+        color: #999 ;
       }
       .van-stepper__minus::after, .van-stepper__plus::after {
-        height: 30px !important;
-        width: 2px !important;
-        color: #999 !important;
+        height: 30px ;
+        width: 2px ;
+        color: #999 ;
       }
       .van-stepper__input {
         font-size: 36px;
