@@ -453,7 +453,6 @@ export default {
 }
  .sign {
        position: relative;
-      //  height: 96px;
      }
      .sign-img {
        position: absolute;
