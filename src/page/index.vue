@@ -194,7 +194,7 @@ export default {
            recordBook({name: this.username, phone: this.mobile, company: this.company, post: this.post, pushStart: this.tiems,total: this.count, bonaStart: this.begin, bonaEnd: this.end, bonaCount: this.number, bonaTotal: this.alls, volunteer: this.values, books: this.first}).then( res => {
               // alert(res.code)
               // console.log(res,131)
-              this.$router.replace({path:'/card'})
+              this.$router.replace({path:'nav/card'})
             })
         }
       

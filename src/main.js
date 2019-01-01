@@ -36,10 +36,10 @@ router.beforeEach((to, from, next) => {
           if (!res.data.isFirst) {
               next()               
           } else {
-            if(to.fullPath==='/card'){
+            if(to.fullPath==='nav/card'){
               next();
             }else{
-              next('/card')
+              next('nav/card')
             }            
           }
        }
