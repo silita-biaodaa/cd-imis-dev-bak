@@ -5,6 +5,10 @@ import Home from '@/page/index'
 import Card from '@/page/Card'
 import friend from '@/page/friend'
 import Nav from '@/page/Nav'
+import Group from '@/page/group'
+import Notice from '@/page/notice'
+import Apply from '@/page/apply'
+
 
 Vue.use(Router)
 
@@ -14,8 +18,7 @@ export default new Router({
       path: '/',
       redirect: '/home'
     },
-    
-   {
+    {
       path: '/home',
       name: 'home',
       component: Home
@@ -32,8 +35,20 @@ export default new Router({
         {
           path: 'card',
           component: Card
+        },
+        {
+          path: 'group',
+          component: Group
         }
       ]
+    },
+    { 
+      path: '/notice',
+      component: Notice 
+    },
+    {
+      path: '/apply',
+      component: Apply
     }
   ]
 })

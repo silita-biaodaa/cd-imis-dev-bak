@@ -85,6 +85,21 @@ export const Friends = params => {
   return axios.post('user/push/list', params).then(res => res.data)
 }
 
+export const groups = params => {
+  return axios.post('group/join', params).then(res => res.data)
+}
+
+export const Message = params => {
+  return axios.post('group/message/list', params).then(res => res.data)
+}
+
+export const Agree = params => {
+  return axios.post('group/agree', params).then(res => res.data)
+}
+
+export const Glisy = params => {
+  return axios.post('group/list', params).then(res => res.data)
+}
 // export const getJsonData = (url, params) => {
 //     return new Promise((resolve, reject) => {
 //         let token = localStorage.getItem("Authorization")
