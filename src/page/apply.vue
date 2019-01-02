@@ -53,7 +53,8 @@ export default {
     },
     addGroups(val) {
        Addgroup({groId:val.groId}).then( res => {
-          if(res.code == 1 ) {
+         console.log(res,56)
+          if(res.code == 403 ) {
             console.log(111)
              Dialog.alert({
                 title: '申请入群',
