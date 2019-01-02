@@ -53,15 +53,14 @@ export default {
     },
     addGroups(val) {
        Addgroup({groId:val.groId}).then( res => {
-         console.log(res,56)
           if(res.code == 403 ) {
             console.log(111)
-             Dialog.alert({
-                title: '申请入群',
-                message: '申请成功,请等待群主确认'
-              }).then(() => {
+            //  Dialog.alert({
+            //     title: '申请入群',
+            //     message: '申请成功,请等待群主确认'
+            //   }).then(() => {
                  this.onSearch()
-              });
+              // });
 
           }
        })

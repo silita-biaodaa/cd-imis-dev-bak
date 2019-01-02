@@ -70,15 +70,5 @@ html,body {
     color: #000;
   }
   .top {
-    margin-top: 23px;
-  }
-  .apply .van-dialog {
-     width: 65%;
-     font-size: 32px;
-  }
-  .apply .van-dialog__message {
-    font-size: 28px;
-  }
-  .apply .van-button {
-     font-size: 28px;
+    margin-top: 20px;
   }
