@@ -33,7 +33,7 @@ export default {
         },{
           name:'群组',
           className:'icon-qz',
-          to:''
+          to:'group'
         },{
           name:'设置',
           className:'icon-sz',
