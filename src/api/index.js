@@ -84,6 +84,9 @@ export const User = params => {
 export const Friends = params => {
   return axios.post('user/push/list', params).then(res => res.data)
 }
+export const Parise = params => {
+  return axios.post('/parise/click', params).then(res => res.data)
+}
 
 export const groups = params => {
   return axios.post('group/join', params).then(res => res.data)
