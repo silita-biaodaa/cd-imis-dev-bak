@@ -165,6 +165,9 @@ export default {
       this.$set(this.list,i,obj);
     },
     isPariseFn(i){
+      if(this.name==''){
+        return false
+      }
       let id=this.list[i].pkid;
       let that=this;
       Parise({logId:id}).then(res =>{
@@ -189,9 +192,14 @@ export default {
 			return (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight
     },
     strInArr(arr){
+      if(arr.length==0){
+        return true
+      }
       for(let x of arr){
         if(x==this.name){
           return false
+        }else{
+          return true
         }
       }
     },
