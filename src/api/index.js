@@ -106,6 +106,10 @@ export const Glisy = params => {
 export const Addgroup = params => {
   return axios.post('group/apply', params).then(res => res.data)
 }
+
+export const CreatG = params => {
+  return axios.post('group/add', params).then(res => res.data)
+}
 // export const getJsonData = (url, params) => {
 //     return new Promise((resolve, reject) => {
 //         let token = localStorage.getItem("Authorization")

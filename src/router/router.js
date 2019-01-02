@@ -8,7 +8,7 @@ import Nav from '@/page/Nav'
 import Group from '@/page/group'
 import Notice from '@/page/notice'
 import Apply from '@/page/apply'
-
+import Create from '@/page/create'
 
 Vue.use(Router)
 
@@ -45,6 +45,10 @@ export default new Router({
     { 
       path: '/notice',
       component: Notice 
+    },
+    {
+      path: '/create',
+      component: Create
     },
     {
       path: '/apply',
