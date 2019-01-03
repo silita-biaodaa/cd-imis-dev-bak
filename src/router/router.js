@@ -8,7 +8,7 @@ import Nav from '@/page/Nav'
 import Group from '@/page/group'
 import Notice from '@/page/notice'
 import Apply from '@/page/apply'
-import Create from '@/page/create'
+import Record from '@/page/record'
 
 Vue.use(Router)
 
@@ -31,7 +31,7 @@ export default new Router({
         {
           path: 'friend',
           component: friend
-        },         
+        },
         {
           path: 'card',
           component: Card
@@ -39,16 +39,16 @@ export default new Router({
         {
           path: 'group',
           component: Group
-        }
+        },
+        {
+          path: 'record',
+          component: Record
+        },
       ]
     },
-    { 
-      path: '/notice',
-      component: Notice 
-    },
     {
-      path: '/create',
-      component: Create
+      path: '/notice',
+      component: Notice
     },
     {
       path: '/apply',

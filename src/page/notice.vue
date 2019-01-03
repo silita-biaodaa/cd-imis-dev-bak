@@ -5,7 +5,6 @@
         left-arrow
         @click-left="$router.go(-1)"
       />
-
       <div v-for="(e,i) in list" :key="i">
         <div class="ld-left notice-h">
           <div class="notice-img"> 
@@ -56,7 +55,6 @@ export default {
 }
 </script>
 <style lang="less" >
-@import '../css/vant.less';
 .notice {
    background: #F5F5F5;
    .notice-h {
@@ -98,7 +96,6 @@ export default {
           font-size:28px;
           line-height: 60px;
        }
-       
    }
 }
 </style>
