@@ -28,7 +28,7 @@ export default {
     joinG() {
         CreatG({groName:this.crowd}).then( res => {
            if(res.code == 1) {
-              alert(111)
+              this.$router.push({path: '/nav/group'})
            }
         })
     }

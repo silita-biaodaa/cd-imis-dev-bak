@@ -41,27 +41,5 @@ export default {
 }
 </script>
 <style lang="less" >
-.l-put {
-   height: 96px;
-   font-size: 32px;
-   display: flex;
-   justify-content: flex-start;
-   align-items: center;
-  //  border: 1px solid red;
-   .label {
-     width: 180px;
-     padding-left: 10px;
-     color:#000;  
-   }
-   input {
-      width: 100%;
-      text-align: center;
-      background:none;  
-	    outline:none;  
-      border:0px;
-      caret-color:blue;
-      padding: 20px 0px;
-   }
 
-}
 </style>

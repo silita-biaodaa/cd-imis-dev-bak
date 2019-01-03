@@ -8,38 +8,40 @@
             <span class='home-size'>个人信息</span>
          </div>
          <div class="person-put">
-           <div class="sign"> 
-             <img src="../assets/img/sign1.png" alt="" class="sign-img">
-             <x-input title='姓名' v-model='username' placeholder='请输入您的姓名' placeholder-align='right' text-align='right' class="cc" ></x-input>
+           <div class="sign p-line"> 
+             <img src="../assets/img/sign2.png" alt="" class="sign-img">
+             <div class="l-put ">
+              <div class="label">姓名</div> <input type="text" placeholder="请输入您的姓名" v-model='username' >
+             </div>
            </div>
-            <div class="sign"> 
-             <img src="../assets/img/sign1.png" alt="" class="sign-img">
-            <x-input title='手机' v-model='mobile' placeholder='请输入您的联系方式' placeholder-align='right'  text-align='right' class="cc" type='tel' ></x-input>
+            <div class="sign p-line"> 
+             <img src="../assets/img/sign2.png" alt="" class="sign-img">
+             <div class="l-put">
+              <div class="label">手机</div> <input type="tel" placeholder="请输入您的联系方式" v-model='mobile' >
+             </div>
            </div>
-           <x-input title='企业' v-model='company' placeholder='请输入您的企业名称' placeholder-align='right' text-align='right' class="cc" ></x-input>
-           <x-input title='职位' v-model='post' placeholder='请输入您的职位名称' placeholder-align='right' text-align='right' class="cc" ></x-input>
+            <div class="l-put p-line ">
+              <div class="label">企业</div> <input type="text" placeholder="请输入您的企业名称" v-model='company' >
+            </div>
+            <div class="l-put"  >
+              <div class="label">职位</div> <input type="tel" placeholder="请输入您的职位名称" v-model='post' >
+            </div>
          </div> 
       </div>
+      
       <div class="time">
         <div class="time-top">
            <div class="img-post img-time">
-            <img src="../assets/img/time (3).png" alt=""> 
+             <img src="../assets/img/time (2).png" alt=""> 
            </div>
            <span class='home-size' >打卡时间</span>
         </div>
-        <div class="time-put">
-          <div class="sign"> 
-             <img src="../assets/img/sign1.png" alt="" class="sign-img">
-            <datetime title='打开始于时间' v-model="tiems" placeholder='请选择' class="cc" ></datetime>
-            <!-- <div class="l-put">
-             <div class="label">打开始于时间:</div> <input type="text" placeholder="请输入用户姓名" @click="openPicker" v-model="tiems" >
-            </div> -->
-           </div>
+        <div class="sign p-line"> 
+          <datetime title='打卡始于时间' v-model="tiems" placeholder='请选择' class="cc" ></datetime>
         </div>
-        <div class="sign"> 
-             <img src="../assets/img/sign1.png" alt="" class="sign-img">
-             <x-input title='打卡次数' v-model='count' placeholder='请输入打开次数' type='tel' placeholder-align='right' text-align='right' class="cc" ></x-input>
-           </div>
+        <div class="l-put"  >
+              <div class="label">打卡次数</div> <input type="tel" placeholder="请输入打卡次数" v-model='count' @keyup='text' >
+        </div>
       </div>
 
       <div class="add">
@@ -50,27 +52,23 @@
            <span  class='home-size' >知学习</span>
         </div>
         <div class="add-put" v-for="(item,index) in first" :key="index">
-           <div class="add-book">
+           <div class="add-book p-line ">
              <span>书本&nbsp({{index + 1}})</span>
              <span class="del" @click='delbook(index)' v-show='func(index)'>删除</span>
             </div> 
            <div class="left">
-              <div class="sign "> 
-                <img src="../assets/img/sign1.png" alt="" class="sign-img">
+              <div class="sign p-line  "> 
                 <x-input title='书本名称' v-model='item.title' placeholder='请输入书本名称' placeholder-align='right' text-align='right' class="cc" ></x-input>
               </div>
-              <div class="sign"> 
+              <div class="sign p-line"> 
                  <div class="card-com">
                    <div class="l-pu">
-                        <div class="label label-f">今日朗读遍数</div> 
+                        <div class="label">每日朗读遍数</div> 
                         <van-stepper  v-model.number="item.readCount" class="l-mi" :min="0" />                    
                    </div>
                 </div>
-                <!-- <img src="../assets/img/sign1.png" alt="" class="sign-img">
-                <x-input title='每日诵读遍数' v-model='item.readCount' placeholder='请输入' placeholder-align='right' text-align='right' type='tel' class="cc" ></x-input> -->
               </div>
               <div class="sign" > 
-                <img src="../assets/img/sign1.png" alt="" class="sign-img">
                 <x-input title='总朗读遍数' v-model='item.readTotal' placeholder='请输入' placeholder-align='right' text-align='right' type='tel' class="cc" ></x-input>
               </div>
            </div>
@@ -83,35 +81,37 @@
       </div>
 
       <div class="well">
-        <div class="well-top">
+        <div class="well-top p-line">
           <div class="img-post img-time">
            <img src="../assets/img/gift (2).png" alt=""> 
 
           </div>
            <span  class='home-size' >积善行</span>
         </div>
-        <div class="well-put">
-            <datetime title='积善开始时间' v-model="begin" placeholder='请选择' text-align='right' class="cc" ></datetime>
-            <datetime title='积善结束时间' v-model="end" placeholder='请选择' text-align='right'  class="cc"></datetime>
-             <!-- <x-input title='每日积善件数' v-model='number' placeholder='请输入' placeholder-align='right' text-align='right' type='tel'  class="cc"></x-input> -->
+        <div>
+            <datetime title='积善开始时间' v-model="begin" placeholder='请选择' text-align='right' class="cc p-line" ></datetime>
+            <div class="l-put  p-line p-l">
+              <div class="label">积善持续年份</div> <input type="text" placeholder="请输入年份"  v-model='end'  @blur="bblur" >
+            </div>
              <div class="card-com">
                    <div class="l-pu">
-                        <div class="label label-f">每日积善件数</div> 
+                        <div class="label ">每日积善件数</div> 
                         <van-stepper  v-model.number="number" class="l-mi" :min="0" />                    
                    </div>
             </div>
-             <x-input title='累计积善件数' v-model='alls' placeholder='请输入' placeholder-align='right' text-align='right' type='tel' class="cc"  ></x-input>
+             <x-input title='累计积善件数' v-model='alls'  placeholder='请输入' placeholder-align='right' text-align='right' type='tel' class="cc"  ></x-input>
         </div>
       </div>
+
       <div class="volunteer">
         <div class="volunteer-top">
           <div class="img-post img-time" >
-            <img src="../assets/img/star (2).png" alt=""> 
+            <img src="../assets/img/star (3).png" alt=""> 
           </div>
            <span  class='home-size' >立志愿</span>
         </div>
         <div class="volunteer-put">
-            <x-textarea placeholder='请输入您的志愿' :rows='4' v-model="values" class="ccc" :autosize='true' ></x-textarea>
+            <x-textarea placeholder='请输入您的志愿' :rows='4' v-model="values" class="ccc" :autosize='true' @on-blur='bblur'></x-textarea>
         </div>
         <div class="btn" @click='record'>
            <x-button  >提交</x-button>
@@ -136,16 +136,20 @@ export default {
       post: '',
       mobile: '',
       tiems: '',
-      count: '',
+      count: 0,
       begin: '',
-      end: '',
-      number: 0,
-      alls: '',
+      end: 1,
+      number: 1,
+      alls: 0,
       values: '',
-      first: [{title:'六项精进',readCount:0}],
+      first: [{title:'六项精进',readCount:3,readTotal:0},{title:'大学',readCount:3,readTotal:0}],
       pass: true,
-      pickerValue: ''
+      pickerValue: '',
+      old:0
     }
+  },
+  computed:{
+      
   },
   methods: {
     addbook () {
@@ -153,6 +157,12 @@ export default {
     },
     delbook (i) {
       this.first.splice(i,1)
+    },
+    bblur() {
+      window.scroll(0,0);
+    },
+    bid() {
+      document.body.scrollTop= 0;
     },
     getTime () {
        this.tiems = dateFormat(new Date(), 'YYYY-MM-DD')
@@ -164,6 +174,11 @@ export default {
        } else {
           return true
        }
+    },
+    text() {
+      if(this.count >= this.old) {
+         this.count = this.old
+      }
     },
     record () {
       
@@ -219,23 +234,98 @@ export default {
         var s1 = new Date(val.replace(/-/g, "/"));
         var s2 = new Date();//当前日期
         var days = s2.getTime() - s1.getTime();
+        this.old = parseInt(days / (1000 * 60 * 60 * 24));
         this.count = parseInt(days / (1000 * 60 * 60 * 24));
+        if(this.count  < 0 ) {
+           this.count = 0
+        }
     }
   },
   created () {
     this.getTime()
   },
   components: {
-  }
+  },
+  mounted() {
+    window.addEventListener('resize', () => {
+    const activeElement = document.activeElement
+    if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
+        setTimeout(() => {
+          // activeElement.scrollIntoView({block:'start'})
+          activeElement.scrollIntoViewIfNeeded()
+
+        }, 0)
+      }
+    })
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', () => {
+    const activeElement = document.activeElement
+    if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
+        setTimeout(() => {
+          // activeElement.scrollIntoView({block:'start'})
+          activeElement.scrollIntoViewIfNeeded()
+
+        }, 0)
+      }
+    })
+  },
+
 }
 </script>
 <style lang="less" >
 .home {
   box-sizing: border-box;
-  .home-size {
-     font-size: 28px;
-     color:#666;
+  background: #f5f5f5;
+  .weui-icon-clear {
+      font-size: 30px;
   }
+  .p-l {
+    padding-left: 5px;
+    padding-right: 20px;
+  }
+  // 自定义输入框样式
+  .l-put {
+      height: 96px;
+      font-size: 32px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      .label {
+        width: 290px;
+        padding-left: 10px;
+        color:#000;  
+      }
+      input {
+         width: 100%;
+         text-align: right;
+         background:none;  
+	       outline:none;  
+         border:0px;
+         caret-color:blue;
+         padding: 20px 0px;
+      }
+    }
+  .ma-top {
+    margin-top: 16px;
+  }  
+ // 星星定位   
+ .sign {
+   position: relative;
+   .sign-img {
+      position: absolute;
+      transform:translateY(-50%);
+      height: 16px;
+      width: 16px;
+      top: 50%;
+      left: -15px;
+    }
+    
+ }
+ .home-size {
+    font-size: 30px;
+    color:#666;
+ }
   .cc {
     height: 96px;
     font-size: 32px;
@@ -244,11 +334,11 @@ export default {
   .ccc {
      font-size: 32px;
   }
-  // height: 1200px;
-  background: #F5F5F5;
+   // 公共样式介绍图片定位
    .img-post {
       position: absolute;
       transform:translateY(-50%);
+      vertical-align: middle;
       top: 50%;
    }
    .img-time {
@@ -257,16 +347,18 @@ export default {
    }
  .l-pu {
     height: 96px;
-   font-size: 32px;
-  line-height: 96px; 
-   display: flex;
-   justify-content: space-between;
-   text-align: center;
-   .l-mi {
+    font-size: 32px;
+    padding: 0 14px;
+    box-sizing: border-box;
+    line-height: 96px; 
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+     .l-mi {
       margin:  auto  0;
       .van-stepper__minus, .van-stepper__plus {
         width: 62px;
-        height: 56px;
+        height: 62px;
         border-color: #ccc;
         
       }
@@ -280,8 +372,8 @@ export default {
       }
       .van-stepper__input{
         line-height: 56px;
-         width: 62px;
-         height: 56px;
+         width: 70px;
+         height: 55px;
       }
       .van-stepper__minus::before, .van-stepper__plus::before {
         width: 30px !important;
@@ -298,44 +390,42 @@ export default {
       }
    }
 }  
-   
+   .p-line {
+     border-bottom: 1px solid #F2F2F2;
+   }
 .person {
-  box-sizing: border-box;
-  //  height: 48px;
-   padding-left: 18px;
-   padding-right: 18px;
+   box-sizing: border-box;
+   padding-left: 36px;
+   padding-right: 36px;
    background: #FFF;
+   
    .person-top {
-    //  padding-bottom: 8px; 
-      // margin-bottom: 20px;
+      padding-left: 10px;
       height: 96px;
       line-height: 96px;
       font-size: 28px;
-      border-bottom: 1px solid #F2F2F2;
+      border-bottom: 1px solid #F2F2F2;     
       position: relative;
-      // align-items: center;
-      // text-align: center;
-      .img-book {
+      .img-book {  
          width: 30px;
          height: 30px;
       } 
       img {
-        height: 100%;
+        height: 100%;    
       }
       span{
         padding-left: 35px;
       }
    }
-   .person-put {
-   }
 }
+// 知学习样式
 .add {
-  box-sizing: border-box;
+    box-sizing: border-box;
     margin-top: 16px;
     background: #FFF;
   .add-top {
-      padding-left: 18px;
-      padding-right: 18px;
+      padding-left: 38px;
+      padding-right: 36px;
       height: 96px;
       line-height: 96px;
       font-size: 32px;
@@ -351,20 +441,27 @@ export default {
    .add-put{
      .add-book {
        height: 96px;
-       padding-left: 30px;
-       padding-right: 30px;
+       padding-left: 40px;
+       padding-right: 36px;
        background: #F5F5F5;
        display: flex;
        justify-content:space-between;
        line-height: 96px;
        font-size: 28px;
+       .del {
+      color: red;
+       }
+       
      }
+     .left {
+          padding: 0 32px;
+      }
    }
    .add-b {
      position: relative;
-     height: 76px;
+     height: 85px;
      .weui-btn_default {
-       height: 76px;
+       height: 85px;
        font-size: 32px;
        background: #FFF;
         color: red;
@@ -372,46 +469,43 @@ export default {
      img {
        height: 100%;
      }
-      .add-a{
-        position: absolute;
-        top: 50%;
-        transform:translateY(-50%);
-        left: 41%;
-      }
-   }
-   .del {
-      color: red;
-   }
+   }   
 }
+// 打卡时间样式
 .time{
   box-sizing: border-box;
   margin-top: 16px;
-  padding-left: 18px;
-  padding-right: 18px;
+  padding-left: 34px;
+  padding-right: 36px;
   background: #FFF;
   .time-top {
+      padding-left: 11px;
       height: 96px;
       line-height: 96px;
       font-size: 28px;
       border-bottom: 1px solid #F2F2F2;
       position: relative;
       img {
-        height: 100%;
+        height: 31px;
+        width: 30px;
       }
       span{
         padding-left: 38px;
       }
   }
 }
+
+
 .well {
   box-sizing: border-box;
   margin-top: 16px;
-  padding-left: 18px;
-  padding-right: 18px;
+  padding-left: 36px;
+  padding-right: 36px;
   background: #FFF;
   .well-top {
     height: 96px;
       line-height: 96px;
+      padding-left: 10px;
       font-size: 32px;
       border-bottom: 1px solid #F2F2F2;
       position: relative;
@@ -423,11 +517,12 @@ export default {
       }
   }
 }
+
 .volunteer{
   box-sizing: border-box;
   margin-top: 16px;
-  padding-left: 18px;
-  padding-right: 18px;
+  padding-left: 38px;
+  padding-right: 36px;
   background: #FFF;
   .volunteer-top {
       height: 96px;
@@ -436,7 +531,9 @@ export default {
       border-bottom: 1px solid #F2F2F2;
       position: relative;
       img {
-         height: 100%;
+        //  height: 100%;
+        height: 34px;
+        width: 34px;
       }
       span{
         padding-left: 38px;
@@ -453,26 +550,17 @@ export default {
     }
   }
 }
- .sign {
-       position: relative;
-     }
-     .sign-img {
-       position: absolute;
-       transform:translateY(-50%);
-       top: 50%;
-       left: -4px;
-     }
-     .add-img{
-        position: absolute;
-        transform:translateY(-50%);
-        top: 50%;
-        left: 37%;
-        height: 26px;
-        width: 26px;
-     }
-  .left {
-    padding-left: 18px;
-  }
+ 
+.add-img{
+      position: absolute;
+      transform:translateY(-50%);
+      top: 50%;
+      left: 37%;
+      height: 26px;
+      width: 26px;
+}
+     
+
   
 }
 .dp-content {
