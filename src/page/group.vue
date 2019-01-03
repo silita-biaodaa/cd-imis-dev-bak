@@ -1,15 +1,27 @@
 <template>
 
   <div class="group">
-    <van-collapse v-model="activeName" accordion>
-      <van-cell title="群通知" is-link to="/notice" />
+      <router-link :to="{path:'/notice'}" class="fold"  tag="div">
+        <span>群通知</span>
+        <i class=" iconfont icon-jiantouyou"></i>
+      </router-link>
 
-      <van-cell title="创建打卡群" is-link to="/create" />
+       <router-link :to="{path:'/create'}" class="fold"  tag="div">
+        <span>创建打卡群</span>
+        <i class=" iconfont icon-jiantouyou"></i>
+      </router-link>
 
-      <van-cell title="查找打卡群" is-link to="/apply" />
+       <router-link :to="{path:'/apply'}" class="fold"  tag="div">
+        <span>查找打卡群</span>
+        <i class=" iconfont icon-jiantouyou"></i>
+      </router-link>
 
-      <van-collapse-item :title='this.createstle' name="1">
-        <div class="group-p">
+      <div class="ma10">
+       <div  class="fold none" @click="show(0)"  >
+        <span>{{this.createstle}}</span>
+        <i :class=" this.folds[0].showContent ? 'iconfont icon-jiantoushang' : 'iconfont icon-jiantouxia' "></i>
+       </div>
+         <div class="group-p" v-show="this.folds[0].showContent" >
           <div class="group-list ld-left g-h" v-for="(e,i) in creates" :key='i' >
             <div class="group-img">
               <img :src="e.imgUrl" alt="">
@@ -21,18 +33,22 @@
               </p>
             </div>
           </div>
-        </div>
-      </van-collapse-item>
+         </div>
+      </div>
 
-      <van-collapse-item :title='this.jointle' name="2">
-        <div class="group-p">
-          <div class="group-list ld-left" v-for="(e,i) in join" :key='i' >
+      <div>
+       <div  class="fold none" @click="show(1)"  >
+        <span>{{this.jointle}}</span>
+        <i :class=" this.folds[1].showContent ? 'iconfont icon-jiantoushang' : 'iconfont icon-jiantouxia' "></i>
+       </div>
+         <div class="group-p" v-show="this.folds[1].showContent" >
+          <div class="group-list ld-left g-h" v-for="(e,i) in join" :key='i' >
             <div class="group-img">
               <img :src="e.imgUrl" alt="">
             </div>
             <div class="group-name">
               <p>{{e.groName}}</p>
-              <p class="member">
+             <p class="member">
                 <img src="../assets/img/person (1).png" alt="">{{e.name}}
               </p>
               <p class="member">
@@ -40,10 +56,9 @@
               </p>
             </div>
           </div>
-        </div>
-      </van-collapse-item>
+         </div>
+      </div>
 
-    </van-collapse>
   </div>
 
 </template>
@@ -52,11 +67,14 @@ import { groups } from "@/api/index";
 export default {
     data() {
       return {
-        activeName: "",
         join: [],
         creates: [],
         jointle: '',
         createstle: '',
+        folds:[
+          {showContent: false},
+          {showContent: false}
+        ]
 
       };
     },  
@@ -72,6 +90,9 @@ export default {
 
            }
         })
+      },
+      show(i) {
+        this.folds[i].showContent = !this.folds[i].showContent
       }
     },
     created () {
@@ -81,11 +102,32 @@ export default {
 };
 </script>
 <style lang='less'>
+@import '../assets/iconfont.css';
 .group {
   background: #f5f5f5;
+  .fold {
+     height: 96px;
+     display: flex;
+     padding: 0 36px;
+     line-height: 96px;
+     background: #fff;
+     justify-content: space-between;
+     font-size: 32px;
+     color: #000;
+     margin-bottom: 16px;
+     i {
+       margin: auto 0;
+     }
+  }
+  .none {
+    margin-bottom: 0;
+  }
+  .ma10 {
+     margin-bottom: 16px;
+  }
   .group-p {
     padding: 0 36px;
-    
+    background: #fff;
     .group-list {
       height: 168px;
       box-sizing: border-box;
@@ -110,6 +152,8 @@ export default {
           margin-top: 5px;
           color: #999;
           img {
+            width: 27px;
+            height: 24px;
             margin-right: 14px;
           }
         }
