@@ -22,7 +22,7 @@
         <i :class=" this.folds[0].showContent ? 'iconfont icon-jiantoushang' : 'iconfont icon-jiantouxia' "></i>
        </div>
          <div class="group-p" v-show="this.folds[0].showContent" >
-          <div class="group-list ld-left g-h" v-for="(e,i) in creates" :key='i' >
+          <div class="group-list ld-left g-h" v-for="(e,i) in creates" :key='i' @click="jump(i,true)">
             <div class="group-img">
               <img :src="e.imgUrl" alt="">
             </div>
@@ -43,7 +43,7 @@
         <i :class=" this.folds[1].showContent ? 'iconfont icon-jiantoushang' : 'iconfont icon-jiantouxia' "></i>
        </div>
          <div class="group-p" v-show="this.folds[1].showContent" >
-          <div class="group-list ld-left " v-for="(e,i) in join" :key='i' >
+          <div class="group-list ld-left "  @click="jump(i,false)" v-for="(e,i) in join" :key='i' >
             <div class="group-img">
               <img :src="e.imgUrl" alt="">
             </div>
@@ -80,6 +80,26 @@ export default {
       };
     },
     methods: {
+      //跳转群成员
+      jump(i,type){
+        let id,name;
+        if(type){
+          id=this.creates[i].groId;
+          name=this.creates[i].groName;
+        }else{
+          id=this.join[i].groId;
+          name=this.join[i].groName;
+        }
+
+        this.$router.push({
+          path: '/groupUser',
+          query: {
+            id:id,
+            name:name,
+            type:type
+          }
+        })
+      },
       gainGroup() {
         groups({}).then( res => {
            if(res.code == 1) {

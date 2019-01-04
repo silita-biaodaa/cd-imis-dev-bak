@@ -10,7 +10,7 @@ import Notice from '@/page/notice'
 import Apply from '@/page/apply'
 import Record from '@/page/record'
 import Create from '@/page/create'
-
+import groupUser from '@/page/groupUser'
 Vue.use(Router)
 
 export default new Router({
@@ -58,6 +58,12 @@ export default new Router({
     {
       path: '/create',
       component: Create
+    },
+    {
+      path:'/groupUser',
+      component: groupUser,
+      name:'groupUser'
     }
+
   ]
 })
