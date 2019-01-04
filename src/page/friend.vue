@@ -200,6 +200,9 @@
         .company {
           color: #fff;
           font-size: 28px;
+          overflow:hidden;
+          text-overflow:ellipsis;
+          white-space:nowrap
         }
         .start {
           color: #DDD;

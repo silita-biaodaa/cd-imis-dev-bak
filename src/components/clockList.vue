@@ -51,25 +51,33 @@
           </template>
           <!-- 祝愿 -->
           <template v-if="item.volunteer">
-            <p class="title">【祝愿】</p>
+            <p class="title">【志愿】</p>
             <p class="c-color">{{item.volunteer}}</p>
           </template>
         </div>
       </div>
-      <h5 class="full" @click="fullClick(index)" v-if="item.classic||(item.practice.character!=''&&item.practice.family!=''&&item.practice.work!='')||item.introspective||item.thanks||item.volunteer">{{item.fullTxt}}</h5>
+      <h5 class="full" v-if="item.classic||(item.practice.character!=''&&item.practice.family!=''&&item.practice.work!='')||item.introspective||item.thanks||item.volunteer">
+        <span @click="fullClick(index)">{{item.fullTxt}}</span>
+      </h5>
       <div class="c-func">
         <div class="c-zan">
-          <span class="iconfont icon-jl"></span>
-          <span v-if="item.isParise" style="color:#E60012">已赞</span>
-          <span @click="isPariseFn(index)" v-else >點赞</span>
+          <template v-if="item.isParise">
+            <span class="icon pickZ"></span>
+            <span  style="color:#E60012">赞</span>
+          </template>
+          <template v-else>
+            <span class="icon pickZan"></span>
+            <span @click="isPariseFn(index)">赞</span>
+          </template>
+
         </div>
         <div class="c-zan">
-          <span class="iconfont icon-jl"></span>
+          <span class="icon icon-fx"></span>
           <span>详情</span>
         </div>
       </div>
       <div class="laudBox" v-if="item.praise.length!=0" >
-        <span class="iconfont icon-jl"></span>
+        <span class="icon pickZan"></span>
         {{item.praise.join(',')}}
       </div>
     </div>
@@ -212,7 +220,9 @@
     background: #F5F5F5;
     padding: 20px;
     margin-top: 75px;
-    border-radius: 10px
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
   }
   .c-func {
     // margin-top: 100px;
@@ -230,8 +240,25 @@
     .c-zan{
       display: flex;
       justify-content: space-around;
-      align-content: center
+      align-items: center;
     }
+  }
+  .icon{
+    width: 34px;
+    height: 29px;
+    margin-right: 8px;
+  }
+  .pickZ{
+    background: url("../assets/img/z.png");
+    background-size: cover;
+  }
+  .pickZan{
+    background: url("../assets/img/zan.png");
+    background-size: cover;
+  }
+  .icon-fx{
+    background: url("../assets/img/fx.png");
+    background-size: cover;
   }
   .c-list {
     float: right;
