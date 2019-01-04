@@ -136,7 +136,7 @@ export default {
                 //群组统计
                 this.getGroupsUser(this.popup.groupid,timeStr)
                 //群组成员
-                this.userPopup();
+                // this.userPopup();
             }else if(this.type=='user'){
                 this.popup.userName=picker.name;
                 this.popup.userid=picker.pkid;

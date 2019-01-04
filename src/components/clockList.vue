@@ -100,7 +100,7 @@
       name:{
         type:String,
         default:sessionStorage.getItem('userName')
-      }
+      },
     },
     methods: {
       // 方法 集合
@@ -122,14 +122,17 @@
         let id=this.clocklist[i].pkid;
         let that=this;
         Parise({logId:id}).then(res =>{
-          if(res.msg=='操作成功'){
           let obj=that.clocklist[i];
           obj.isParise=true;
-          if(that.strInArr(obj.praise)){
-            obj.praise.push(that.name);
+          if(res.msg=='操作成功'){
+            if(that.strInArr(obj.praise)){
+              obj.praise.push(that.name);
+            }
+            that.$set(that.clocklist,i,obj);
+          }else{
+            alert('因网络原因，点赞失败')
+            obj.isParise=false;
           }
-          that.$set(that.clocklist,i,obj);
-        }
       })
       },
       strInArr(arr){
