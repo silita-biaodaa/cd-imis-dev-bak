@@ -1,6 +1,6 @@
 import axios from 'axios'
 import qs from 'qs'
-var baseURL = 'http://imis.biaodaa.com/'
+var baseURL = 'https://imis.biaodaa.com/'
 // var baseURL = 'http://192.168.1.131:8081/'
 
 axios.defaults.baseURL = baseURL
@@ -106,9 +106,14 @@ export const Glisy = params => {
 export const Addgroup = params => {
   return axios.post('group/apply', params).then(res => res.data)
 }
+
+export const CreatG = params => {
+  return axios.post('group/add', params).then(res => res.data)
+}
+
 export const CardRecord={
-  groupsDate:params =>{//群组日历
-  return axios.post('group/date/list', params).then(res => res.data)
+    groupsDate:params =>{//群组日历
+    return axios.post('group/date/list', params).then(res => res.data)
 },
 usersDate:params =>{//个人日历
   return axios.post('user/month/list', params).then(res => res.data)

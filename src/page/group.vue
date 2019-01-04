@@ -2,7 +2,7 @@
 
   <div class="group">
       <router-link :to="{path:'/notice'}" class="fold"  tag="div">
-        <span>群通知</span>
+        <span>{{this.informs}}</span>
         <i class=" iconfont icon-jiantouyou"></i>
       </router-link>
 
@@ -27,7 +27,7 @@
               <img :src="e.imgUrl" alt="">
             </div>
             <div class="group-name">
-              <p>{{e.groName}}</p>
+              <p >{{e.groName}}</p>
               <p class="member">
                 <img src="../assets/img/person (1).png" alt="">{{e.name}}
               </p>
@@ -64,7 +64,7 @@
 
 </template>
 <script>
-import { groups } from "@/api/index";
+import { groups,Message } from "@/api/index";
 export default {
     data() {
       return {
@@ -75,14 +75,13 @@ export default {
         folds:[
           {showContent: false},
           {showContent: false}
-        ]
-
+        ],
+        informs:''
       };
-    },  
+    },
     methods: {
       gainGroup() {
         groups({}).then( res => {
-          console.log(res,46)
            if(res.code == 1) {
               this.join = res.data.join
               this.creates = res.data.create
@@ -92,12 +91,20 @@ export default {
            }
         })
       },
+      gainInform()  {
+        Message({}).then( res =>{
+           if(res.code == 1) {
+              this.informs = "群通知(" +  res.data.length  + ")"
+           }
+        })
+      },
       show(i) {
         this.folds[i].showContent = !this.folds[i].showContent
       }
     },
     created () {
       this.gainGroup()
+      this.gainInform()
     },
     components: {}
 };
@@ -148,6 +155,13 @@ export default {
         margin-top: 25px;
         font-size: 36px;
         color: #000;
+        p {
+          width:550px;
+          word-break:keep-all;
+          white-space:nowrap;
+          overflow:hidden;
+          text-overflow:ellipsis;
+        }
         .member {
           font-size: 24px;
           margin-top: 5px;
@@ -161,8 +175,9 @@ export default {
       }
     }
     .g-h {
-      height: 126px;  
+      height: 126px;
     }
+
   }
 }
 </style>

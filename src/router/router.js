@@ -9,6 +9,7 @@ import Group from '@/page/group'
 import Notice from '@/page/notice'
 import Apply from '@/page/apply'
 import Record from '@/page/record'
+import Create from '@/page/create'
 
 Vue.use(Router)
 
@@ -53,6 +54,10 @@ export default new Router({
     {
       path: '/apply',
       component: Apply
+    },
+    {
+      path: '/create',
+      component: Create
     }
   ]
 })

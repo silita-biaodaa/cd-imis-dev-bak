@@ -1,10 +1,14 @@
 <template>
     <div class="apply">
-       <van-nav-bar
+       <!-- <van-nav-bar
         title="查找群组"
         left-arrow
         @click-left="$router.go(-1)"
-      /> 
+      />  -->
+      <div class="top-nav" >
+        <i class="iconfont icon-fanhui i-size"  @click="$router.go(-1)" ></i>
+          查找群组
+      </div>
       <van-search placeholder="请输入搜索关键词" v-model="value" @search="onSearch" />
       <div class="apply-list" v-for="(e,i) in list" :key="i" >
           <div class="ld-left apply-g" >
@@ -34,7 +38,7 @@
 </template>
 <script>
 import { Glisy,Addgroup } from '@/api/index'
-import { Dialog } from 'vant' 
+import { Dialog } from 'vant'
 export default {
   data () {
     return {
@@ -76,6 +80,29 @@ export default {
 </script>
 <style lang="less" >
 .apply {
+   padding-top: 96px;
+   .top-nav {
+     height: 96px;
+     width: 100%;
+     line-height: 96px;
+     font-size: 32px;
+     color: #010101;
+     text-align: center;
+     position:fixed;
+	   top:0;
+     background: #fff;
+     font-weight: 500;
+     z-index: 999;
+     .i-size {
+        position: absolute;
+        color:#000;
+        left: 36px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 96px;
+        text-align:left;
+     }
+  }
   .van-search {
       padding: 20px 36px;
   }
@@ -92,7 +119,7 @@ export default {
   .apply-list {
     padding: 0 36px;
     position: relative;
-  } 
+  }
   .apply-join {
     position: absolute;
     right: 38px;
