@@ -44,8 +44,12 @@
     //   'clock':clocklist
     // },
     methods: {
-      gainUser() {
-        User({}).then( res => {
+      gainUser(userid) {
+        let data={}
+        if(userid){
+          data.userId=userid
+        }
+        User(data).then( res => {
           this.name = res.data.name;
         sessionStorage.setItem('userName',res.data.name);
         this.imgUrl = res.data.imgUrl
@@ -57,9 +61,13 @@
         this.que = res.data.lostCount
       })
       },
-      gainList() {
+      gainList(userid) {
         let that=this;
-        Friends({pageNo:that.pageList.pageNo,pageSize:that.pageList.pageSize}).then( res => {
+        let data={pageNo:that.pageList.pageNo,pageSize:that.pageList.pageSize}
+        if(userid){
+          data.userId=userid
+        }
+        Friends(data).then( res => {
           //  that.list = res.data.list;
           that.isScroll=true;
         if(res){
@@ -151,8 +159,15 @@
       },
     },
     created () {
-      this.gainUser();
-      this.gainList();
+      if(this.$route.query.id){
+        let id=this.$route.query.id;
+        this.gainUser(id);
+        this.gainList(id);
+      }else{
+        this.gainUser();
+        this.gainList();
+      }
+
       if(!sessionStorage.getItem('groupList')){
         groups({}).then( res => {
           let arr=[];

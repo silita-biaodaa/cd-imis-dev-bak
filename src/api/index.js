@@ -114,26 +114,35 @@ export const CreatG = params => {
 export const Count = params => {
   return axios.post('group/inform', params).then(res => res.data)
 }
-
+//群组打卡
 export const CardRecord={
     groupsDate:params =>{//群组日历
-    return axios.post('group/date/list', params).then(res => res.data)
-},
-usersDate:params =>{//个人日历
-  return axios.post('user/month/list', params).then(res => res.data)
-},
-groupsUser:params =>{//群组打卡人数
-  return axios.post('group/date/user', params).then(res => res.data)
-},
-userCard:params =>{//个人打卡记录
-  return axios.post('user/push/list', params).then(res => res.data)
-},
-groupsCard:params =>{//群组打卡记录
-  return axios.post('group/push/list', params).then(res => res.data)
-},
-groupPerson:params =>{//群内人员
-  return axios.post('group/user/list', params).then(res => res.data)
-},
+        return axios.post('group/date/list', params).then(res => res.data)
+    },
+    usersDate:params =>{//个人日历
+      return axios.post('user/month/list', params).then(res => res.data)
+    },
+    groupsUser:params =>{//群组打卡人数
+      return axios.post('group/date/user', params).then(res => res.data)
+    },
+    userCard:params =>{//个人打卡记录
+      return axios.post('user/push/list', params).then(res => res.data)
+    },
+    groupsCard:params =>{//群组打卡记录
+      return axios.post('group/push/list', params).then(res => res.data)
+    },
+    groupPerson:params =>{//群内人员
+      return axios.post('group/user/list', params).then(res => res.data)
+    },
+}
+//群组成员
+export const groupUser={
+    removeUser:params =>{//移除成员
+      return axios.post('group/remove', params).then(res => res.data)
+    },
+    changeGrouper:params =>{//转移群主
+      return axios.post('group/change', params).then(res => res.data)
+    },
 }
 // export const getJsonData = (url, params) => {
 //     return new Promise((resolve, reject) => {

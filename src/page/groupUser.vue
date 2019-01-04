@@ -8,15 +8,15 @@
       </div>
       <div class="serBox"><div></div></div>
       <ul class="listBox">
-        <li v-for="(o,i) of list" :key="i">
+        <li v-for="(o,i) of list" :key="i" @click="jumpFriend(i)">
           <div class="left">
             <img :src="o.imgUrl">
           </div>
           <div class="right">
             <h5>
               {{o.name}}
-              <span class="delete"></span>
-              <span class="turn"></span>
+              <span class="delete" @click="deleteFn(i)"></span>
+              <span class="turn" @click="turnFn(i)"></span>
             </h5>
             <p>
               打卡持续<span style="color: #E62129">{{o.pushDays}}</span>天，本月缺卡<span style="color:#0BA61D">{{o.monthLostCount}}</span>次，共缺卡<span style="color:#D8B305">{{o.lostCount}}</span>次。
@@ -24,32 +24,78 @@
           </div>
         </li>
       </ul>
+      <v-popup :popupShow="mask" :popupType="'tip1'" :tip-text="tipTxt" @sure="maskFn"></v-popup>
   </div>
 </template>
 <script>
-  import { CardRecord } from '@/api/index'
+  import { CardRecord,groupUser } from '@/api/index'
+  import { Toast } from 'mint-ui'
   export default {
     data () {
       return {
-        groupName:'',
+        groupName:'',//群名
         type:'',
-        list:[]
+        list:[],
+        groId:'',//群id
+        mask:false,
+        thisNum:'',
+        tipTxt:'',
       }
     },
     name:'groupUser',
     watch:{
 
     },
-    // components:{
-    //   'clock':clocklist
-    // },
     methods: {
-
+      jumpFriend(i){
+        this.$router.push({
+          path:'/nav/friend',
+          query:{
+            id:this.list[i].pkid
+          }
+        })
+      },
+      //确定
+      maskFn(){
+        let i=this.thisNum;
+        if(this.tipTxt=='确认要删除该家人？'){
+          let data={
+            groId:this.groId,
+            user:this.list[i].pkid
+          }
+          this.list.splice(i,1);
+          groupUser.removeUser(data).then(res =>{
+            if(res.code==1){
+              this.$toast('删除成功');
+            }
+          })
+        }else if(this.tipTxt=='确认要转让该群组？'){
+          let data={
+            groId:this.groId,
+            invite:this.list[i].pkid
+          }
+          groupUser.changeGrouper(data).then(res =>{
+            if(res.code==1){
+              this.$toast('转让成功');
+            }
+          })
+        }
+      },
+      deleteFn(i){
+        this.thisNum=i;
+        this.tipTxt='确认要删除该家人？'
+        this.mask=true;
+      },
+      turnFn(i){
+        this.thisNum=i;
+        this.tipTxt='确认要转让该群组？';
+        this.mask=true;
+      }
     },
     created () {
-      console.log(this.$route.query);
       this.groupName=this.$route.query.name;
       this.type=this.$route.query.type;
+      this.groId=this.$route.query.id;
       let that=this;
       let data={
         pageNo:1,
