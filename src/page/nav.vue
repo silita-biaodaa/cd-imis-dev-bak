@@ -3,9 +3,9 @@
     <router-view class="nav" ></router-view>
     <div class="bar-b">
       <ul>
-        <li v-for="(o,i) of navList" :key="i">
+        <li v-for="(o,i) of navList" @click="tabClick(i)" :key="i" :class="i==tabNum?'active':''">
           <router-link :to="o.to">
-            <span :class="o.className"></span>
+            <span class="icon" :class="o.className"></span>
             <div class="bar-s">{{o.name}}</div>
           </router-link>
         </li>
@@ -17,38 +17,47 @@
   export default {
     data () {
       return {
+        tabNum:0,
         navList:[
           {
             name:'打卡圈',
             className:'icon-dkq',
-            to:'friend'
+            to:'friend',
           },{
             name:'记录',
             className:'icon-jl',
-            to:'record'
+            to:'record',
           },{
             name:'打卡',
             className:'icon-dk',
-            to:'card'
+            to:'card',
           },{
             name:'群组',
             className:'icon-qz',
-            to:'group'
+            to:'group',
           },{
             name:'设置',
             className:'icon-sz',
-            to:''
+            to:'',
           }
         ]
       }
     },
     components: {
+    },
+    methods:{
+      tabClick(i){
+        this.tabNum=i;
+      },
     }
   }
 </script>
 <style lang="less" >
   @import "../assets/icon/style.css";
   .bar {
+    a:hover{
+      text-decoration: none;
+    }
     .nav {
       min-height: calc(100vh - 100px);
       padding-bottom: 100px
@@ -70,22 +79,72 @@
           padding-top: 20px;
           padding-bottom: 10px;
           box-sizing: border-box;
+          color:#999;
+          span{
+            background-size: cover;
+            display: inline-block;
+            height: 40px;
+
+          }
         }
       }
     }
-    .bar-c {
-      text-align: center;
+  .active{
+    .icon-dkq{
+      width: 49px;
+      background: url("../assets/img/dkq1.png");
     }
-    .bar-l {
-      box-sizing: border-box;
-      padding: 19px 0  9px  0;
-      line-height: 100px;
+    .icon-jl{
+      width: 39px;
+      background: url("../assets/img/jl1.png");
     }
-    .bar-down {
-      color:#999;
-      display: flex;
-      flex-direction:'column';
+    .icon-dk{
+      width: 44px;
+      background: url("../assets/img/dk1.png");
     }
+    .icon-qz{
+      width: 47px;
+      background: url("../assets/img/qz1.png");
+    }
+    .icon-sz{
+      width: 40px;
+      background: url("../assets/img/sz1.png");
+    }
+    .bar-s{
+      color: #E62129;
+    }
+    .icon{
+      background-size: auto 100%;
+      background-repeat: no-repeat;
+      display: inline-block;
+      height: 40px;
+    }
+  }
+  .bar-s{
+    color: #999;
+    font-size: 20px;
+  }
+    .icon-dkq{
+      width: 49px;
+      background: url("../assets/img/dkq.png");
+    }
+    .icon-jl{
+      width: 39px;
+      background: url("../assets/img/jl.png");
+    }
+    .icon-dk{
+      width: 44px;
+      background: url("../assets/img/dk.png");
+    }
+    .icon-qz{
+      width: 47px;
+      background: url("../assets/img/qz.png");
+    }
+    .icon-sz{
+      width: 40px;
+      background: url("../assets/img/sz.png");
+    }
+
   }
 
 </style>

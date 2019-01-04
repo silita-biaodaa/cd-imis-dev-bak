@@ -24,18 +24,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-dkq:before {
-  content: "\e901";
-}
-.icon-jl:before {
-  content: "\e902";
-}
-.icon-dk:before {
-  content: "\e903";
-}
-.icon-qz:before {
-  content: "\e904";
-}
-.icon-sz:before {
-  content: "\e900";
-}
+/*.icon-dkq:before {*/
+  /*content: "\e901";*/
+/*}*/
+/*.icon-jl:before {*/
+  /*content: "\e902";*/
+/*}*/
+/*.icon-dk:before {*/
+  /*content: "\e903";*/
+/*}*/
+/*.icon-qz:before {*/
+  /*content: "\e904";*/
+/*}*/
+/*.icon-sz:before {*/
+  /*content: "\e900";*/
+/*}*/
