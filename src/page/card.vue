@@ -130,7 +130,7 @@
         </div>
         
         <div class="card-btn" @click="punch">
-           <div class="card-div">
+           <div :class="[this.btnTitle =='提交'? 'card-div' : 'card-red' ]">
               {{btnTitle}}
            </div>
         </div>
@@ -401,6 +401,15 @@ export default {
       font-size: 36px;
       color: #fff;
       background-color: red;
+      line-height: 96px;
+      text-align: center;
+      border-radius: 10px;
+    }
+    .card-red {
+      height: 96px;
+      font-size: 36px;
+      color: #fff;
+      background-color: #BBBBBB;
       line-height: 96px;
       text-align: center;
       border-radius: 10px;
