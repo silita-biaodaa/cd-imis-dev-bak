@@ -21,7 +21,7 @@
              </div>
            </div>
             <div class="l-put p-line ">
-              <div class="label">企业</div> <input type="text" placeholder="请输入您的企业名称" v-model='company' >
+              <div class="label">企业</div> <input type="text" placeholder="请输入您的企业名称" v-model='company' @blur="bblur" >
             </div>
             <div class="l-put"  >
               <div class="label">职位</div> <input type="text" placeholder="请输入您的职位名称" v-model='post'  @blur="bblur" >
@@ -40,7 +40,7 @@
           <datetime title='打卡始于时间' v-model="tiems" placeholder='请选择' class="cc" ></datetime>
         </div>
         <div class="l-put"  >
-              <div class="label">打卡次数</div> <input type="tel" placeholder="请输入打卡次数" v-model='count' @keyup='text' >
+              <div class="label">打卡次数</div> <input type="tel" placeholder="请输入打卡次数" v-model='count' @keyup='text' @blur='bblur' >
         </div>
       </div>
 
@@ -58,7 +58,7 @@
             </div>
            <div class="left">
               <div class="sign p-line  ">
-                <x-input title='书本名称' v-model='item.title' placeholder='请输入书本名称' placeholder-align='right' text-align='right' class="cc" ></x-input>
+                <x-input title='书本名称' v-model='item.title' placeholder='请输入书本名称' @on-blur='bblur' placeholder-align='right' text-align='right' class="cc" ></x-input>
               </div>
               <div class="sign p-line">
                  <div class="card-com">
@@ -181,23 +181,21 @@ export default {
       }
     },
     record () {
-
       this.pass = true;
-
         if(!this.username) {
           this.pass = false
            return this.$vux.alert.show({
                   title: '请输入必填选项',
                   content: '请输入您的姓名',
                 })
-        } ;
+        } 
          if (!this.mobile) {
            this.pass = false
           return this.$vux.alert.show({
                   title: '请输入必填选项',
                   content: '请输入手机号',
                 })
-        } ;
+        } 
             this.first.forEach( el => {
               var arr = Object.keys(el)
                if( el == {} || arr.length !== 3 ) {
@@ -207,16 +205,12 @@ export default {
                           content: '请填写或者删除多余空白书本',
                    })
                }
-            }
-
-            );
+            });
 
       if ( this.pass ) {
-           console.log(11111)
            recordBook({name: this.username, phone: this.mobile, company: this.company, post: this.post, pushStart: this.tiems,total: this.count, bonaStart: this.begin, bonaEnd: this.end, bonaCount: this.number, bonaTotal: this.alls, volunteer: this.values, books: this.first}).then( res => {
                if(res.code == 1) {
-                 console.log(res,191)
-                 this.$router.replace({path:'nav/card'})
+                 this.$router.replace({path:'/nav/card'})
                }
             })
         }
@@ -234,10 +228,12 @@ export default {
         var s1 = new Date(val.replace(/-/g, "/"));
         var s2 = new Date();//当前日期
         var days = s2.getTime() - s1.getTime();
-        this.old = parseInt(days / (1000 * 60 * 60 * 24));
-        this.count = parseInt(days / (1000 * 60 * 60 * 24));
-        if(this.count  < 0 ) {
-           this.count = 0
+        if(days >= 0) {
+            this.old = parseInt(days / (1000 * 60 * 60 * 24));
+            this.count = parseInt(days / (1000 * 60 * 60 * 24));
+        } else {
+            this.tiems = dateFormat(new Date(), 'YYYY-MM-DD')
+            this.count = 0
         }
     }
   },
@@ -252,6 +248,7 @@ export default {
     if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
         setTimeout(() => {
           // activeElement.scrollIntoView({block:'start'})
+          window.scroll(0,0);
           activeElement.scrollIntoViewIfNeeded()
 
         }, 0)
@@ -264,6 +261,7 @@ export default {
     if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
         setTimeout(() => {
           // activeElement.scrollIntoView({block:'start'})
+          window.scroll(0,0);
           activeElement.scrollIntoViewIfNeeded()
 
         }, 0)
