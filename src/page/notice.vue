@@ -1,15 +1,10 @@
 <template>
   <div class="notice">
-      <!-- <van-nav-bar
-        title="群通知"
-        left-arrow
-        @click-left="$router.go(-1)"
-      /> -->
       <div class="top-nav" >
         <i class="iconfont icon-fanhui i-size"  @click="$router.go(-1)" ></i>
           群通知
       </div>
-      <div class="hei">
+      <div class="hei" > 
         <div v-for="(e,i) in list" :key="i" >
           <div class="ld-left notice-h">
             <div class="notice-img">
@@ -65,7 +60,8 @@ export default {
 .notice {
    background: #F5F5F5;
    height:auto;
-	 margin: 0 auto;
+   margin: 0 auto;
+   padding-top: 96px;
   .top-nav {
      height: 96px;
      width: 100%;
@@ -89,15 +85,14 @@ export default {
      }
   }
   .hei{
-     margin-top: 112px;
-     background: #F5F5F5;
+    margin-top: 16px;
   }
    .notice-h {
        height: 120px;
        padding: 0 36px;
        font-size: 36px;
        background: #fff;
-       margin-top: 16px;
+       border-bottom: 1px solid #f5f5f5;
        position: relative;
        color:#000;
        .notice-img {
@@ -113,6 +108,13 @@ export default {
        }
        .notice-t {
          margin-top: 20px;
+         p {
+          width:550px;
+          word-break:keep-all;
+          white-space:nowrap;
+          overflow:hidden;
+          text-overflow:ellipsis;
+        }
        }
        .notice-s {
          font-size: 28px;
