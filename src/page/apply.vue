@@ -148,13 +148,13 @@ export default {
     margin-top: 25px;
     margin-right: 28px;
     img {
-       width: 100%;
+       height: 100%;
     }
   }
   .apply-name {
     margin-top: 35px;
     p {
-      width:550px;
+      width:500px;
       word-break:keep-all;
       white-space:nowrap;
       overflow:hidden;
