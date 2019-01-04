@@ -73,9 +73,11 @@ export default {
 	   top:0;
      background: #fff;
      font-weight: 500;
-     z-index: 999;
+     z-index: 9999;
      .i-size {
         position: absolute;
+        font-size: 36px;
+        font-weight: 700;
         color:#000;
         left: 36px;
         top: 50%;
@@ -109,7 +111,7 @@ export default {
        .notice-t {
          margin-top: 20px;
          p {
-          width:550px;
+          width:450px;
           word-break:keep-all;
           white-space:nowrap;
           overflow:hidden;

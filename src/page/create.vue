@@ -54,7 +54,7 @@ export default {
 .create {
   background: #f5f5f5;
   padding-top: 96px;
-  height: 100%;
+  height: auto;
    .top-nav {
      height: 96px;
      width: 100%;
@@ -71,6 +71,7 @@ export default {
         position: absolute;
         color:#000;
         left: 36px;
+       font-weight: 700;
         top: 50%;
         transform: translateY(-50%);
         width: 96px;

@@ -1,16 +1,11 @@
 <template>
     <div class="apply">
-       <!-- <van-nav-bar
-        title="查找群组"
-        left-arrow
-        @click-left="$router.go(-1)"
-      />  -->
       <div class="top-nav" >
         <i class="iconfont icon-fanhui i-size"  @click="$router.go(-1)" ></i>
           查找群组
       </div>
-      <van-search placeholder="请输入搜索关键词" v-model="value" @search="onSearch" />
-      <div class="apply-list" v-for="(e,i) in list" :key="i" >
+      <van-search placeholder="请输入搜索关键词" v-model="value" @blur="onSearch" />
+      <div class="apply-list" v-for="(e,i) in list" :key="i" v-show="dont" >
           <div class="ld-left apply-g" >
               <div class="apply-img">
                   <img :src="e.imgUrl" alt="">
@@ -33,25 +28,34 @@
               </div>
           </div>
       </div>
+      <div v-show="!dont" class="hint" >
+          请无群数据, 请先创建群
+      </div>
 
     </div>
 </template>
 <script>
 import { Glisy,Addgroup } from '@/api/index'
-import { Dialog } from 'vant'
 export default {
   data () {
     return {
       value: '',
       list: [],
+      dont: true
     }
   },
   methods: {
     onSearch() {
-      Glisy({pageNo: '1', pageSize: '5', keywords: this.value}).then( res => {
+      Glisy({pageNo: '1', pageSize: '10', keywords: this.value}).then( res => {
           if(res.code == 1 ) {
             console.log(res,53)
-              this.list = res.data.list
+              if( res.data.list.length ) {
+                 this.list = res.data.list
+                 this.dont = true
+              } else {
+                 this.dont = false
+              }
+              
           }
       })
     },
@@ -76,6 +80,12 @@ export default {
 <style lang="less" >
 .apply {
    padding-top: 96px;
+   .hint {
+      margin-top: 200px;
+      color: #666666;
+      text-align: center;
+      font-size: 40px;
+   }
    .top-nav {
      height: 96px;
      width: 100%;
@@ -89,6 +99,8 @@ export default {
      font-weight: 500;
      z-index: 999;
      .i-size {
+        font-size: 32px;
+        font-weight: 700;
         position: absolute;
         color:#000;
         left: 36px;
@@ -110,6 +122,7 @@ export default {
   }
   .van-cell__left-icon, .van-cell__right-icon {
     line-height: 72px !important;
+    font-size: 40px !important;
   }
   .apply-list {
     padding: 0 36px;

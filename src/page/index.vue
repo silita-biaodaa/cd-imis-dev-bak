@@ -69,7 +69,7 @@
                 </div>
               </div>
               <div class="sign" >
-                <x-input title='总朗读遍数' v-model='item.readTotal' placeholder='请输入' placeholder-align='right' text-align='right' type='tel' class="cc" ></x-input>
+                <x-input title='总朗读遍数' v-model='item.readTotal' placeholder='请输入' placeholder-align='right' @on-blur='bblur' text-align='right' type='tel' class="cc" ></x-input>
               </div>
            </div>
 
@@ -198,7 +198,7 @@ export default {
         } 
             this.first.forEach( el => {
               var arr = Object.keys(el)
-               if( el == {} || arr.length !== 3 ) {
+               if(  arr.length != 3 ) {
                   this.pass = false;
                      return  this.$vux.alert.show({
                           title: '请输入必填选项',
@@ -208,6 +208,7 @@ export default {
             });
 
       if ( this.pass ) {
+         alert(11111)
            recordBook({name: this.username, phone: this.mobile, company: this.company, post: this.post, pushStart: this.tiems,total: this.count, bonaStart: this.begin, bonaEnd: this.end, bonaCount: this.number, bonaTotal: this.alls, volunteer: this.values, books: this.first}).then( res => {
                if(res.code == 1) {
                  this.$router.replace({path:'/nav/card'})

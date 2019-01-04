@@ -3,23 +3,23 @@
   <div class="group">
       <router-link :to="{path:'/notice'}" class="fold"  tag="div">
         <span>{{this.informs}}</span>
-        <i class=" iconfont icon-jiantouyou"></i>
+        <i class=" iconfont icon-jiantouyou g-size"></i>
       </router-link>
 
        <router-link :to="{path:'/create'}" class="fold"  tag="div">
         <span>创建打卡群</span>
-        <i class=" iconfont icon-jiantouyou"></i>
+        <i class=" iconfont icon-jiantouyou g-size"></i>
       </router-link>
 
        <router-link :to="{path:'/apply'}" class="fold"  tag="div">
         <span>查找打卡群</span>
-        <i class=" iconfont icon-jiantouyou"></i>
+        <i class=" iconfont icon-jiantouyou g-size"></i>
       </router-link>
 
       <div class="ma10">
        <div  class="fold none" @click="show(0)"  >
         <span>{{this.createstle}}</span>
-        <i :class=" this.folds[0].showContent ? 'iconfont icon-jiantoushang' : 'iconfont icon-jiantouxia' "></i>
+        <i :class=" this.folds[0].showContent ? 'iconfont icon-jiantoushang g-size' : ' iconfont icon-jiantouxia g-size'"></i>
        </div>
          <div class="group-p" v-show="this.folds[0].showContent" >
           <div class="group-list ld-left g-h" v-for="(e,i) in creates" :key='i' @click="jump(i,true)">
@@ -40,7 +40,7 @@
       <div>
        <div  class="fold none" @click="show(1)"  >
         <span>{{this.jointle}}</span>
-        <i :class=" this.folds[1].showContent ? 'iconfont icon-jiantoushang' : 'iconfont icon-jiantouxia' "></i>
+        <i :class=" this.folds[1].showContent ? 'iconfont icon-jiantoushang g-size ' : 'iconfont icon-jiantouxia g-size' "></i>
        </div>
          <div class="group-p" v-show="this.folds[1].showContent" >
           <div class="group-list ld-left "  @click="jump(i,false)" v-for="(e,i) in join" :key='i' >
@@ -126,13 +126,19 @@ export default {
       this.gainGroup()
       this.gainInform()
     },
-    components: {}
+    components: {
+
+    }
 };
 </script>
 <style lang='less'>
 @import '../assets/iconfont.css';
 .group {
   background: #f5f5f5;
+  .g-size {
+    font-size: 34px;
+    font-weight: 500px;
+  }
   .fold {
      height: 96px;
      display: flex;
