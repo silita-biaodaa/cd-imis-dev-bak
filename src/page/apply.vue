@@ -28,7 +28,7 @@
                     </div>
                  </div>
               </div>
-              <div class="apply-join" v-show="e.isExist == 0 ? true : false" @click="addGroups(e)" >
+              <div class="apply-join" v-show="e.isApply == 0 ? true : false" @click="addGroups(e)" >
                   申请入群
               </div>
           </div>
