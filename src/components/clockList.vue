@@ -252,11 +252,11 @@
     background-size: cover;
   }
   .pickZan{
-    background: url("../assets/img/zan.png");
+    background: url("../assets/img/zan.png") no-repeat;
     background-size: cover;
   }
   .icon-fx{
-    background: url("../assets/img/fx.png");
+    background: url("../assets/img/fx.png") no-repeat;
     background-size: cover;
   }
   .c-list {

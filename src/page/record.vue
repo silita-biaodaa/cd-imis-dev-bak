@@ -4,8 +4,8 @@
             <div class="ui-datepicker-wrapper ui-datepicker-wrapper-show">
                 <div class="header">
                     <span class="datepicker">{{headYear}}年{{thisMonthDays.month}}月 <span class="arrow"></span></span>
-                    <span class="dategroup" @click="groupPopup">{{popup.groupName}} <span class="arrow"></span></span>
-                    <span class="personal" @click="userPopup">{{popup.userName}} <span class="arrow"></span></span>
+                    <span class="dategroup" @click="groupPopup"><span class="txt">{{popup.groupName}}</span> <span class="arrow"></span></span>
+                  <span class="personal" @click="userPopup"><span class="txt">{{popup.userName}}</span><span class="arrow"></span></span>
                 </div>
                 <div class="ui-datepicker-body">
                     <div class="datepicker-weekday">
@@ -241,17 +241,25 @@ export default {
                     active=true;
                 }
                 let cardType='';
-
-                for(let x of groupArr){
-                    if(ifThisMonthDays&&x==showDate){
-                        cardType='0';//打卡
-                        break
-                    }else if(ifThisMonthDays&&x!=showDate&&showDate<this.setDay){
-                        cardType='1'
+                if(groupArr.length>0){
+                    for(let x of groupArr){
+                        if(ifThisMonthDays&&x==showDate){
+                          cardType='0';//打卡
+                          break
+                        }else if(ifThisMonthDays&&x!=showDate&&showDate<this.setDay){
+                          cardType='1'
+                        }else{
+                          cardType=''
+                        }
+                    }
+                }else{
+                    if(ifThisMonthDays&&showDate<this.setDay){
+                      cardType='1'
                     }else{
-                        cardType=''
+                      cardType=''
                     }
                 }
+
                 this.ret.push({
                     month: thisMonth,
                     date:date,
@@ -331,9 +339,9 @@ export default {
                         arr.push(x.days.substr(-2));
                     }
                     this.groupArr=arr;
-                    //日历初始化
-                    this.getMonthData(this.setYear,this.setMonth);
                 }
+                //日历初始化
+                this.getMonthData(this.setYear,this.setMonth);
             })
         },
         //群组打卡
@@ -474,12 +482,21 @@ export default {
             span{
                 display: flex;
                 align-items: center;
+                /*position: relative;*/
             }
             .dategroup{
                 color: #000;
                 font-weight:500;
             }
+            .txt{
+                max-width: 120px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap
+            }
             .arrow{
+                /*position: absolute;*/
+                /*right: -38px;*/
                 width: 23px;
                 height: 12px;
                 background-image: url("../assets/img/jt.png");
