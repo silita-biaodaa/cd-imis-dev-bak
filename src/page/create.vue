@@ -1,19 +1,13 @@
 <template>
    <div class="create">
-      <!-- <van-nav-bar
-        title="创建群组"
-        left-arrow
-        @click-left="$router.go(-1)"
-      /> -->
+
       <div class="top-nav" >
         <i class="iconfont icon-fanhui i-size"  @click="$router.go(-1)" ></i>
           创建群组
       </div>
 
       <div class="create-put ">
-          <!-- <van-cell-group>
-            <van-field v-model="crowd" placeholder="请输入用户名"  label='群名' />
-          </van-cell-group> -->
+
         <div class="l-put"  >
               <div class="label">群名</div> <input type="text" placeholder="请输入要创建群名" v-model='crowd'  >
         </div>
