@@ -43,12 +43,23 @@
         ]
       }
     },
-    components: {
+    computed: {
+      tabNo(){
+        if(sessionStorage.getItem('tabNum')) {
+            let tabNum = sessionStorage.getItem('tabNum');
+            return tabNum
+        }else{
+          return 0
+        }
+      }
     },
     methods:{
       tabClick(i){
         this.tabNum=i;
       },
+    },
+    created(){
+      this.tabNum=this.tabNo
     }
   }
 </script>
