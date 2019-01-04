@@ -10,14 +10,14 @@
         <p class="name">{{name}}</p>
         <p class="company" >{{compang}}</p>
         <p class="start s-top">打卡始于<span class="p-ye">{{pushStart}}</span>,持续打卡于<span class="p-ye">{{pushEnd}}</span>,</p>
-        <p class="start">  日精进打卡第天<span class="p-ye">{{time}}</span>天,共打卡<span class="p-ye">{{total}}</span>次,缺卡<span class="p-ye" >{{que}}</span>次</p>
+        <p class="start">  日精进打卡第<span class="p-ye">{{time}}</span>天,共打卡<span class="p-ye">{{total}}</span>次,缺卡<span class="p-ye" >{{que}}</span>次</p>
       </div>
     </div>
     <v-clock :clocklist="list" :name="name"></v-clock>
   </div>
 </template>
 <script>
-  import { User,Friends,Parise } from '@/api/index'
+  import { User,Friends,Parise,groups } from '@/api/index'
   export default {
     data () {
       return {
@@ -153,6 +153,13 @@
     created () {
       this.gainUser();
       this.gainList();
+      if(!sessionStorage.getItem('groupList')){
+        groups({}).then( res => {
+          let arr=[];
+          arr=res.data.create.concat(res.data.join);
+          sessionStorage.setItem('groupList',JSON.stringify(arr));
+        })
+      }
     },
     components: {
 
@@ -170,14 +177,15 @@
   .friends {
     background: #fff;
     padding-top: 25px;
-    .f-person {
-      width: 710px;
-      height: 241px;
-      background:linear-gradient(0deg,rgba(230,33,41,1) 0%,rgba(255,85,1,1) 100%);
-      border-radius: 10px;
-      margin: 0 auto;
-      padding: 56px 0 0 27px;
-      box-sizing: border-box;
+      .f-person {
+        width: 710px;
+        height: 241px;
+        background: linear-gradient(0deg, rgba(230, 33, 41, 1) 0%, rgba(255, 85, 1, 1) 100%);
+        border-radius: 10px;
+        margin: 0 auto;
+        padding: 56px 0 0 27px;
+        box-sizing: border-box;
+
       .p-img {
         height: 129px;
         width: 129px;
@@ -186,151 +194,44 @@
         overflow: hidden;
         margin-right: 15px;
         float: left;
-        img {
-          width: 100%;
-        }
+
+      img {
+        width: 100%;
       }
-      .p-name {
-        width: 500px;
-        float: left;
+
+      }
+        .p-name {
+          width: 500px;
+          float: left;
+
         .name {
           color: #fff;
           font-size: 36px;
         }
+
         .company {
           color: #fff;
           font-size: 28px;
-          overflow:hidden;
-          text-overflow:ellipsis;
-          white-space:nowrap
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap
         }
+
         .start {
           color: #DDD;
           font-size: 20px;
           margin-top: 4px;
         }
+
         .s-top {
           margin-top: 10px;
         }
-        .p-ye {
-          color: #FFEE31;
-        }
-      }
-    }
-    .f-content{
-      overflow: hidden;
-      padding: 37px;
-      padding-left: 159px;
-      border-bottom: 16px solid #F5F5F5;
-      position: relative;
-      .full{
-        margin-top: 34px;
-        color: #E62129;
-        font-size: 28px
-      }
-      .c-img {
-        height: 83px;
-        width: 83px;
-        position: absolute;
-        background: red;
-        border-radius: 50%;
-        top: 37px;
-        left: 37px;
-        img{
-          width: 100%;
-          border-radius: 50%
-        }
-      }
-      .c-name {
-        color :#010101;
-        font-weight: 500;
-        font-size: 36px;
-        .fc-n {
-          color: #633B1E;
-        }
-      }
-      .c-content {
-        overflow: hidden;
-        height: 285px;
-      }
-      .c-content.active{
-        height:auto;
-        .title{
-          line-height: 2.8
-        }
-        .c-text{
-          margin-top: 14px;
-        }
-      }
-      .c-time {
-        color: #ccc;
-        font-size: 24px;
-        margin-top: 5px;
-        span{
-          margin-right:55px;
-        }
-      }
-      .c-text {
-        color: #000;
-        font-size: 28px;
-        color: #000;
-        font-weight: 400;
-        margin-top: 34px;
-        .c-color {
-          color:#999;
-          padding-left: 1em
-        }
-      }
-    }
-    .laudBox{
-      background: #F5F5F5;
-      padding: 20px;
-      margin-top: 75px;
-      border-radius: 10px
-    }
-    .c-func {
-      // margin-top: 100px;
-      // margin-bottom: 39px;
-      float: right;
-      width: 300px;
-      color: #999;
-      font-size: 28px;
-      display: flex;
-      justify-content: space-between;
-      overflow: hidden;
-      .iconfont{
-        margin-right: 7px
-      }
-      .c-zan{
-        display: flex;
-        justify-content: space-around;
-        align-content: center
-      }
-    }
-    .c-list {
-      float: right;
-      height: 66px;
-      width: 555px;
-      line-height: 66px;
-      background: #fff;
-      margin-bottom: 37px;
-      box-sizing: border-box;
-      position: relative;
-      padding-left: 24px;
-      img {
-        height: 25px;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 28px;
-        margin-right: 22px;
-      }
-      p {
-        padding-left: 50px;
-        color:#633B1E;
-        font-size: 28px;
-      }
-    }
-  }
 
+          .p-ye {
+            color: #FFEE31;
+          }
+
+        }
+      }
+  }
 </style>

@@ -3,9 +3,9 @@
         <div class="calender">
             <div class="ui-datepicker-wrapper ui-datepicker-wrapper-show">
                 <div class="header">
-                    <span class="datepicker">{{headYear}}年{{thisMonthDays.month}}月 <span class="arrow">></span></span>
-                    <span class="dategroup" @click="groupPopup">{{popup.groupName}} <span class="arrow">></span></span>
-                    <span class="personal" @click="userPopup">{{popup.userName}} <span class="arrow">></span></span>
+                    <span class="datepicker">{{headYear}}年{{thisMonthDays.month}}月 <span class="arrow"></span></span>
+                    <span class="dategroup" @click="groupPopup">{{popup.groupName}} <span class="arrow"></span></span>
+                    <span class="personal" @click="userPopup">{{popup.userName}} <span class="arrow"></span></span>
                 </div>
                 <div class="ui-datepicker-body">
                     <div class="datepicker-weekday">
@@ -93,7 +93,7 @@ export default {
                 groupid:'',
                 userid:'',
             }
-            
+
         };
     },
     created() {
@@ -114,6 +114,9 @@ export default {
         groupPopup(){
             this.popup.slots[0].values=this.groups;
             this.type='groups';
+            //群组选择时,置空个人
+            this.popup.userName='选择个人';
+            this.popup.userid='';
             this.popup.mask=true;
         },
         //确认
@@ -261,7 +264,7 @@ export default {
             this.thisMonthDays = {
                 year: year,
                 month: this.fillZero(month),
-                days: this.ret  
+                days: this.ret
             }
             this.headYear=year+'';
             this.headYear=this.headYear.substr(2);
@@ -439,7 +442,7 @@ export default {
     font-size: 28px
 }
 .picker-item.picker-selected{
-    font-size: 32px 
+    font-size: 32px
 }
 .sureBtn{
     font-size: 28px;
@@ -468,12 +471,21 @@ export default {
             justify-content: space-around;
             font-size:32px;
             color: #999;
+            span{
+                display: flex;
+                align-items: center;
+            }
             .dategroup{
                 color: #000;
                 font-weight:500;
             }
             .arrow{
-                color: #000
+                width: 23px;
+                height: 12px;
+                background-image: url("../assets/img/jt.png");
+                background-size: cover;
+                display: inline-block;
+                margin-left: 15px;
             }
         }
         .weekday-head {
@@ -497,7 +509,7 @@ export default {
             color:#999;
             li {
                 background: #fff;
-                text-align: center; 
+                text-align: center;
                 height:88px;
                 line-height: 88px;
                 font-size: 32px;

@@ -212,7 +212,6 @@
       margin-top: 34px;
       .c-color {
         color:#999;
-        padding-left: 1em
       }
     }
   }
