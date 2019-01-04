@@ -47,7 +47,6 @@
             经典名句分享
         </div>
         <div class="card-put">
-            <!-- <x-textarea placeholder='请输入您要分享的经典名句' :rows='4' v-model="classic" ></x-textarea> -->
           <textarea  rows="4" placeholder='请输入您要分享的经典名句'  v-model="classic" class="ccc" @blur='bblur'  ></textarea>
         </div>
 
@@ -61,17 +60,17 @@
        </div>
        <div class="card-com">
           <div class="l-put">
-               <div class="label label-f">修身</div> <input type="text" placeholder="请输入今日您对个人的贡献" v-model="practices.character" >
+               <div class="label label-f">修身</div> <input type="text" placeholder="请输入今日您对个人的贡献" v-model="practices.character" @blur='bblur' >
           </div>
        </div>
        <div class="card-com">
           <div class="l-put">
-               <div class="label label-f">齐家</div> <input type="text" placeholder="请输入今日您对家庭和家人的贡献"  v-model="practices.work" >
+               <div class="label label-f">齐家</div> <input type="text" placeholder="请输入今日您对家庭和家人的贡献"  v-model="practices.work" @blur='bblur' >
           </div>
        </div>
        <div class="card-com">
           <div class="l-put">
-               <div class="label label-f">建功</div> <input type="text" placeholder="请输入今日您对工作的贡献" v-model="practices.family"  >
+               <div class="label label-f">建功</div> <input type="text" placeholder="请输入今日您对工作的贡献" v-model="practices.family" @blur='bblur' >
           </div>
        </div>
 
@@ -105,7 +104,7 @@
           </div>
        </div>
        <div class="card-put">
-            <x-textarea placeholder='请输入您要分享的经典名句' :rows='4' v-model="volunteer" ></x-textarea>
+          <textarea  rows="4" placeholder='请输入您要分享的志愿'  v-model="volunteer" class="ccc" @blur='bblur'  ></textarea>
         </div>
         <div class="card-top card-com laca card-ma">
            <div class="siz">
@@ -116,7 +115,7 @@
           </div>
        </div>
        <div class="card-put">
-            <x-textarea placeholder='请输入您的反省及觉悟' :rows='4' v-model="introspective" ></x-textarea>
+          <textarea  rows="4" placeholder='请输入您的反省及觉悟'  v-model="introspective" class="ccc" @blur='bblur'  ></textarea>
         </div>
          <div class="card-top card-com laca card-ma">
            <div class="siz">
@@ -127,7 +126,7 @@
           </div>
        </div>
        <div class="card-put">
-            <x-textarea placeholder='请输入您的感谢' :rows='4' v-model="thanks" ></x-textarea>
+          <textarea  rows="4" placeholder='请输入您的感谢'  v-model="thanks" class="ccc" @blur='bblur'  ></textarea>
         </div>
         
         <div class="card-btn" @click="punch">
@@ -261,6 +260,7 @@ export default {
       }
       .van-stepper__input{
          width: 62px;
+         line-height: 56px;
          height: 56px;
       }
       .van-stepper__minus::before, .van-stepper__plus::before {
@@ -294,8 +294,11 @@ export default {
       background:none;  
 	    outline:none;  
       border:0px;
+      height: 96px;
+      line-height: 96px;
+      box-sizing: border-box;
       caret-color:blue;
-      padding: 20px 0px;
+      padding: 10px 0px;
    }
   .label-f {
     width: 280px;
