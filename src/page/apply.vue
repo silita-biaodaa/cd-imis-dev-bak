@@ -50,22 +50,17 @@ export default {
     onSearch() {
       Glisy({pageNo: '1', pageSize: '5', keywords: this.value}).then( res => {
           if(res.code == 1 ) {
-            console.log(res)
+            console.log(res,53)
               this.list = res.data.list
           }
       })
     },
     addGroups(val) {
+      console.log(1111)
        Addgroup({groId:val.groId}).then( res => {
+         console.log(res,61)
           if(res.code == 403 ) {
-            console.log(111)
-            //  Dialog.alert({
-            //     title: '申请入群',
-            //     message: '申请成功,请等待群主确认'
-            //   }).then(() => {
                  this.onSearch()
-              // });
-
           }
        })
     }
@@ -154,7 +149,7 @@ export default {
   .apply-name {
     margin-top: 35px;
     p {
-      width:500px;
+      width:400px;
       word-break:keep-all;
       white-space:nowrap;
       overflow:hidden;
