@@ -64,7 +64,7 @@
 
 </template>
 <script>
-import { groups,Message } from "@/api/index";
+import { groups,Count } from "@/api/index";
 export default {
     data() {
       return {
@@ -112,9 +112,9 @@ export default {
         })
       },
       gainInform()  {
-        Message({}).then( res =>{
+        Count({}).then( res =>{
            if(res.code == 1) {
-              this.informs = "群通知(" +  res.data.length  + ")"
+              this.informs = "群通知(" +  res.data  + ")"
            }
         })
       },

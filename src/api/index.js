@@ -111,6 +111,10 @@ export const CreatG = params => {
   return axios.post('group/add', params).then(res => res.data)
 }
 
+export const Count = params => {
+  return axios.post('group/inform', params).then(res => res.data)
+}
+
 export const CardRecord={
     groupsDate:params =>{//群组日历
     return axios.post('group/date/list', params).then(res => res.data)
