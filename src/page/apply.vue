@@ -153,6 +153,13 @@ export default {
   }
   .apply-name {
     margin-top: 35px;
+    p {
+      width:550px;
+      word-break:keep-all;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
   }
   .apply-ye {
     height: 26px;
