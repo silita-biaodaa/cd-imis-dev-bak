@@ -284,21 +284,22 @@ export default {
    display: flex;
    justify-content: flex-start;
    align-items: center;
+   box-sizing: border-box;
+   padding: 25px 0;
    .label {
      padding-left: 0px;
      color:#000;  
    }
    input {
+      height: 46px;
+      line-height: 46px;
       width: 100%;
       text-align: right;
       background:none;  
 	    outline:none;  
       border:0px;
-      height: 96px;
-      line-height: 96px;
       box-sizing: border-box;
       caret-color:blue;
-      padding: 10px 0px;
    }
   .label-f {
     width: 280px;
