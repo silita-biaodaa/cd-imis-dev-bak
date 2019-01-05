@@ -39,7 +39,7 @@
 
       <div>
        <div  class="fold none" @click="show(1)"  >
-        <span>我加入得群{{this.jointle}}</span>
+        <span>我加入的群{{this.jointle}}</span>
         <i :class=" this.folds[1].showContent ? 'iconfont icon-jiantoushang g-size ' : 'iconfont icon-jiantouxia g-size' "></i>
        </div>
          <div class="group-p" v-show="this.folds[1].showContent" >
