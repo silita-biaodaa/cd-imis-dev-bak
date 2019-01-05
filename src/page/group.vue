@@ -2,7 +2,7 @@
 
   <div class="group">
       <router-link :to="{path:'/notice'}" class="fold"  tag="div">
-        <span>{{informs}}</span>
+        <span>群通知({{this.informs}})</span>
         <i class=" iconfont icon-jiantouyou g-size"></i>
       </router-link>
 
@@ -18,7 +18,7 @@
 
       <div class="ma10">
        <div  class="fold none" @click="show(0)"  >
-        <span>{{createstle}}</span>
+        <span>我创建得群{{this.createstle}}</span>
         <i :class=" this.folds[0].showContent ? 'iconfont icon-jiantoushang g-size' : ' iconfont icon-jiantouxia g-size'"></i>
        </div>
          <div class="group-p" v-show="this.folds[0].showContent" >
@@ -39,7 +39,7 @@
 
       <div>
        <div  class="fold none" @click="show(1)"  >
-        <span>{{jointle}}</span>
+        <span>我加入得群{{this.jointle}}</span>
         <i :class=" this.folds[1].showContent ? 'iconfont icon-jiantoushang g-size ' : 'iconfont icon-jiantouxia g-size' "></i>
        </div>
          <div class="group-p" v-show="this.folds[1].showContent" >
@@ -76,7 +76,7 @@ export default {
           {showContent: false},
           {showContent: false}
         ],
-        informs:''
+        informs:0
       };
     },
     methods: {
@@ -105,8 +105,8 @@ export default {
            if(res.code == 1) {
               this.join = res.data.join
               this.creates = res.data.create
-              this.jointle = res.data.join.length == 0 ? '我加入的群' : '我加入的群(' + res.data.join.length + ')'
-              this.createstle  = res.data.create.length == 0 ? '我创建的群' : '我创建的群(' + res.data.create.length + ')'
+              this.jointle = res.data.join.length == 0 ? '' : '(' + res.data.join.length + ')'
+              this.createstle  = res.data.create.length == 0 ? '' : '(' + res.data.create.length + ')'
 
            }
         })
@@ -114,7 +114,7 @@ export default {
       gainInform()  {
         Count({}).then( res =>{
            if(res.code == 1) {
-              this.informs = "群通知(" +  res.data  + ")"
+              this.informs = res.data
            }
         })
       },

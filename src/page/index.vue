@@ -17,7 +17,7 @@
             <div class="sign p-line">
              <img src="../assets/img/sign2.png" alt="" class="sign-img">
              <div class="l-put">
-              <div class="label">手机</div> <input type="tel" placeholder="请输入您的联系方式" v-model='mobile' >
+              <div class="label">手机</div> <input type="tel" placeholder="请输入您的联系方式" v-model='mobile' @blur='textM' ref='Moblie'  >
              </div>
            </div>
             <div class="l-put p-line ">
@@ -128,6 +128,7 @@
 import  util  from '../util/util'
 import { recordBook } from "@/api/index";
 import { dateFormat } from 'vux'
+import { Toast } from 'vant'
 export default {
   data () {
     return {
@@ -145,7 +146,9 @@ export default {
       first: [{title:'六项精进',readCount:3,readTotal:0},{title:'大学',readCount:3,readTotal:0}],
       pass: true,
       pickerValue: '',
-      old:0
+      old:0,
+      Number:true
+
     }
   },
   computed:{
@@ -180,6 +183,18 @@ export default {
          this.count = this.old
       }
     },
+    textM() {
+      window.scroll(0,0)
+      var myreg= /^[1][3,4,5,6,7,8,9][0-9]{9}$/
+      if( myreg.test(this.mobile)) {
+          this.$refs.Moblie.style.color = '#000'
+          this.Number = true 
+      } else {
+          this.$refs.Moblie.style.color = 'red'
+          this.Number = false
+          this.$toast('请输入正确得手机号码');
+      }
+    },
     record () {
       this.pass = true;
         if(!this.username) {
@@ -207,8 +222,7 @@ export default {
                }
             });
 
-      if ( this.pass ) {
-         alert(11111)
+      if ( this.pass && this.Number ) {
            recordBook({name: this.username, phone: this.mobile, company: this.company, post: this.post, pushStart: this.tiems,total: this.count, bonaStart: this.begin, bonaEnd: this.end, bonaCount: this.number, bonaTotal: this.alls, volunteer: this.values, books: this.first}).then( res => {
                if(res.code == 1) {
                  this.$router.replace({path:'/nav/card'})
