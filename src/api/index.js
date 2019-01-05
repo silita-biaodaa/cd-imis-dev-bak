@@ -88,7 +88,7 @@ export const Parise = params => {
   return axios.post('/parise/click', params).then(res => res.data)
 }
 export const group = params => {
-  return axios.post('group/list', params).then(res => res.data)
+  return axios.post('group/relevance/list', params).then(res => res.data)
 }
 export const groups = params => {
   return axios.post('group/join', params).then(res => res.data)
