@@ -14,7 +14,7 @@
       </div>
       <span v-if="$route.query.id" class="returnClass" @click="$router.go(-1)">返回</span>
     </div>
-    <v-clock :clocklist="list" :name="name"></v-clock>
+    <v-clock :clocklist="list"></v-clock>
   </div>
 </template>
 <script>

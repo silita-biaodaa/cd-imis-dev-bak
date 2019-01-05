@@ -1,5 +1,5 @@
 <template>
-    <div class="groupcard" :class="{mask:mask}">
+    <div class="groupcard" :class="{mask:popup.mask}">
         <div class="calender">
             <div class="ui-datepicker-wrapper ui-datepicker-wrapper-show">
                 <div class="header">
