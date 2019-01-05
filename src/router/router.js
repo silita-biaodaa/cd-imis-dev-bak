@@ -11,6 +11,7 @@ import Apply from '@/page/apply'
 import Record from '@/page/record'
 import Create from '@/page/create'
 import groupUser from '@/page/groupUser'
+import Sets from '@/page/set'
 Vue.use(Router)
 
 export default new Router({
@@ -45,6 +46,10 @@ export default new Router({
           path: 'record',
           component: Record
         },
+        {
+          path: 'set',
+          component: Sets,
+        }
       ]
     },
     {

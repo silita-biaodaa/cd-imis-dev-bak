@@ -131,8 +131,7 @@
 <script>
 import  util  from '../util/util'
 import { recordBook } from "@/api/index";
-import { dateFormat } from 'vux'
-import { Toast } from 'vant'
+import { dateFormat } from 'vux'  
 export default {
   data () {
     return {

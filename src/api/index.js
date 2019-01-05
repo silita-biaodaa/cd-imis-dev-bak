@@ -114,6 +114,14 @@ export const CreatG = params => {
 export const Count = params => {
   return axios.post('group/inform', params).then(res => res.data)
 }
+
+export const Personage = params => {
+  return axios.post('user/detail', params).then(res => res.data)
+}
+
+export const Saveuser = params => {
+  return axios.post('user/update', params).then(res => res.data)
+}
 //群组打卡
 export const CardRecord={
     groupsDate:params =>{//群组日历

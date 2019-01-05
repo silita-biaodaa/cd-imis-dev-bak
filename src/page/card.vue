@@ -88,8 +88,6 @@
           </div>
        </div>
         <div class="card-com">
-
-               <!-- <div class="label label-f">今日行善件数</div> <input type="text" placeholder="1善" v-model="pushCount.bonaDays" > -->
                <div class="l-pu">
                     <div class="label label-f">今日行善次数</div>
                     <van-stepper  v-model="pushCount.bonaDays" class="l-mi" :min="0" :disabled='first' />

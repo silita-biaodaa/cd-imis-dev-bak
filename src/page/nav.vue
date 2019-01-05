@@ -38,7 +38,7 @@
           },{
             name:'设置',
             className:'icon-sz',
-            to:'',
+            to:'set',
           }
         ]
       }
