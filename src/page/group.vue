@@ -2,7 +2,7 @@
 
   <div class="group">
       <router-link :to="{path:'/notice'}" class="fold"  tag="div">
-        <span>{{this.informs}}</span>
+        <span>{{informs}}</span>
         <i class=" iconfont icon-jiantouyou g-size"></i>
       </router-link>
 
@@ -18,7 +18,7 @@
 
       <div class="ma10">
        <div  class="fold none" @click="show(0)"  >
-        <span>{{this.createstle}}</span>
+        <span>{{createstle}}</span>
         <i :class=" this.folds[0].showContent ? 'iconfont icon-jiantoushang g-size' : ' iconfont icon-jiantouxia g-size'"></i>
        </div>
          <div class="group-p" v-show="this.folds[0].showContent" >
@@ -39,7 +39,7 @@
 
       <div>
        <div  class="fold none" @click="show(1)"  >
-        <span>{{this.jointle}}</span>
+        <span>{{jointle}}</span>
         <i :class=" this.folds[1].showContent ? 'iconfont icon-jiantoushang g-size ' : 'iconfont icon-jiantouxia g-size' "></i>
        </div>
          <div class="group-p" v-show="this.folds[1].showContent" >

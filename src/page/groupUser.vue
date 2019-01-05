@@ -1,11 +1,7 @@
 
 <template>
   <div class="groupUser">
-      <div class="title">
-        <span class="iconfont icon-fanhui" @click="$router.go(-1)"></span>
-        <span class="nameTxt">{{groupName}}</span>
-        <span></span>
-      </div>
+      <v-head :head-txt="groupName"></v-head>
       <div class="serBox"><div></div></div>
       <ul class="listBox">
         <li v-for="(o,i) of list" :key="i">

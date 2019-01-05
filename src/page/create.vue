@@ -1,11 +1,6 @@
 <template>
    <div class="create">
-
-      <div class="top-nav" >
-        <i class="iconfont icon-fanhui i-size"  @click="$router.go(-1)" ></i>
-          创建群组
-      </div>
-
+      <v-head :head-txt="headName"></v-head>
       <div class="create-put ">
 
         <div class="l-put"  >
@@ -24,7 +19,8 @@ import { Toast } from 'vant'
 export default {
   data () {
     return {
-      crowd: ''
+      crowd: '',
+      headName:'创建群组'
     }
   },
   methods: {
@@ -53,32 +49,8 @@ export default {
 <style lang="less" >
 .create {
   background: #f5f5f5;
-  padding-top: 96px;
   height: auto;
-   .top-nav {
-     height: 96px;
-     width: 100%;
-     line-height: 96px;
-     font-size: 32px;
-     color: #010101;
-     text-align: center;
-     position:fixed;
-	   top:0;
-     background: #fff;
-     font-weight: 500;
-     z-index: 999;
-     .i-size {
-        position: absolute;
-        color:#000;
-        left: 36px;
-       font-weight: 700;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 96px;
-        font-size: 36px;
-        text-align:left;
-     }
-  }
+}
   .create-put {
     margin-top: 16px;
   }
@@ -108,28 +80,27 @@ export default {
     font-size: 36px;
     color:#fff;
   }
-  .l-put {
-      height: 96px;
-      font-size: 36px;
-      display: flex;
-      justify-content: flex-start;
-      background: #fff;
-      align-items: center;
-      .label {
-        width: 250px;
-        padding-left: 36px;
-        color:#000;
-      }
-      input {
-         width: 100%;
-         text-align: left;
-         background:none;
-	       outline:none;
-         border:0px;
-         caret-color:blue;
-         padding: 20px 0px;
-         padding-right: 20px;
-      }
-    }
+.l-put {
+  height: 96px;
+  font-size: 36px;
+  display: flex;
+  justify-content: flex-start;
+  background: #fff;
+  align-items: center;
+  .label {
+    width: 250px;
+    padding-left: 36px;
+    color:#000;
+  }
+  input {
+     width: 100%;
+     text-align: left;
+     background:none;
+     outline:none;
+     border:0px;
+     caret-color:blue;
+     padding: 20px 0px;
+     padding-right: 20px;
+  }
 }
 </style>

@@ -11,6 +11,7 @@ Vue.use(Vant)
 
 import clocklist from '@/components/clockList'
 import popup from '@/components/popup'
+import head from '@/components/headgoto'
 import { InlineCalendar, XInput, Datetime, XTextarea, XButton, AlertPlugin, Group } from 'vux'
 Vue.component('inline-calendar', InlineCalendar)
 Vue.component('x-input', XInput)
@@ -19,7 +20,7 @@ Vue.component('x-textarea', XTextarea)
 Vue.component('x-button', XButton)
 Vue.component('group', Group)
 Vue.component('v-clock', clocklist)
-Vue.component('v-popup', popup)
+Vue.component('v-head', head)
 Vue.use(AlertPlugin)
 import Mint from 'mint-ui';
 import 'mint-ui/lib/style.css'

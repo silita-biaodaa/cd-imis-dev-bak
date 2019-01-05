@@ -1,10 +1,7 @@
 <template>
   <div class="notice">
-      <div class="top-nav" >
-        <i class="iconfont icon-fanhui i-size"  @click="$router.go(-1)" ></i>
-          群通知
-      </div>
-      <div class="hei" > 
+      <v-head :head-txt="headName"></v-head>
+      <div class="hei" >
         <div v-for="(e,i) in list" :key="i" >
           <div class="ld-left notice-h">
             <div class="notice-img">
@@ -27,7 +24,8 @@ import { Message,Agree } from '@/api/index'
 export default {
   data () {
     return {
-      list:[]
+      list:[],
+      headName:'群通知'
     }
   },
   methods: {
@@ -61,31 +59,6 @@ export default {
    background: #F5F5F5;
    height:auto;
    margin: 0 auto;
-   padding-top: 96px;
-  .top-nav {
-     height: 96px;
-     width: 100%;
-     line-height: 96px;
-     font-size: 32px;
-     color: #010101;
-     text-align: center;
-     position:fixed;
-	   top:0;
-     background: #fff;
-     font-weight: 500;
-     z-index: 9999;
-     .i-size {
-        position: absolute;
-        font-size: 36px;
-        font-weight: 700;
-        color:#000;
-        left: 36px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 96px;
-        text-align:left;
-     }
-  }
   .hei{
     margin-top: 16px;
   }

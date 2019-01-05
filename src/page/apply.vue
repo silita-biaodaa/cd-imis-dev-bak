@@ -1,9 +1,6 @@
 <template>
     <div class="apply">
-      <div class="top-nav" >
-        <i class="iconfont icon-fanhui i-size"  @click="$router.go(-1)" ></i>
-          查找群组
-      </div>
+      <v-head :head-txt="headName"></v-head>
       <van-search placeholder="请输入搜索关键词" v-model="value" @blur="onSearch" />
       <div class="apply-list" v-for="(e,i) in list" :key="i" v-show="dont" >
           <div class="ld-left apply-g" >
@@ -41,7 +38,8 @@ export default {
     return {
       value: '',
       list: [],
-      dont: true
+      dont: true,
+      headName:'查找群组'
     }
   },
   methods: {
@@ -55,7 +53,7 @@ export default {
               } else {
                  this.dont = false
               }
-              
+
           }
       })
     },
@@ -79,37 +77,13 @@ export default {
 </script>
 <style lang="less" >
 .apply {
-   padding-top: 96px;
    .hint {
       margin-top: 200px;
       color: #666666;
       text-align: center;
       font-size: 40px;
    }
-   .top-nav {
-     height: 96px;
-     width: 100%;
-     line-height: 96px;
-     font-size: 32px;
-     color: #010101;
-     text-align: center;
-     position:fixed;
-	   top:0;
-     background: #fff;
-     font-weight: 500;
-     z-index: 999;
-     .i-size {
-        font-size: 32px;
-        font-weight: 700;
-        position: absolute;
-        color:#000;
-        left: 36px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 96px;
-        text-align:left;
-     }
-  }
+
   .van-search {
       padding: 20px 36px;
   }
