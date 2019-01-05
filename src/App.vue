@@ -13,9 +13,9 @@ export default {
   name: 'app',
   created(){
     if(!sessionStorage.getItem('groupList')){
-      group({pageNo:1,pageSize:1000}).then( res => {
+      group({}).then( res => {
         let arr=[];
-        arr=res.data.list;
+        arr=res.data;
         sessionStorage.setItem('groupList',JSON.stringify(arr));
       })
     }
