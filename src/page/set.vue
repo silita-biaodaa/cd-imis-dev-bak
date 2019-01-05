@@ -42,12 +42,12 @@
          <div v-for="el in bookss" :key="el.pkid">
             <div class="card-b">
                <div class="card-book">
-                 《{{el.title}}》共朗读{{el.readTotal + el.readCount}}遍
+                 《{{el.title}}》共朗读{{el.readTotal}}遍
                </div>
             </div>
             <div class="card-com">
                <div class="l-pu">
-                    <div class="label label-f">今日朗读遍数</div>
+                    <div class="label label-f">每日朗读遍数</div>
                     <van-stepper  v-model.number="el.readCount" class="l-mi" :min="0"   />
                </div>
             </div>
@@ -64,7 +64,7 @@
                <div class="label label-f no-f">书本名称</div> <input type="text" placeholder="请输入书本名称" v-model='item.bookName' @blur="bblur" >
               </div>
               <div class="l-put">
-               <div class="label label-f no-f">朗读章节</div> <input type="text" placeholder="请输入" v-model='item.section' @blur="bblur" >
+               <div class="label label-f no-f">每日朗读遍数</div> <input type="tel" placeholder="请输入" v-model='item.section' @blur="bblur" >
               </div>
            </div>
         </div>
@@ -84,7 +84,7 @@
        </div>
        <div class="card-b">
           <div class="card-book l-fire">
-            发愿从{{pushCount.bonaStart}}起，累计 {{pushCount.bonaTotal + pushCount.bonaCount}} 善。
+            发愿从{{pushCount.bonaStart}}起，累计 {{pushCount.bonaTotal}} 善。
           </div>
        </div>
         <div class="card-com">
@@ -121,7 +121,6 @@
       <div class="toast" v-show="mask">
           个人信息更新成功
       </div>
-      <!-- <v-popup :popup-type="'save'" :popup-show="mask"></v-popup> -->
  </div>
 </template>
 <script>
@@ -130,13 +129,9 @@ export default {
   data () {
     return {
        layout:false,
-      //  username: '',
-      //  mobile: '',
-      //  company: '',
-      //  post: '',
        user:[],
        bookss: [],
-       books:[{}],
+       books:[],
        values:'',
        Blength:0,
        pushCount:[],
@@ -217,10 +212,6 @@ export default {
     gainUser() {
       Personage({}).then( res => {
          if(res.code == 1 ) {
-            // this.username = res.data.user.name
-            // this.mobile = res.data.user.phone
-            // this.company = res.data.user.company
-            // this.post = res.data.user.post
             this.user = res.data.user
             this.bookss = res.data.books
             this.Blength = res.data.books.length + 1
