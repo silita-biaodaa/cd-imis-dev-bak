@@ -122,6 +122,9 @@
           type="date"
           v-model="pickerValue">
       </mt-datetime-picker>
+      <div class='toast' v-show='layout' >
+          请输入正确得手机号码格式
+      </div> 
    </div>
 </template>
 <script>
@@ -147,8 +150,8 @@ export default {
       pass: true,
       pickerValue: '',
       old:0,
-      Number:true
-
+      Number: true,
+      layout: false
     }
   },
   computed:{
@@ -192,8 +195,14 @@ export default {
       } else {
           this.$refs.Moblie.style.color = 'red'
           this.Number = false
-          this.$toast('请输入正确得手机号码');
+          this.layout = true
+          this.verify()
       }
+    },
+    verify() {
+       setTimeout(() => {
+          this.layout = false
+       }, 1500);
     },
     record () {
       this.pass = true;
@@ -289,7 +298,19 @@ export default {
 <style lang="less" >
 .home {
   box-sizing: border-box;
+  // position: relative;
   background: #f5f5f5;
+  .toast {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    background: #000;
+    padding: 20px;
+    font-size: 26px;
+    border-radius: 10px;
+    transform: translateX(-50%);
+    color:#fff;
+  }
   .weui-icon-clear {
       font-size: 30px;
   }

@@ -18,7 +18,7 @@
             <div class="card-com">
                <div class="l-pu">
                     <div class="label label-f">今日朗读遍数</div>
-                    <van-stepper  v-model.number="el.readCount" class="l-mi" :min="0" />
+                    <van-stepper  v-model.number="el.readCount" class="l-mi" :min="0" :disabled='first'  />
                </div>
             </div>
         </div>
@@ -31,10 +31,10 @@
             </div>
            <div class="pdd">
               <div class="l-put put-bot">
-               <div class="label label-f">书本名称</div> <input type="text" placeholder="请输入书本名称" v-model='item.bookName' >
+               <div class="label label-f">书本名称</div> <input type="text" placeholder="请输入书本名称" v-model='item.bookName' :disabled='first' >
               </div>
               <div class="l-put">
-               <div class="label label-f">朗读章节</div> <input type="text" placeholder="请输入" v-model='item.section' >
+               <div class="label label-f">朗读章节</div> <input type="text" placeholder="请输入" v-model='item.section' :disabled='first' >
               </div>
            </div>
         </div>
@@ -47,12 +47,12 @@
             经典名句分享
         </div>
         <div class="card-put">
-          <textarea  rows="4" placeholder='请输入您要分享的经典名句'  v-model="classic" class="ccc" @blur='bblur'  ></textarea>
+          <textarea  rows="4" placeholder='请输入您要分享的经典名句'  v-model="classic" class="ccc" @blur='bblur'  :disabled='first' ></textarea>
         </div>
 
         <div class="card-top card-com laca card-ma">
            <div class="siz">
-              <img src="../assets/img/buuk (1).png" alt="">
+              <img src="../assets/img/chess (2).png" alt="">
            </div>
           <div class="card-size">
               行实践
@@ -60,17 +60,17 @@
        </div>
        <div class="card-com">
           <div class="l-put">
-               <div class="label label-f">修身</div> <input type="text" placeholder="请输入今日您对个人的贡献" v-model="practices.character" @blur='bblur' >
+               <div class="label label-f">修身</div> <input type="text" placeholder="请输入今日您对个人的贡献" v-model="practices.character" @blur='bblur' :disabled='first' >
           </div>
        </div>
        <div class="card-com">
           <div class="l-put">
-               <div class="label label-f">齐家</div> <input type="text" placeholder="请输入今日您对家庭和家人的贡献"  v-model="practices.work" @blur='bblur' >
+               <div class="label label-f label-t">齐家</div> <input type="text" placeholder="请输入今日您对家庭和家人的贡献"  v-model="practices.work" @blur='bblur' :disabled='first' >
           </div>
        </div>
        <div class="card-com">
           <div class="l-put">
-               <div class="label label-f">建功</div> <input type="text" placeholder="请输入今日您对工作的贡献" v-model="practices.family" @blur='bblur' >
+               <div class="label label-f label-t">建功</div> <input type="text" placeholder="请输入今日您对工作的贡献" v-model="practices.family" @blur='bblur' :disabled='first' >
           </div>
        </div>
 
@@ -92,7 +92,7 @@
                <!-- <div class="label label-f">今日行善件数</div> <input type="text" placeholder="1善" v-model="pushCount.bonaDays" > -->
                <div class="l-pu">
                     <div class="label label-f">今日行善次数</div>
-                    <van-stepper  v-model="pushCount.bonaDays" class="l-mi" :min="0" />
+                    <van-stepper  v-model="pushCount.bonaDays" class="l-mi" :min="0" :disabled='first' />
                </div>
        </div>
        <div class="card-top card-com laca card-ma">
@@ -104,18 +104,18 @@
           </div>
        </div>
        <div class="card-put">
-          <textarea  rows="4" placeholder='请输入您要分享的志愿'  v-model="volunteer" class="ccc" @blur='bblur'  ></textarea>
+          <textarea  rows="4" placeholder='请输入您要分享的志愿'  v-model="volunteer" class="ccc" @blur='bblur' :disabled='first' ></textarea>
         </div>
         <div class="card-top card-com laca card-ma">
            <div class="siz">
-              <img src="../assets/img/gift (2).png" alt="">
+              <img src="../assets/img/awake.png" alt="">
            </div>
           <div class="card-size">
               省觉悟
           </div>
        </div>
        <div class="card-put">
-          <textarea  rows="4" placeholder='请输入您的反省及觉悟'  v-model="introspective" class="ccc" @blur='bblur'  ></textarea>
+          <textarea  :disabled='first' rows="4" placeholder='请输入您的反省及觉悟'  v-model="introspective" class="ccc" @blur='bblur'  ></textarea>
         </div>
          <div class="card-top card-com laca card-ma">
            <div class="siz">
@@ -126,7 +126,7 @@
           </div>
        </div>
        <div class="card-put">
-          <textarea  rows="4" placeholder='请输入您的感谢'  v-model="thanks" class="ccc" @blur='bblur'  ></textarea>
+          <textarea  :disabled='first' rows="4" placeholder='请输入您的感谢'  v-model="thanks" class="ccc" @blur='bblur'  ></textarea>
         </div>
 
         <div class="card-btn" @click="punch">
@@ -151,7 +151,8 @@ export default {
       practices: { character: '' ,work: '', family: ''},  //行～实践
       introspective: '', //省省悟
       thanks: '', //感谢
-      btnTitle:''
+      btnTitle:'',
+      first:false
     }
   },
   methods: {
@@ -162,6 +163,7 @@ export default {
              console.log(res,158)
               if(res.code == 402 ) {
                  this.btnTitle = '今日已打卡, 请勿重复提交'
+                 this.first = true
               } else {
                  this.btnTitle = '提交'
               }
@@ -299,6 +301,9 @@ export default {
   .label-f {
     width: 280px;
   }
+  .label-t {
+    width: 220px;
+  }
 }
   .card-top {
      img {
@@ -388,10 +393,9 @@ export default {
    padding: 10px 36px;
  }
  .card-btn {
-   margin-top: 110px;
-   padding: 0 32px;
+    margin-top: 110px;
+    padding: 0 32px;
     padding-bottom: 32px;
-
     .card-div {
       height: 96px;
       font-size: 36px;
