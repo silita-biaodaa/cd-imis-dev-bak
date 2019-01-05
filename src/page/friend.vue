@@ -52,15 +52,14 @@
         }
         User(data).then( res => {
           this.name = res.data.name;
-        sessionStorage.setItem('userName',res.data.name);
-        this.imgUrl = res.data.imgUrl
-        this.compang = res.data.company
-        this.pushStart = res.data.pushStart
-        this.pushEnd = res.data.pushEnd
-        this.total = res.data.total
-        this.time = res.data.pushDays
-        this.que = res.data.lostCount
-      })
+          this.imgUrl = res.data.imgUrl
+          this.compang = res.data.company
+          this.pushStart = res.data.pushStart
+          this.pushEnd = res.data.pushEnd
+          this.total = res.data.total
+          this.time = res.data.pushDays
+          this.que = res.data.lostCount
+        })
       },
       gainList(userid) {
         let that=this;

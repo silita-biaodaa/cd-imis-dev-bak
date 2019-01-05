@@ -1,5 +1,5 @@
 <template>
-    <div class="groupcard">
+    <div class="groupcard" :class="{mask:mask}">
         <div class="calender">
             <div class="ui-datepicker-wrapper ui-datepicker-wrapper-show">
                 <div class="header">
@@ -20,7 +20,7 @@
                         </ul>
                         <!-- active -->
                         <ul class="weekday-days">
-                            <li v-for="(item,i) in this.thisMonthDays.days" @click="dateClick(i)" :data-date="thisMonthDays.year+'-'+thisMonthDays.month+'-'+item.showDate" :key="i" :class="{active:item.active,ifDiabled:!item.ifThisMonthDays,card0:item.cardType=='0',card1:item.cardType=='1'}">
+                            <li v-for="(item,i) in this.thisMonthDays.days" @click="dateClick(i)" :data-date="thisMonthDays.year+'-'+thisMonthDays.month+'-'+item.showDate" :key="'i'+i" :class="{active:item.active,ifDiabled:!item.ifThisMonthDays,card0:item.cardType=='0',card1:item.cardType=='1'}">
                                 {{item.showDate}}
                             </li>
                         </ul>
@@ -454,6 +454,10 @@ export default {
 }
 .picker-item.picker-selected{
     font-size: 32px
+}
+body .mask{
+  max-height: 100vh;
+  overflow: hidden;
 }
 .sureBtn{
     font-size: 28px;

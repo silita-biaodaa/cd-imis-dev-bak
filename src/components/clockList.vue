@@ -17,7 +17,7 @@
           </div>
           <template v-if="item.bookish.length>0">
             <div v-for="(o,i) in item.bookish" :key="'i'+i">
-              <p class="c-color">《{{o.bookName}}》-{{o.section}}</p>
+              <p class="c-color">《{{o.bookName}}》{{o.section}}</p>
             </div>
           </template>
 
@@ -66,17 +66,21 @@
         <span @click="fullClick(index)">{{item.fullTxt}}</span>
       </h5>
       <div class="c-func">
-        <div class="c-zan">
+
           <template v-if="item.isParise">
-            <span class="icon pickZ"></span>
-            <span  style="color:#E60012">赞</span>
+            <div class="c-zan">
+                  <span class="icon pickZ"></span>
+                  <span  style="color:#E60012">赞</span>
+            </div>
           </template>
           <template v-else>
-            <span class="icon pickZan"></span>
-            <span @click="isPariseFn(index)">赞</span>
+            <div class="c-zan" @click="isPariseFn(index)">
+              <span class="icon pickZan"></span>
+              <span>赞</span>
+            </div>
           </template>
 
-        </div>
+
         <!--<div class="c-zan">-->
           <!--<span class="icon icon-fx"></span>-->
           <!--<span>详情</span>-->
@@ -195,7 +199,7 @@
     }
     .c-content {
       overflow: hidden;
-      height: 260px;
+      height: 280px;
     }
     .c-content.active{
       height:auto;

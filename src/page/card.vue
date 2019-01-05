@@ -146,7 +146,7 @@ export default {
       pushCount: {},  //积善行
       volunteer: '', // 立志愿
       classic: '',  // 经典名句
-      practices: { character: '' ,work: '', family: ''},  //行～实践
+      practice: { character: '' ,work: '', family: ''},  //行～实践
       introspective: '', //省省悟
       thanks: '', //感谢
       btnTitle:'',
@@ -181,6 +181,7 @@ export default {
       }
       pushCard({thanks:this.thanks,practice:this.practices,books:this.bookss,classic:this.classic,introspective:this.introspective,volunteer:this.volunteer,pushCount:this.pushCount,isPub:'1',bookish:this.books}).then( res => {
            if(res.code == 1) {
+             sessionStorage.setItem('tabNum','0');
               this.$router.push({path:'/nav/friend'})
            }
       })
