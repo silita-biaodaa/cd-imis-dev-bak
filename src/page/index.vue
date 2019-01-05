@@ -124,7 +124,7 @@
     </mt-datetime-picker>
     <v-popup :popup-type="'tips'" :popup-show="mask"></v-popup>
     <div class='toast' v-show='layout' >
-      请输入正确得手机号码格式
+      请输入正确的手机号码
     </div>
     <div class='toast' v-show='text1' >
       请输入您的姓名
@@ -221,6 +221,11 @@
       },
       record () {
         this.pass = true;
+        if( !this.Number ) {
+           return  this.layout = true
+                   this.verify()
+        }
+
         if(!this.username) {
           this.pass = false
           this.text1 = true
@@ -246,7 +251,7 @@
           }
         });
 
-        if ( this.pass && this.Number ) {
+        if ( this.pass  ) {
           recordBook({name: this.username, phone: this.mobile, company: this.company, post: this.post, pushStart: this.tiems,total: this.count, bonaStart: this.begin, bonaEnd: this.end, bonaCount: this.number, bonaTotal: this.alls, volunteer: this.values, books: this.first}).then( res => {
             if(res.code == 1) {
               sessionStorage.setItem('tabNum','2');
