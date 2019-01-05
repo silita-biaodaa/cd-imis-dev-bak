@@ -172,6 +172,7 @@ export default {
               this.bookss = res.data.books
               this.pushCount = res.data.pushCount
               this.volunteer = res.data.volunteer
+              this.books = res.data.bookish
           }
        })
     },
