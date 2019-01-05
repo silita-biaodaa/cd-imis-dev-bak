@@ -60,17 +60,17 @@
        </div>
        <div class="card-com">
           <div class="l-put">
-               <div class="label label-f">修身</div> <input type="text" placeholder="请输入今日您对个人的贡献" v-model="practices.character" @blur='bblur' :disabled='first' >
+               <div class="label label-f">修身</div> <input type="text" placeholder="请输入今日您对个人的贡献" v-model="practice.character" @blur='bblur' :disabled='first' >
           </div>
        </div>
        <div class="card-com">
           <div class="l-put">
-               <div class="label label-f label-t">齐家</div> <input type="text" placeholder="请输入今日您对家庭和家人的贡献"  v-model="practices.work" @blur='bblur' :disabled='first' >
+               <div class="label label-f label-t">齐家</div> <input type="text" placeholder="请输入今日您对家庭和家人的贡献"  v-model="practice.work" @blur='bblur' :disabled='first' >
           </div>
        </div>
        <div class="card-com">
           <div class="l-put">
-               <div class="label label-f label-t">建功</div> <input type="text" placeholder="请输入今日您对工作的贡献" v-model="practices.family" @blur='bblur' :disabled='first' >
+               <div class="label label-f label-t">建功</div> <input type="text" placeholder="请输入今日您对工作的贡献" v-model="practice.family" @blur='bblur' :disabled='first' >
           </div>
        </div>
 
@@ -166,7 +166,7 @@ export default {
                  this.btnTitle = '提交'
               }
               this.thanks = res.data.thanks
-              this.practice = res.data.practice ? res.data.practice : this.practices
+              this.practice = res.data.practice?res.data.practice:{character: '' ,work: '', family: ''}
               this.classic = res.data.classic
               this.introspective = res.data.introspective
               this.bookss = res.data.books
