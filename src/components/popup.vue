@@ -9,6 +9,12 @@
                     <p @click="sure" style="color: #E62129">{{sureTxt}}</p>
                 </div>
             </template>
+            <template v-if="popupType=='tips'">
+              <div class="tipBox">
+                <div class="txt-box">您好，欢迎来到打卡圈，系统检测到您是第一次进入打卡圈，为数据传输同步，请设置初始状态，本次设置后部分数据将不可修改，请您认真确认。本次填写数据不包含今日打卡内容。</div>
+                <button @click="cancelFn">确定</button>
+              </div>
+            </template>
         </div>
     </div>
 </template>
@@ -29,7 +35,9 @@ export default {
     },
     props: {
         // 集成父级参数
-        popupType:{},
+        popupType:{
+          type:String
+        },
         popupShow:{
             default:false
         },
@@ -76,7 +84,7 @@ export default {
 
 </script>
 <!-- 增加 "scoped" 属性 限制 CSS 属于当前部分 -->
-<style scoped>
+<style scoped lang="less">
 .popup{
     width: 100%;
     height: 100%;
@@ -107,4 +115,25 @@ export default {
 .bottom-box{display: flex}
 .bottom-box p{width: 50%;text-align: center;line-height:96px;color: #000;font-size:36px}
 .bottom-box p:first-of-type{border-right: 1px solid #e8e8e8}
+
+  .tipBox{
+    padding: 60px;
+    padding-bottom: 40px;
+    font-size: 28px;
+    color: #999;
+    .txt-box{
+      margin-bottom: 82px;
+    }
+    button{
+      width: 100%;
+      background: #E62129;
+      color: #fff;
+      border-radius:10px;
+      height: 82px;
+      line-height: 82px;
+      font-size: 36px;
+      outline: none;
+      border: none;
+    }
+ }
 </style>

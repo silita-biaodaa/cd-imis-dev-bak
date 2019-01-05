@@ -122,9 +122,10 @@
           type="date"
           v-model="pickerValue">
       </mt-datetime-picker>
+      <v-popup :popup-type="'tips'" :popup-show="mask"></v-popup>
       <div class='toast' v-show='layout' >
           请输入正确得手机号码格式
-      </div> 
+      </div>
    </div>
 </template>
 <script>
@@ -150,7 +151,8 @@ export default {
       pass: true,
       pickerValue: '',
       old:0,
-      Number: true,
+      Number:true,
+      mask:true,
       layout: false
     }
   },
@@ -191,7 +193,7 @@ export default {
       var myreg= /^[1][3,4,5,6,7,8,9][0-9]{9}$/
       if( myreg.test(this.mobile)) {
           this.$refs.Moblie.style.color = '#000'
-          this.Number = true 
+          this.Number = true
       } else {
           this.$refs.Moblie.style.color = 'red'
           this.Number = false
@@ -212,14 +214,14 @@ export default {
                   title: '请输入必填选项',
                   content: '请输入您的姓名',
                 })
-        } 
+        }
          if (!this.mobile) {
            this.pass = false
           return this.$vux.alert.show({
                   title: '请输入必填选项',
                   content: '请输入手机号',
                 })
-        } 
+        }
             this.first.forEach( el => {
               var arr = Object.keys(el)
                if(  arr.length != 3 ) {
@@ -234,6 +236,7 @@ export default {
       if ( this.pass && this.Number ) {
            recordBook({name: this.username, phone: this.mobile, company: this.company, post: this.post, pushStart: this.tiems,total: this.count, bonaStart: this.begin, bonaEnd: this.end, bonaCount: this.number, bonaTotal: this.alls, volunteer: this.values, books: this.first}).then( res => {
                if(res.code == 1) {
+                 sessionStorage.setItem('tabNum','2');
                  this.$router.replace({path:'/nav/card'})
                }
             })
@@ -296,6 +299,9 @@ export default {
 }
 </script>
 <style lang="less" >
+  body .scroller-item{
+    font-size:26px;
+  }
 .home {
   box-sizing: border-box;
   // position: relative;
@@ -603,9 +609,6 @@ export default {
 .dp-content {
       padding: 200px 0 !important;
   }
-.scroller-item {
-   font-size: 40px !important;
-}
 .weui-dialog__title{
    font-size: 32px !important;
 }
