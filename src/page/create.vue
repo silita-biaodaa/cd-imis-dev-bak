@@ -11,22 +11,30 @@
          <button class="create-btn" @click="joinG" >创&nbsp&nbsp建</button>
       </div>
 
+
+      <div class="toast" v-show="show">
+          请先输入群名
+      </div>
+
    </div>
 </template>
 <script>
 import { CreatG } from '@/api/index'
-import { Toast } from 'vant'
 export default {
   data () {
     return {
       crowd: '',
-      headName:'创建群组'
+      headName:'创建群组',
+      show:false
     }
   },
   methods: {
     joinG() {
         if(!this.crowd.trim()) {
-            return this.$toast('群名不能为空!');
+            this.show = true
+            setTimeout(() => {
+              this.show = false
+            }, 1500);
         }
 
 
@@ -42,14 +50,25 @@ export default {
     }
   },
   components: {
-    Toast,
   }
 }
 </script>
 <style lang="less" >
 .create {
   background: #f5f5f5;
-  height: auto;
+  position: relative;
+  height:100%;
+    .toast {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    background: #000;
+    padding: 20px;
+    font-size: 26px;
+    border-radius: 10px;
+    transform: translateX(-50%);
+    color:#fff;
+  }
 }
   .create-put {
     margin-top: 16px;
@@ -102,5 +121,6 @@ export default {
      padding: 20px 0px;
      padding-right: 20px;
   }
+ 
 }
 </style>

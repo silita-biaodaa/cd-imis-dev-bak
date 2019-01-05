@@ -292,7 +292,6 @@
         const activeElement = document.activeElement
         if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
           setTimeout(() => {
-            // activeElement.scrollIntoView({block:'start'})
             window.scroll(0,0);
             activeElement.scrollIntoViewIfNeeded()
 

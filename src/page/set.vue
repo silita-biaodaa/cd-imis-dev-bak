@@ -118,6 +118,10 @@
       <div class='toast' v-show='layout' >
           请输入正确得手机号码格式
       </div>
+      <div class="toast" v-show="mask">
+          个人信息更新成功
+      </div>
+      <!-- <v-popup :popup-type="'save'" :popup-show="mask"></v-popup> -->
  </div>
 </template>
 <script>
@@ -137,7 +141,8 @@ export default {
        Blength:0,
        pushCount:[],
        Number: true,
-       delay:true
+       delay:true,
+       mask:false
     }
   },
   methods: {
@@ -200,9 +205,10 @@ export default {
            Saveuser({books:this.bookss,user:this.user,pushCount:this.pushCount,volunteer:this.values}).then( res => {
               if(res.code ==1) {
                  this.delay = true
-                 return  this.$vux.alert.show({
-                          title: '保存成功',
-                         })
+                 this.mask = true
+                 return  setTimeout(() => {
+                    this.mask = false
+                 }, 1500);
               }
            })
         }
@@ -211,10 +217,6 @@ export default {
     gainUser() {
       Personage({}).then( res => {
          if(res.code == 1 ) {
-            // this.username = res.data.user.name
-            // this.mobile = res.data.user.phone
-            // this.company = res.data.user.company
-            // this.post = res.data.user.post
             this.user = res.data.user
             this.bookss = res.data.books
             this.Blength = res.data.books.length + 1
