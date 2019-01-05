@@ -12,13 +12,15 @@
         <div class="c-text" >
           <!-- 知 学习 -->
           <p class="title">【知～学习】</p>
-          <div v-for="(el,index) in item.books" :key="index">
+          <div v-for="(el,bs) in item.books" :key="bs">
             <p class="c-color">《{{el.title}}》{{el.readCount}}遍 共{{el.readTotal}}遍</p>
           </div>
-          <div v-for="(el,index) in item.bookish" :key="index" v-if="item.bookish.length">
-            <p class="c-color">《{{el.bookName}}》-{{el.section}}</p>
-            <!--<p>{{el.section}}</p>-->
-          </div>
+          <template v-if="item.bookish.length>0">
+            <div v-for="(o,i) in item.bookish" :key="'i'+i">
+              <p class="c-color">《{{o.bookName}}》-{{o.section}}</p>
+            </div>
+          </template>
+
           <!-- 经典名句 -->
           <template v-if="item.classic">
             <p class="title">【经典名句分享】</p>
