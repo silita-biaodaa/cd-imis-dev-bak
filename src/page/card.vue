@@ -39,7 +39,8 @@
            </div>
         </div>
         <div class="card-com card-add" @click='cardBook' v-if="!first">
-            <span class="laca">增加书本
+            <span class="laca">
+               增加书本
               <div class="laca-add"><img src="../assets/img/add (1).png" alt=""></div>
             </span>
         </div>
@@ -161,6 +162,7 @@ export default {
              console.log(res,158)
               if(res.code == 402 ) {
                  this.btnTitle = '今日已打卡, 请勿重复提交'
+                 
                  this.first = true
               } else {
                  this.btnTitle = '提交'
@@ -172,7 +174,7 @@ export default {
               this.bookss = res.data.books
               this.pushCount = res.data.pushCount
               this.volunteer = res.data.volunteer
-              this.books = res.data.bookish
+              this.books = res.data.bookish ? res.data.bookish : []
           }
        })
     },
