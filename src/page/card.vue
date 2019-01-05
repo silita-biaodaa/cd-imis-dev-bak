@@ -261,16 +261,16 @@ export default {
         box-sizing: border-box;
         /*border-color: #ccc;*/
       }
-      /*.van-stepper__minus::before, .van-stepper__plus::before {*/
-        /*width: 15px !important;*/
-        /*height: 1px !important;*/
-        /*color: #999 !important;*/
-      /*}*/
-      /*.van-stepper__minus::after, .van-stepper__plus::after {*/
-        /*height: 15px !important;*/
-        /*width: 1px !important;*/
-        /*color: #999 !important;*/
-      /*}*/
+      .van-stepper__minus::before, .van-stepper__plus::before {
+        width: 20px !important;
+        height: 2px !important;
+        color: #999 !important;
+      }
+      .van-stepper__minus::after, .van-stepper__plus::after {
+        height: 20px !important;
+        width:2px !important;
+        color: #999 !important;
+      }
    }
 }
 .l-put {
