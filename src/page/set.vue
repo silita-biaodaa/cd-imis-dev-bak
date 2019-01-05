@@ -90,7 +90,7 @@
         <div class="card-com">
                <div class="l-pu">
                     <div class="label label-f">积善持续年数</div>
-                    <van-stepper  v-model="pushCount.years" class="l-mi" :min="0" @blur="bblur" />
+                    <van-stepper  v-model="pushCount.years" class="l-mi" :min="1" @blur="bblur" />
                </div>
        </div>
         <div class="card-com">
@@ -125,6 +125,7 @@
 </template>
 <script>
 import { Personage, Saveuser } from '@/api/index'
+  import { dateFormat } from 'vux'
 export default {
   data () {
     return {
@@ -186,7 +187,7 @@ export default {
         }
         this.books.forEach( el => {
               var arr = Object.keys(el)
-               if(  arr.length != 3 ) {
+               if(  arr.length != 2 ) {
                   this.pass = false;
                      return  this.$vux.alert.show({
                           title: '请输入必填选项',
@@ -197,7 +198,11 @@ export default {
          this.delay = true
         if( this.pass && this.delay ) {
            this.delay = false
-           Saveuser({books:this.bookss,user:this.user,pushCount:this.pushCount,volunteer:this.values}).then( res => {
+           this.pushCount.volunteer = this.values
+           this.pushCount.bonaStart = this.pushCount.bonaStart.replace('年','-')
+           this.pushCount.bonaStart = this.pushCount.bonaStart.replace('月','-')
+           this.pushCount.bonaStart = this.pushCount.bonaStart.replace('日','')
+           Saveuser({books:this.bookss,user:this.user,pushCount:this.pushCount}).then( res => {
               if(res.code ==1) {
                  this.delay = true
                  this.mask = true
