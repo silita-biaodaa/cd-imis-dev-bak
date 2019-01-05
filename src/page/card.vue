@@ -38,7 +38,7 @@
               </div>
            </div>
         </div>
-        <div class="card-com card-add" @click='cardBook'>
+        <div class="card-com card-add" @click='cardBook' v-if="btnTitle=='提交'">
             <span class="laca">增加书本
               <div class="laca-add"><img src="../assets/img/add (1).png" alt=""></div>
             </span>
@@ -383,7 +383,7 @@ export default {
  .card-put {
     font-size: 32px;
     background: #fff;
-
+    padding: 36px;
     // height: ;
  }
  .card-ma {
@@ -422,6 +422,9 @@ export default {
      border: none;
      padding: 0 36px;
   }
+}
+textarea{
+  border-radius: 5px;
 }
 textarea[disabled]{
   background: #f2f2f2;
