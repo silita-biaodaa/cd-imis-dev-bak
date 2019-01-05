@@ -21,7 +21,7 @@
                  </div>
               </div>
               <div class="apply-join" v-show="e.isApply == 0 ? true : false" @click="addGroups(e)" >
-                  申请入群
+                  {{el.isApply == 1 ? '已申请' : '申请入群'}}
               </div>
           </div>
       </div>
