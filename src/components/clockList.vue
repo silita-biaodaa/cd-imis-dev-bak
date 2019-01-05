@@ -6,7 +6,7 @@
       <div class="c-img">
         <img :src="item.user.imgUrl" alt="">
       </div>
-      <p class="c-name"><span class="fc-n">{{item.user.name}}</span>-{{item.user.company}}</p>
+      <p class="c-name"><span class="fc-n">{{item.user.name}}</span><span v-if="item.user.company!=''">-{{item.user.company}}</span></p>
       <div class="c-content" :class="{'active': item.fullTxt=='收起'}">
         <p class="c-time"><span>{{item.pushd}}</span>打卡{{item.pushCount.putCount}}次</p>
         <div class="c-text" >
