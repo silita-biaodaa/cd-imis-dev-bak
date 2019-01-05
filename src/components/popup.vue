@@ -1,7 +1,7 @@
 <!-- 弹出框 -->
 <template>
     <div class="popup" v-if="popupShow">
-        <div class="content">
+        <div class="content" :class="{tips:popupType=='tips'}">
             <template v-if="popupType=='tip1'">
                 <div class="top-box">{{text}}</div>
                 <div class="bottom-box">
@@ -11,7 +11,7 @@
             </template>
             <template v-if="popupType=='tips'">
               <div class="tipBox">
-                <div class="txt-box">您好，欢迎来到打卡圈，系统检测到您是第一次进入打卡圈，为数据传输同步，请设置初始状态，本次设置后部分数据将不可修改，请您认真确认。本次填写数据不包含今日打卡内容。</div>
+                <div class="txt-box">亲爱的家人，欢迎来到日精进打卡系统，打卡前请您先设置初始数据。</div>
                 <button @click="cancelFn">确定</button>
               </div>
             </template>
@@ -105,6 +105,10 @@ export default {
     overflow: hidden;
     width:600px;
 }
+.tips{
+  top: 320px;
+  transform:  translate(-50%,0);
+}
 .top-box{
   border-bottom: 1px solid #F2F2F2;
   height: 211px;
@@ -123,6 +127,7 @@ export default {
     color: #999;
     .txt-box{
       margin-bottom: 82px;
+      line-height: 2;
     }
     button{
       width: 100%;

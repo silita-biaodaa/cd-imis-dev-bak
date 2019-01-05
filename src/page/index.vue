@@ -1,306 +1,307 @@
 <template>
-   <div class="home" :class="{mask:mask}">
-      <div class="person">
-         <div class="person-top">
-             <div class="img-post img-book">
-               <img src="../assets/img/book3.png" alt="">
-             </div>
-            <span class='home-size'>个人信息</span>
-         </div>
-         <div class="person-put">
-           <div class="sign p-line">
-             <img src="../assets/img/sign2.png" alt="" class="sign-img">
-             <div class="l-put ">
-              <div class="label">姓名</div> <input type="text" placeholder="请输入您的姓名" v-model='username' >
-             </div>
-           </div>
-            <div class="sign p-line">
-             <img src="../assets/img/sign2.png" alt="" class="sign-img">
-             <div class="l-put">
-              <div class="label">手机</div> <input type="tel" placeholder="请输入您的联系方式" v-model='mobile' @blur='textM' ref='Moblie'  >
-             </div>
-           </div>
-            <div class="l-put p-line ">
-              <div class="label">企业</div> <input type="text" placeholder="请输入您的企业名称" v-model='company' @blur="bblur" >
-            </div>
-            <div class="l-put"  >
-              <div class="label">职位</div> <input type="text" placeholder="请输入您的职位名称" v-model='post'  @blur="bblur" >
-            </div>
-         </div>
+  <div class="home" :class="{mask:mask}">
+    <div class="person">
+      <div class="person-top">
+        <div class="img-post img-book">
+          <img src="../assets/img/book3.png" alt="">
+        </div>
+        <span class='home-size'>个人信息</span>
       </div>
-
-      <div class="time">
-        <div class="time-top">
-           <div class="img-post img-time">
-             <img src="../assets/img/time (2).png" alt="">
-           </div>
-           <span class='home-size' >打卡时间</span>
+      <div class="person-put">
+        <div class="sign p-line">
+          <img src="../assets/img/sign2.png" alt="" class="sign-img">
+          <div class="l-put ">
+            <div class="label">姓名</div> <input type="text" placeholder="请输入您的姓名" v-model='username' >
+          </div>
         </div>
         <div class="sign p-line">
-          <datetime title='打卡始于时间' v-model="tiems" placeholder='请选择' class="cc" ></datetime>
+          <img src="../assets/img/sign2.png" alt="" class="sign-img">
+          <div class="l-put">
+            <div class="label">手机</div> <input type="tel" placeholder="请输入您的联系方式" v-model='mobile' @blur='textM' ref='Moblie'  >
+          </div>
+        </div>
+        <div class="l-put p-line ">
+          <div class="label">企业</div> <input type="text" placeholder="请输入您的企业名称" v-model='company' @blur="bblur" >
         </div>
         <div class="l-put"  >
-              <div class="label">打卡次数</div> <input type="tel" placeholder="请输入打卡次数" v-model='count' @keyup='text' @blur='bblur' >
+          <div class="label">职位</div> <input type="text" placeholder="请输入您的职位名称" v-model='post'  @blur="bblur" >
         </div>
       </div>
+    </div>
 
-      <div class="add">
-        <div class="add-top">
-           <div class="img-post img-time">
-            <img src="../assets/img/buuk (2).png" alt="">
-           </div>
-           <span  class='home-size' >知学习</span>
+    <div class="time">
+      <div class="time-top">
+        <div class="img-post img-time">
+          <img src="../assets/img/time (2).png" alt="">
         </div>
-        <div class="add-put" v-for="(item,index) in first" :key="index">
-           <div class="add-book p-line ">
-             <span>书本&nbsp({{index + 1}})</span>
-             <span class="del" @click='delbook(index)' v-show='func(index)'>删除</span>
-            </div>
-           <div class="left">
-              <div class="sign p-line  ">
-                <x-input title='书本名称' v-model='item.title' placeholder='请输入书本名称' @on-blur='bblur' placeholder-align='right' text-align='right' class="cc" ></x-input>
-              </div>
-              <div class="sign p-line">
-                 <div class="card-com">
-                   <div class="l-pu">
-                        <div class="label">每日朗读遍数</div>
-                        <van-stepper  v-model.number="item.readCount" class="l-mi" :min="0" />
-                   </div>
-                </div>
-              </div>
-              <div class="sign" >
-                <x-input title='总朗读遍数' v-model='item.readTotal' placeholder='请输入' placeholder-align='right' @on-blur='bblur' text-align='right' type='tel' class="cc" ></x-input>
-              </div>
-           </div>
-
-        </div>
-        <div class="add-b" @click='addbook'>
-           <x-button class="sign">增加书本</x-button>
-           <span class="add-img"><img src="../assets/img/add (2).png" alt=""></span>
-        </div>
+        <span class='home-size' >打卡时间</span>
       </div>
+      <div class="sign p-line">
+        <datetime title='打卡始于时间' v-model="tiems" placeholder='请选择' class="cc" ></datetime>
+      </div>
+      <div class="l-put"  >
+        <div class="label">打卡次数</div> <input type="tel" placeholder="请输入打卡次数" v-model='count' @keyup='text' @blur='bblur' >
+      </div>
+    </div>
 
-      <div class="well">
-        <div class="well-top p-line">
-          <div class="img-post img-time">
-           <img src="../assets/img/gift (2).png" alt="">
-
+    <div class="add">
+      <div class="add-top">
+        <div class="img-post img-time">
+          <img src="../assets/img/buuk (2).png" alt="">
+        </div>
+        <span  class='home-size' >知学习</span>
+      </div>
+      <div class="add-put" v-for="(item,index) in first" :key="index">
+        <div class="add-book p-line ">
+          <span>书本&nbsp({{index + 1}})</span>
+          <span class="del" @click='delbook(index)' v-show='func(index)'>删除</span>
+        </div>
+        <div class="left">
+          <div class="sign p-line  ">
+            <x-input title='书本名称' v-model='item.title' placeholder='请输入书本名称' @on-blur='bblur' placeholder-align='right' text-align='right' class="cc" ></x-input>
           </div>
-           <span  class='home-size' >积善行</span>
-        </div>
-        <div>
-            <datetime title='积善开始时间' v-model="begin" placeholder='请选择' text-align='right' class="cc p-line" ></datetime>
-            <div class="l-put  p-line p-l">
-              <div class="label">积善持续年份</div> <input type="text" placeholder="请输入年份"  v-model='end'  @blur="bblur" >
+          <div class="sign p-line">
+            <div class="card-com">
+              <div class="l-pu">
+                <div class="label">每日朗读遍数</div>
+                <van-stepper  v-model.number="item.readCount" class="l-mi" :min="0" />
+              </div>
             </div>
-             <div class="card-com">
-                   <div class="l-pu">
-                        <div class="label ">每日积善件数</div>
-                        <van-stepper  v-model.number="number" class="l-mi" :min="0" />
-                   </div>
-            </div>
-             <x-input title='累计积善件数' v-model='alls'  placeholder='请输入' placeholder-align='right' text-align='right' type='tel' class="cc"  ></x-input>
-        </div>
-      </div>
-
-      <div class="volunteer">
-        <div class="volunteer-top">
-          <div class="img-post img-time" >
-            <img src="../assets/img/star (3).png" alt="">
           </div>
-           <span  class='home-size' >立志愿</span>
+          <div class="sign" >
+            <x-input title='总朗读遍数' v-model='item.readTotal' placeholder='请输入' placeholder-align='right' @on-blur='bblur' text-align='right' type='tel' class="cc" ></x-input>
+          </div>
         </div>
-        <div class="volunteer-put">
-          <textarea  rows="4" placeholder='请输入您的志愿'  v-model="values" class="ccc" @blur='bblur'  ></textarea>
-        </div>
-        <div class="btn" @click='record'>
-           <x-button  >提交</x-button>
-        </div>
+
       </div>
-      <mt-datetime-picker
-          ref="picker"
-          type="date"
-          v-model="pickerValue">
-      </mt-datetime-picker>
-      <v-popup :popup-type="'tips'" :popup-show="mask"></v-popup>
-      <div class='toast' v-show='layout' >
-          请输入正确得手机号码格式
+      <div class="add-b" @click='addbook'>
+        <x-button class="sign">增加书本</x-button>
+        <span class="add-img"><img src="../assets/img/add (2).png" alt=""></span>
       </div>
-   </div>
+    </div>
+
+    <div class="well">
+      <div class="well-top p-line">
+        <div class="img-post img-time">
+          <img src="../assets/img/gift (2).png" alt="">
+
+        </div>
+        <span  class='home-size' >积善行</span>
+      </div>
+      <div>
+        <datetime title='积善开始时间' v-model="begin" placeholder='请选择' text-align='right' class="cc p-line" ></datetime>
+        <div class="l-put  p-line p-l">
+          <div class="label">积善持续年份</div> <input type="text" placeholder="请输入年份"  v-model='end'  @blur="bblur" >
+        </div>
+        <div class="card-com">
+          <div class="l-pu">
+            <div class="label ">每日积善件数</div>
+            <van-stepper  v-model.number="number" class="l-mi" :min="0" />
+          </div>
+        </div>
+        <x-input title='累计积善件数' v-model='alls'  placeholder='请输入' placeholder-align='right' text-align='right' type='tel' class="cc"  ></x-input>
+      </div>
+    </div>
+
+    <div class="volunteer">
+      <div class="volunteer-top">
+        <div class="img-post img-time" >
+          <img src="../assets/img/star (3).png" alt="">
+        </div>
+        <span  class='home-size' >立志愿</span>
+      </div>
+      <div class="volunteer-put">
+        <textarea  rows="4" placeholder='请输入您的志愿'  v-model="values" class="ccc" @blur='bblur'  ></textarea>
+      </div>
+      <div class="btn" @click='record'>
+        <x-button  >提交</x-button>
+      </div>
+    </div>
+    <mt-datetime-picker
+      ref="picker"
+      type="date"
+      v-model="pickerValue">
+    </mt-datetime-picker>
+    <v-popup :popup-type="'tips'" :popup-show="mask"></v-popup>
+    <div class='toast' v-show='layout' >
+      请输入正确得手机号码格式
+    </div>
+  </div>
 </template>
 <script>
-import  util  from '../util/util'
-import { recordBook } from "@/api/index";
-import { dateFormat } from 'vux'  
-export default {
-  data () {
-    return {
-      username: '',
-      company: '',
-      post: '',
-      mobile: '',
-      tiems: '',
-      count: 0,
-      begin: '',
-      end: 1,
-      number: 1,
-      alls: 0,
-      values: '',
-      first: [{title:'六项精进',readCount:3,readTotal:0},{title:'大学',readCount:3,readTotal:0}],
-      pass: true,
-      pickerValue: '',
-      old:0,
-      Number:true,
-      mask:true,
-      layout: false
-    }
-  },
-  computed:{
-
-  },
-  methods: {
-    addbook () {
-        let data={title:'',readCount:1,readTotal:0}
-       this.first.push(data)
-    },
-    delbook (i) {
-      this.first.splice(i,1)
-    },
-    bblur() {
-      window.scroll(0,0);
-    },
-    bid() {
-      document.body.scrollTop= 0;
-    },
-    getTime () {
-       this.tiems = dateFormat(new Date(), 'YYYY-MM-DD')
-       this.begin = dateFormat(new Date(), 'YYYY-MM-DD')
-    },
-    func (index) {
-       if (index == 0) {
-          return false
-       } else {
-          return true
-       }
-    },
-    text() {
-      if(this.count >= this.old) {
-         this.count = this.old
+  import  util  from '../util/util'
+  import { recordBook } from "@/api/index";
+  import { dateFormat } from 'vux'
+  import { Toast } from 'vant'
+  export default {
+    data () {
+      return {
+        username: '',
+        company: '',
+        post: '',
+        mobile: '',
+        tiems: '',
+        count: 0,
+        begin: '',
+        end: 1,
+        number: 1,
+        alls: 0,
+        values: '',
+        first: [{title:'六项精进',readCount:3,readTotal:0},{title:'大学',readCount:3,readTotal:0}],
+        pass: true,
+        pickerValue: '',
+        old:0,
+        Number:true,
+        mask:true,
+        layout: false
       }
     },
-    textM() {
-      window.scroll(0,0)
-      var myreg= /^[1][3,4,5,6,7,8,9][0-9]{9}$/
-      if( myreg.test(this.mobile)) {
+    computed:{
+
+    },
+    methods: {
+      addbook () {
+        let data={title:'',readCount:1,readTotal:0}
+        this.first.push(data)
+      },
+      delbook (i) {
+        this.first.splice(i,1)
+      },
+      bblur() {
+        window.scroll(0,0);
+      },
+      bid() {
+        document.body.scrollTop= 0;
+      },
+      getTime () {
+        this.tiems = dateFormat(new Date(), 'YYYY-MM-DD')
+        this.begin = dateFormat(new Date(), 'YYYY-MM-DD')
+      },
+      func (index) {
+        if (index == 0) {
+          return false
+        } else {
+          return true
+        }
+      },
+      text() {
+        if(this.count >= this.old) {
+          this.count = this.old
+        }
+      },
+      textM() {
+        window.scroll(0,0)
+        var myreg= /^[1][3,4,5,6,7,8,9][0-9]{9}$/
+        if( myreg.test(this.mobile)) {
           this.$refs.Moblie.style.color = '#000'
           this.Number = true
-      } else {
+        } else {
           this.$refs.Moblie.style.color = 'red'
           this.Number = false
           this.layout = true
           this.verify()
-      }
-    },
-    verify() {
-       setTimeout(() => {
+        }
+      },
+      verify() {
+        setTimeout(() => {
           this.layout = false
-       }, 1500);
-    },
-    record () {
-      this.pass = true;
+        }, 1500);
+      },
+      record () {
+        this.pass = true;
         if(!this.username) {
           this.pass = false
-           return this.$vux.alert.show({
-                  title: '请输入必填选项',
-                  content: '请输入您的姓名',
-                })
-        }
-         if (!this.mobile) {
-           this.pass = false
           return this.$vux.alert.show({
-                  title: '请输入必填选项',
-                  content: '请输入手机号',
-                })
+            title: '请输入必填选项',
+            content: '请输入您的姓名',
+          })
         }
-            this.first.forEach( el => {
-              var arr = Object.keys(el)
-               if(  arr.length != 3 ) {
-                  this.pass = false;
-                     return  this.$vux.alert.show({
-                          title: '请输入必填选项',
-                          content: '请填写或者删除多余空白书本',
-                   })
-               }
-            });
-
-      if ( this.pass && this.Number ) {
-           recordBook({name: this.username, phone: this.mobile, company: this.company, post: this.post, pushStart: this.tiems,total: this.count, bonaStart: this.begin, bonaEnd: this.end, bonaCount: this.number, bonaTotal: this.alls, volunteer: this.values, books: this.first}).then( res => {
-               if(res.code == 1) {
-                 sessionStorage.setItem('tabNum','2');
-                 this.$router.replace({path:'/nav/card'})
-               }
+        if (!this.mobile) {
+          this.pass = false
+          return this.$vux.alert.show({
+            title: '请输入必填选项',
+            content: '请输入手机号',
+          })
+        }
+        this.first.forEach( el => {
+          var arr = Object.keys(el)
+          if(  arr.length != 3 ) {
+            this.pass = false;
+            return  this.$vux.alert.show({
+              title: '请输入必填选项',
+              content: '请填写或者删除多余空白书本',
             })
+          }
+        });
+
+        if ( this.pass && this.Number ) {
+          recordBook({name: this.username, phone: this.mobile, company: this.company, post: this.post, pushStart: this.tiems,total: this.count, bonaStart: this.begin, bonaEnd: this.end, bonaCount: this.number, bonaTotal: this.alls, volunteer: this.values, books: this.first}).then( res => {
+            if(res.code == 1) {
+              sessionStorage.setItem('tabNum','2');
+              this.$router.replace({path:'/nav/card'})
+            }
+          })
         }
 
-    },
-    openPicker() {
+      },
+      openPicker() {
         this.$refs.picker.open();
       },
-  },
-   watch:{
-    pickerValue(val) {
-       this.tiems = util.itcTiem(this.pickerValue)
     },
-    tiems(val) {
+    watch:{
+      pickerValue(val) {
+        this.tiems = util.itcTiem(this.pickerValue)
+      },
+      tiems(val) {
         console.log(val)
         var s1 = new Date(val.replace(/-/g, "/"));
         var s2 = new Date();//当前日期
         var days = s2.getTime() - s1.getTime();
         if(days >= 0) {
-            this.old = parseInt(days / (1000 * 60 * 60 * 24));
-            this.count = parseInt(days / (1000 * 60 * 60 * 24));
+          this.old = parseInt(days / (1000 * 60 * 60 * 24));
+          this.count = parseInt(days / (1000 * 60 * 60 * 24));
         } else {
-            this.count = 0
-            setTimeout(() => {
-              this.tiems = dateFormat(new Date(), 'YYYY-MM-DD')
-            }, 100);
+          this.count = 0
+          setTimeout(() => {
+            this.tiems = dateFormat(new Date(), 'YYYY-MM-DD')
+          }, 100);
 
         }
-    }
-  },
-  created () {
-    this.getTime()
-  },
-  components: {
-  },
-  mounted() {
-    window.addEventListener('resize', () => {
-    const activeElement = document.activeElement
-    if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
-        setTimeout(() => {
-          // activeElement.scrollIntoView({block:'start'})
-          window.scroll(0,0);
-          activeElement.scrollIntoViewIfNeeded()
-
-        }, 0)
       }
-    })
-  },
-  beforeDestroy() {
-    window.removeEventListener('resize', () => {
-    const activeElement = document.activeElement
-    if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
-        setTimeout(() => {
-          // activeElement.scrollIntoView({block:'start'})
-          window.scroll(0,0);
-          activeElement.scrollIntoViewIfNeeded()
+    },
+    created () {
+      this.getTime()
+    },
+    components: {
+    },
+    mounted() {
+      window.addEventListener('resize', () => {
+        const activeElement = document.activeElement
+        if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
+          setTimeout(() => {
+            // activeElement.scrollIntoView({block:'start'})
+            window.scroll(0,0);
+            activeElement.scrollIntoViewIfNeeded()
 
-        }, 0)
-      }
-    })
-  },
+          }, 0)
+        }
+      })
+    },
+    beforeDestroy() {
+      window.removeEventListener('resize', () => {
+        const activeElement = document.activeElement
+        if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
+          setTimeout(() => {
+            // activeElement.scrollIntoView({block:'start'})
+            window.scroll(0,0);
+            activeElement.scrollIntoViewIfNeeded()
 
-}
+          }, 0)
+        }
+      })
+    },
+
+  }
 </script>
 <style lang="less" >
   body .scroller-item{
@@ -310,10 +311,10 @@ export default {
     max-height: 100vh;
     overflow: hidden;
   }
-.home {
-  box-sizing: border-box;
+  .home {
+    box-sizing: border-box;
   // position: relative;
-  background: #f5f5f5;
+    background: #f5f5f5;
   .toast {
     position: fixed;
     left: 50%;
@@ -326,79 +327,79 @@ export default {
     color:#fff;
   }
   .weui-icon-clear {
-      font-size: 30px;
+    font-size: 30px;
   }
   .p-l {
     padding-left: 5px;
     padding-right: 20px;
   }
   // 自定义输入框样式
-  .l-put {
-      height: 96px;
-      font-size: 32px;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      .label {
-        width: 290px;
-        padding-left: 10px;
-        color:#000;
-      }
-      input {
-         width: 100%;
-         text-align: right;
-         background:none;
-	       outline:none;
-         border:0px;
-         caret-color:blue;
-         padding: 20px 0px;
-      }
-    }
+     .l-put {
+       height: 96px;
+       font-size: 32px;
+       display: flex;
+       justify-content: flex-start;
+       align-items: center;
+  .label {
+    width: 290px;
+    padding-left: 10px;
+    color:#000;
+  }
+  input {
+    width: 100%;
+    text-align: right;
+    background:none;
+    outline:none;
+    border:0px;
+    caret-color:blue;
+    padding: 20px 0px;
+  }
+  }
   .ma-top {
     margin-top: 16px;
   }
- // 星星定位
- .sign {
-   position: relative;
-   .sign-img {
-      position: absolute;
-      transform:translateY(-50%);
-      height: 16px;
-      width: 16px;
-      top: 50%;
-      left: -15px;
-    }
+  // 星星定位
+     .sign {
+       position: relative;
+  .sign-img {
+    position: absolute;
+    transform:translateY(-50%);
+    height: 16px;
+    width: 16px;
+    top: 50%;
+    left: -15px;
+  }
 
- }
- .home-size {
+  }
+  .home-size {
     font-size: 30px;
     color:#666;
-   display: inline-block;
-   padding-left: 53px;
- }
+    display: inline-block;
+    padding-left: 53px;
+  }
   .cc {
     height: 96px;
     font-size: 32px;
     box-sizing: border-box;
   }
   .ccc {
-     font-size: 32px;
-     width: 100%;
-     outline:none;
-     border: none;
+    font-size: 32px;
+    width: 100%;
+    outline:none;
+    border: none;
   }
-   // 公共样式介绍图片定位
-   .img-post {
-      position: absolute;
-      transform:translateY(-50%);
-      vertical-align: middle;
-      top: 50%;
-   }
-   .img-time {
-      height: 30px;
-      width: 30px;
-   }
- .l-pu {
+  // 公共样式介绍图片定位
+     .img-post {
+       position: absolute;
+       transform:translateY(-50%);
+       vertical-align: middle;
+       top: 50%;
+     }
+  .img-time {
+    height: 30px;
+    width: 30px;
+  }
+  .l-pu {
     height: 96px;
     font-size: 32px;
     padding: 0 14px;
@@ -407,205 +408,210 @@ export default {
     display: flex;
     justify-content: space-between;
     text-align: center;
-     .l-mi {
-      margin:  auto  0;
-       width:136px;
-      .van-stepper__minus, .van-stepper__plus {
-        width: 33%;
-        height: 42px;
-      }
-      .van-stepper__minus {
-        border-radius: 18px 0 0 18px;
-        box-sizing: border-box;
-      }
-      .van-stepper__plus {
-        border-radius: 0 18px 18px 0;
-        box-sizing: border-box;
-      }
-      .van-stepper__input{
-        line-height: 42px;
-         width: 33%;
-         height: 42px;
-        font-size: 24px;
-        box-sizing: border-box;
-        border-color: #ccc;
-      }
-      /*.van-stepper__minus::before, .van-stepper__plus::before {*/
-        /*width: 15px !important;*/
-        /*height: 1px !important;*/
-        /*color: #999 !important;*/
-      /*}*/
-      /*.van-stepper__minus::after, .van-stepper__plus::after {*/
-        /*height: 15px !important;*/
-        /*width: 1px !important;*/
-        /*color: #999 !important;*/
-      /*}*/
-   }
-}
-   .p-line {
-     border-bottom: 1px solid #F2F2F2;
-   }
+  .l-mi {
+    margin:  auto  0;
+    width:136px;
+  .van-stepper__minus, .van-stepper__plus {
+    width: 33%;
+    height: 42px;
+  }
+  .van-stepper__minus {
+    border-radius: 18px 0 0 18px;
+    box-sizing: border-box;
+  }
+  .van-stepper__plus {
+    border-radius: 0 18px 18px 0;
+    box-sizing: border-box;
+  }
+  .van-stepper__input{
+    line-height: 42px;
+    width: 33%;
+    height: 42px;
+    font-size: 24px;
+    box-sizing: border-box;
+    border-color: #ccc;
+  }
+  /*.van-stepper__minus::before, .van-stepper__plus::before {*/
+  /*width: 15px !important;*/
+  /*height: 1px !important;*/
+  /*color: #999 !important;*/
+  /*}*/
+  /*.van-stepper__minus::after, .van-stepper__plus::after {*/
+  /*height: 15px !important;*/
+  /*width: 1px !important;*/
+  /*color: #999 !important;*/
+  /*}*/
+  }
+  }
+  .p-line {
+    border-bottom: 1px solid #F2F2F2;
+  }
   .img-post img {
-     height: 100%;
-     width: auto;
-   }
-.person {
-   box-sizing: border-box;
-   padding-left: 36px;
-   padding-right: 36px;
-   background: #FFF;
+    height: 100%;
+    width: auto;
+  }
+  .person {
+    box-sizing: border-box;
+    padding-left: 36px;
+    padding-right: 36px;
+    background: #FFF;
 
-   .person-top {
-      padding-left: 10px;
-      height: 96px;
-      line-height: 96px;
-      font-size: 28px;
-      border-bottom: 1px solid #F2F2F2;
-      position: relative;
-      .img-book {
-         width: 30px;
-         height: 30px;
-      }
-   }
-}
-// 知学习样式
-.add {
+  .person-top {
+    padding-left: 10px;
+    height: 96px;
+    line-height: 96px;
+    font-size: 28px;
+    border-bottom: 1px solid #F2F2F2;
+    position: relative;
+  .img-book {
+    width: 30px;
+    height: 30px;
+  }
+  }
+  }
+  // 知学习样式
+     .add {
+       box-sizing: border-box;
+       margin-top: 16px;
+       background: #FFF;
+  .add-top {
+    padding-left: 38px;
+    padding-right: 36px;
+    height: 96px;
+    line-height: 96px;
+    font-size: 32px;
+    border-bottom: 1px solid #F2F2F2;
+    position: relative;
+  }
+  .add-put{
+  .add-book {
+    height: 96px;
+    padding-left: 40px;
+    padding-right: 36px;
+    background: #F5F5F5;
+    display: flex;
+    justify-content:space-between;
+    line-height: 96px;
+    font-size: 28px;
+  .del {
+    color: red;
+  }
+
+  }
+  .left {
+    padding: 0 32px;
+  }
+  }
+  .add-b {
+    position: relative;
+    height: 85px;
+  .weui-btn_default {
+    height: 85px;
+    font-size: 32px;
+    background: #FFF;
+    color: red;
+  }
+  }
+  }
+  // 打卡时间样式
+     .time{
+       box-sizing: border-box;
+       margin-top: 16px;
+       padding-left: 34px;
+       padding-right: 36px;
+       background: #FFF;
+  .time-top {
+    padding-left: 11px;
+    height: 96px;
+    line-height: 96px;
+    font-size: 28px;
+    border-bottom: 1px solid #F2F2F2;
+    position: relative;
+  }
+  }
+
+
+  .well {
     box-sizing: border-box;
     margin-top: 16px;
+    padding-left: 36px;
+    padding-right: 36px;
     background: #FFF;
-  .add-top {
-      padding-left: 38px;
-      padding-right: 36px;
-      height: 96px;
-      line-height: 96px;
-      font-size: 32px;
-      border-bottom: 1px solid #F2F2F2;
-      position: relative;
-  }
-   .add-put{
-     .add-book {
-       height: 96px;
-       padding-left: 40px;
-       padding-right: 36px;
-       background: #F5F5F5;
-       display: flex;
-       justify-content:space-between;
-       line-height: 96px;
-       font-size: 28px;
-       .del {
-      color: red;
-       }
-
-     }
-     .left {
-          padding: 0 32px;
-      }
-   }
-   .add-b {
-     position: relative;
-     height: 85px;
-     .weui-btn_default {
-       height: 85px;
-       font-size: 32px;
-       background: #FFF;
-        color: red;
-     }
-   }
-}
-// 打卡时间样式
-.time{
-  box-sizing: border-box;
-  margin-top: 16px;
-  padding-left: 34px;
-  padding-right: 36px;
-  background: #FFF;
-  .time-top {
-      padding-left: 11px;
-      height: 96px;
-      line-height: 96px;
-      font-size: 28px;
-      border-bottom: 1px solid #F2F2F2;
-      position: relative;
-  }
-}
-
-
-.well {
-  box-sizing: border-box;
-  margin-top: 16px;
-  padding-left: 36px;
-  padding-right: 36px;
-  background: #FFF;
   .well-top {
     height: 96px;
-      line-height: 96px;
-      padding-left: 10px;
-      font-size: 32px;
-      border-bottom: 1px solid #F2F2F2;
-      position: relative;
+    line-height: 96px;
+    padding-left: 10px;
+    font-size: 32px;
+    border-bottom: 1px solid #F2F2F2;
+    position: relative;
   }
-}
+  }
 
-.volunteer{
-  box-sizing: border-box;
-  margin-top: 16px;
-  padding-left: 38px;
-  padding-right: 36px;
-  background: #FFF;
+  .volunteer{
+    box-sizing: border-box;
+    margin-top: 16px;
+    padding-left: 38px;
+    padding-right: 36px;
+    background: #FFF;
   .volunteer-top {
-      height: 96px;
-      line-height: 96px;
-      font-size: 28px;
-      border-bottom: 1px solid #F2F2F2;
-      position: relative;
+    height: 96px;
+    line-height: 96px;
+    font-size: 28px;
+    border-bottom: 1px solid #F2F2F2;
+    position: relative;
   }
   .btn {
     margin-top: 110px;
     padding-bottom: 32px;
-    .weui-btn_default {
-      height: 96px;
-      font-size: 36px;
-      color: #fff;
-      background-color: red;
+  .weui-btn_default {
+    height: 96px;
+    font-size: 36px;
+    color: #fff;
+    background-color: red;
+    border-radius: 10px;
+  }
+  }
+  }
+
+  .add-img{
+    position: absolute;
+    transform:translateY(-50%);
+    top: 50%;
+    left: 37%;
+    height: 26px;
+    width: 26px;
+    img{
+      height: 100%;
+      width: auto;
     }
   }
-}
-
-.add-img{
-      position: absolute;
-      transform:translateY(-50%);
-      top: 50%;
-      left: 37%;
-      height: 26px;
-      width: 26px;
-}
 
 
 
-}
-.dp-content {
-      padding: 200px 0 !important;
   }
-.weui-dialog__title{
-   font-size: 32px !important;
-}
-.weui-dialog__hd {
-  padding: 55px 38px 36px !important;
-}
-.weui-dialog{
-   max-width: 540px !important;
-}
-.weui-dialog__bd {
-  min-height: 60px !important;
-  font-size: 26px !important;
-}
-.weui-dialog__ft {
-  line-height: 70px !important;
-  font-size: 25px !important;
-}
-.dp-header .dp-item{
-  font-size: 26px !important;
-  height: 55px !important;
-  line-height: 55px !important;
-}
+  .dp-content {
+    padding: 200px 0 !important;
+  }
+  .weui-dialog__title{
+    font-size: 32px !important;
+  }
+  .weui-dialog__hd {
+    padding: 55px 38px 36px !important;
+  }
+  .weui-dialog{
+    max-width: 540px !important;
+  }
+  .weui-dialog__bd {
+    min-height: 60px !important;
+    font-size: 26px !important;
+  }
+  .weui-dialog__ft {
+    line-height: 70px !important;
+    font-size: 25px !important;
+  }
+  .dp-header .dp-item{
+    font-size: 26px !important;
+    height: 55px !important;
+    line-height: 55px !important;
+  }
 </style>
