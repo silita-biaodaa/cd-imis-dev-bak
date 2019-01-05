@@ -116,10 +116,19 @@
       </div>
 
       <div class='toast' v-show='layout' >
-          请输入正确得手机号码格式
+          请输入正确的手机号码
       </div>
       <div class="toast" v-show="mask">
           个人信息更新成功
+      </div>
+      <div class="toast" v-show="text1">
+          请输入正确的手机号码
+      </div>
+      <div class="toast" v-show="text2">
+          请输入您的姓名
+      </div>
+      <div class="toast" v-show="text3">
+          请填写书本信息
       </div>
  </div>
 </template>
@@ -139,7 +148,10 @@ export default {
        Number: true,
        delay:true,
        mask:false,
-       newbook:[]
+       newbook:[],
+       text1:false,
+       text2:false,
+       text3:false
     }
   },
   methods: {
@@ -174,26 +186,26 @@ export default {
           this.pass = true
          if (!this.user.phone && !this.Number ) {
            this.pass = false
-          return this.$vux.alert.show({
-                  title: '请输入必填选项',
-                  content: '请输入正确的手机格式',
-                })
+           this.text1 = true
+          return setTimeout(() => {
+                 this.text1 = false
+                }, 1500);
          }
          if(!this.user.name) {
           this.pass = false
-           return this.$vux.alert.show({
-                  title: '请输入必填选项',
-                  content: '请输入您的姓名',
-                })
+          this.text2 = true
+          return setTimeout(() => {
+                 this.text2 = false
+                }, 1500);
         }
         this.books.forEach( el => {
               var arr = Object.keys(el)
                if(  arr.length != 2 ) {
                   this.pass = false;
-                     return  this.$vux.alert.show({
-                          title: '请输入必填选项',
-                          content: '请填写或者删除多余空白书本',
-                   })
+                    this.text3 = true
+                    return setTimeout(() => {
+                           this.text3 = false
+                          }, 1500);
                }
         });
          this.delay = true

@@ -91,7 +91,7 @@
       <div>
         <datetime title='积善开始时间' v-model="begin" placeholder='请选择' text-align='right' class="cc p-line" ></datetime>
         <div class="l-put  p-line p-l">
-          <div class="label">积善持续年份</div> <input type="text" placeholder="请输入年份"  v-model='end'  @blur="bblur" >
+          <div class="label">积善持续年份</div> <input type="tel" placeholder="请输入年份"  v-model='end'  @blur="bblur" >
         </div>
         <div class="card-com">
           <div class="l-pu">
@@ -124,7 +124,7 @@
     </mt-datetime-picker>
     <v-popup :popup-type="'tips'" :popup-show="mask"></v-popup>
     <div class='toast' v-show='layout' >
-      请输入正确得手机号码格式
+      请输入正确的手机号码
     </div>
     <div class='toast' v-show='text1' >
       请输入您的姓名
@@ -133,7 +133,7 @@
       请输入手机号
     </div>
     <div class='toast' v-show='text3' >
-      请填写或者删除多余空白书本
+      请填写书本信息
     </div>
   </div>
 </template>
@@ -221,6 +221,11 @@
       },
       record () {
         this.pass = true;
+        if( !this.Number ) {
+           return  this.layout = true
+                   this.verify()
+        }
+
         if(!this.username) {
           this.pass = false
           this.text1 = true
@@ -246,7 +251,7 @@
           }
         });
 
-        if ( this.pass && this.Number ) {
+        if ( this.pass  ) {
           recordBook({name: this.username, phone: this.mobile, company: this.company, post: this.post, pushStart: this.tiems,total: this.count, bonaStart: this.begin, bonaEnd: this.end, bonaCount: this.number, bonaTotal: this.alls, volunteer: this.values, books: this.first}).then( res => {
             if(res.code == 1) {
               sessionStorage.setItem('tabNum','2');
@@ -292,7 +297,7 @@
         if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
           setTimeout(() => {
             // activeElement.scrollIntoView({block:'start'})
-            window.scroll(0,0);
+            // window.scroll(0,0);
             activeElement.scrollIntoViewIfNeeded()
 
           }, 0)
@@ -304,7 +309,7 @@
         const activeElement = document.activeElement
         if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
           setTimeout(() => {
-            window.scroll(0,0);
+            // window.scroll(0,0);
             activeElement.scrollIntoViewIfNeeded()
 
           }, 0)
