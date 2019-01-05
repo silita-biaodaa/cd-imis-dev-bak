@@ -4,7 +4,7 @@
       <div class="create-put ">
 
         <div class="l-put"  >
-              <div class="label">群名</div> <input type="text" placeholder="请输入要创建群名" v-model='crowd'  >
+              <div class="label">群名</div> <input type="text" placeholder="请输入群名" v-model='crowd'  >
         </div>
       </div>
       <div class="c-center">
@@ -15,38 +15,51 @@
       <div class="toast" v-show="show">
           请先输入群名
       </div>
-
+      <div class="toast" v-show="mask">
+          群名已存在
+      </div>
+      <div class="toast" v-show="busy">
+          网络繁忙，请稍后尝试
+      </div>
    </div>
 </template>
 <script>
 import { CreatG } from '@/api/index'
+import { setTimeout } from 'timers';
 export default {
   data () {
     return {
       crowd: '',
       headName:'创建群组',
-      show:false
+      show:false,
+      mask:false,
+      busy:false
     }
   },
   methods: {
     joinG() {
         if(!this.crowd.trim()) {
-            this.show = true
-            setTimeout(() => {
+             this.show = true
+           return setTimeout(() => {
               this.show = false
             }, 1500);
-        }
-
-
-        CreatG({groName:this.crowd}).then( res => {
-           if(res.code == 1) {
-              return   this.$router.push({path: '/nav/group'})
-           } else if (res.code == 403 ) {
-              return this.$toast('群名已存在!');
-           } else {
-              return  this.$toast('网络繁忙，请稍后尝试');
-           }
-         })
+        } else {
+             CreatG({groName:this.crowd.trim()}).then( res => {
+                if(res.code == 1) {
+                   return   this.$router.push({path: '/nav/group'})
+                } else if (res.code == 403 ) {
+                   this.mask = true
+                   return setTimeout(() => {
+                         this.mask = false
+                       }, 1500);
+                } else {
+                    this.busy = true
+                   return setTimeout(() => {
+                         this.busy = false
+                       }, 1500);
+                }
+              })
+        }  
     }
   },
   components: {
@@ -84,7 +97,7 @@ export default {
   }
   .create-btn {
     height: 96px;
-    width: 80%;
+    width: 678px;
     border-radius: 10px;
     margin: 0;
     padding: 0;
