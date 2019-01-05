@@ -72,7 +72,7 @@
             <span class="laca">增加书本
               <div class="laca-add"><img src="../assets/img/add (1).png" alt=""></div>
             </span>
-        </div> 
+        </div>
 
        <div class="card-top card-com laca card-ma">
            <div class="siz">
@@ -81,7 +81,7 @@
           <div class="card-size">
               积善行
           </div>
-       </div> 
+       </div>
        <div class="card-b">
           <div class="card-book l-fire">
             发愿从{{pushCount.bonaStart}}起，累计 {{pushCount.bonaTotal + pushCount.bonaCount}} 善。
@@ -181,7 +181,7 @@ export default {
                   title: '请输入必填选项',
                   content: '请输入正确的手机格式',
                 })
-         } 
+         }
          if(!this.user.name) {
           this.pass = false
            return this.$vux.alert.show({
@@ -217,6 +217,10 @@ export default {
     gainUser() {
       Personage({}).then( res => {
          if(res.code == 1 ) {
+            // this.username = res.data.user.name
+            // this.mobile = res.data.user.phone
+            // this.company = res.data.user.company
+            // this.post = res.data.user.post
             this.user = res.data.user
             this.bookss = res.data.books
             this.Blength = res.data.books.length + 1
@@ -433,7 +437,7 @@ export default {
   .pdd {
     background: #fff;
     padding: 0 46px;
-  }  
+  }
   .no-f {
     padding-left: 0 !important;
   }
