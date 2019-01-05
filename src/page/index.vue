@@ -255,6 +255,7 @@
           recordBook({name: this.username, phone: this.mobile, company: this.company, post: this.post, pushStart: this.tiems,total: this.count, bonaStart: this.begin, bonaEnd: this.end, bonaCount: this.number, bonaTotal: this.alls, volunteer: this.values, books: this.first}).then( res => {
             if(res.code == 1) {
               localStorage.setItem('tabNum','2');
+              localStorage.setItem('userName',this.username);
               this.$router.replace({path:'/nav/card'})
             }
           })

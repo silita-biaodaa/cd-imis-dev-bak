@@ -27,7 +27,7 @@ import Mint from 'mint-ui';
 import 'mint-ui/lib/style.css'
 Vue.use(Mint);
 
-import { queryList } from "./api/index"
+import { queryList,User } from "./api/index"
 import util from "./util/util"
 router.beforeEach((to, from, next) => {
   let code = util.getCode('code')
@@ -46,7 +46,12 @@ router.beforeEach((to, from, next) => {
       if(res.data.isFirst==0){
         //进入打卡设置
         next()
+      }else{
+        User({}).then( res => {
+          localStorage.setItem('userName',res.data.name);
+        })
       }
+
       if(res.data.isFirst==1){
         //进入打卡
         localStorage.setItem('tabNum','2');

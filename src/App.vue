@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  import { group,User } from '@/api/index'
+  import { group } from '@/api/index'
 export default {
 
   name: 'app',
@@ -27,9 +27,6 @@ export default {
       let arr=[];
       arr=res.data;
       localStorage.setItem('groupList',JSON.stringify(arr));
-    })
-    User({}).then( res => {
-      localStorage.setItem('userName',res.data.name);
     })
   }
 }
