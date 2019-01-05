@@ -252,6 +252,7 @@ export default {
        this.tiems = util.itcTiem(this.pickerValue)
     },
     tiems(val) {
+        console.log(val)
         var s1 = new Date(val.replace(/-/g, "/"));
         var s2 = new Date();//当前日期
         var days = s2.getTime() - s1.getTime();
@@ -260,7 +261,10 @@ export default {
             this.count = parseInt(days / (1000 * 60 * 60 * 24));
         } else {
             this.count = 0
-            this.tiems = dateFormat(new Date(), 'YYYY-MM-DD')
+            setTimeout(() => {
+              this.tiems = dateFormat(new Date(), 'YYYY-MM-DD')
+            }, 100);
+            
         }
     }
   },
