@@ -256,8 +256,8 @@ export default {
             this.old = parseInt(days / (1000 * 60 * 60 * 24));
             this.count = parseInt(days / (1000 * 60 * 60 * 24));
         } else {
-            this.tiems = dateFormat(new Date(), 'YYYY-MM-DD')
             this.count = 0
+            this.tiems = dateFormat(new Date(), 'YYYY-MM-DD')
         }
     }
   },
