@@ -12,6 +12,7 @@
         <p class="start s-top">打卡始于<span class="p-ye">{{pushStart}}</span>,持续打卡于<span class="p-ye">{{pushEnd}}</span>,</p>
         <p class="start">  日精进打卡第<span class="p-ye">{{time}}</span>天,共打卡<span class="p-ye">{{total}}</span>次,缺卡<span class="p-ye" >{{que}}</span>次</p>
       </div>
+      <span v-if="$route.query.id" class="returnClass" @click="$router.go(-1)">返回</span>
     </div>
     <v-clock :clocklist="list" :name="name"></v-clock>
   </div>
@@ -154,7 +155,11 @@
         if(scrollBottom<h){
           this.isScroll=false;
           this.pageList.pageNo+=1;
-          this.gainList();
+          if(this.$route.query.id){
+            this.gainList(this.$route.query.id);
+          }else{
+            this.gainList();
+          }
         }
       },
     },
@@ -192,7 +197,14 @@
         margin: 0 auto;
         padding: 56px 0 0 27px;
         box-sizing: border-box;
-
+        position: relative;
+        .returnClass{
+          position: absolute;
+          right: 27px;
+          top: 56px;
+          color: #fff;
+          font-size: 28px;
+        }
       .p-img {
         height: 129px;
         width: 129px;

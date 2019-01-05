@@ -13,16 +13,16 @@
             <p>
               打卡持续<span style="color: #E62129">{{o.pushDays}}</span>天，本月缺卡<span style="color:#0BA61D">{{o.monthLostCount}}</span>次，共缺卡<span style="color:#D8B305">{{o.lostCount}}</span>次。
             </p>
-            <span class="delete" @click="deleteFn(i)" v-if="o.isCreate!=1"></span>
-            <span class="turn" @click="turnFn(i)" v-if="o.isCreate!=1"></span>
           </div>
+          <span class="delete" @click="deleteFn(i)" v-if="o.isCreate!=1&&type==true"></span>
+          <span class="turn" @click="turnFn(i)" v-if="o.isCreate!=1&&type==true"></span>
         </li>
       </ul>
       <v-popup :popupShow="mask" :popupType="'tip1'" :tip-text="tipTxt" @sure="maskFn"></v-popup>
   </div>
 </template>
 <script>
-  import { CardRecord,groupUser } from '@/api/index'
+  import { CardRecord,groupUser,groups } from '@/api/index'
   import { Toast } from 'mint-ui'
   export default {
     data () {
@@ -71,6 +71,7 @@
           groupUser.changeGrouper(data).then(res =>{
             if(res.code==1){
               this.$toast('转让成功');
+              this.type=false;
             }
           })
         }
@@ -108,6 +109,13 @@
     mounted(){
 
     },
+    destroyed(){
+      groups({}).then( res => {
+        let arr=[];
+        arr=res.data.create.concat(res.data.join);
+        sessionStorage.setItem('groupList',JSON.stringify(arr));
+      })
+    }
   }
 </script>
 <style lang='less' scoped>
@@ -143,6 +151,27 @@
     border-bottom: 1px #f2f2f2 solid;
     display: flex;
     justify-content: space-between;
+    position: relative;
+    .delete{
+      width: 31px;
+      height: 31px;
+      background: url("../assets/img/sc.png") no-repeat;
+      background-size: cover;
+      position: absolute;
+      top: 28px;
+      right: 0;
+      z-index: 999;
+    }
+    .turn{
+      width: 32px;
+      height: 32px;
+      background: url("../assets/img/zr.png") no-repeat;
+      background-size: cover;
+      position: absolute;
+      top: 28px;
+      right: 85px;
+      z-index: 999;
+    }
     .left{
       width: 120px;
       img{
@@ -152,27 +181,8 @@
     }
     .right{
       width: calc(100% - 150px);
-      position: relative;
-      .delete{
-        width: 31px;
-        height: 31px;
-        background: url("../assets/img/sc.png") no-repeat;
-        background-size: cover;
-        position: absolute;
-        top: 0;
-        right: 0;
-        z-index: 999;
-      }
-      .turn{
-        width: 32px;
-        height: 32px;
-        background: url("../assets/img/zr.png") no-repeat;
-        background-size: cover;
-        position: absolute;
-        top: 0;
-        right: 85px;
-        z-index: 999;
-      }
+
+
       h5{
         color: #000;
         font-size: 36px;

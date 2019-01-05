@@ -103,6 +103,7 @@ export default {
         this.popup.groupName=list[0].groName;
         this.popup.groupid=list[0].groId;
         this.getGroupsDate(this.groups[0].groId,this.setYear+'-'+this.fillZero(this.setMonth)+'-01');
+        this.getGroupsUser(this.groups[0].groId,this.setYear+'-'+this.fillZero(this.setMonth)+'-'+this.fillZero(this.setDay))
     },
     mounted: function() {
         if(this.groups&&this.groups.length!=0){
@@ -336,7 +337,9 @@ export default {
             CardRecord.groupsDate(data).then(res =>{
                 if(res.data.length>0){
                     for(let x of res.data){
-                        arr.push(x.days.substr(-2));
+                        if(x.lostCount==0){
+                          arr.push(x.days.substr(-2));
+                        }
                     }
                     this.groupArr=arr;
                 }
