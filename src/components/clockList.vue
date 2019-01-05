@@ -100,16 +100,13 @@
     data() {
       return {
         // 数据模型
+        name:sessionStorage.getItem('userName')
       }
     },
     props: {
       // 集成父级参数
       clocklist:{
         type:Array
-      },
-      name:{
-        type:String,
-        default:sessionStorage.getItem('userName')
       },
     },
     methods: {
@@ -126,6 +123,7 @@
         this.$set(this.clocklist,i,obj);
       },
       isPariseFn(i){
+        console.log(this.name)
         let obj=this.clocklist[i];
         obj.isParise=true;
         if(this.name==''){
@@ -200,6 +198,7 @@
     .c-content {
       overflow: hidden;
       height: 280px;
+      margin-bottom: 30px;
     }
     .c-content.active{
       height:auto;

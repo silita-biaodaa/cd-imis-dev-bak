@@ -97,6 +97,10 @@ export default {
         };
     },
     created() {
+        if(sessionStorage.getItem('groupList')==''||sessionStorage.getItem('groupList')==undefined){
+            this.$toast('您没有群组或网络连接有问题');
+            this.$router.go(-1);
+        }
         var list=sessionStorage.getItem('groupList');
         list=JSON.parse(list);
         this.groups=list;
