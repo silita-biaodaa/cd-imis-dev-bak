@@ -8,7 +8,7 @@
       </div>
       <p class="c-name"><span class="fc-n">{{item.user.name}}</span><span v-if="item.user.company!=''">-{{item.user.company}}</span></p>
       <div class="c-content" :class="{'active': item.fullTxt=='收起'}">
-        <p class="c-time"><span>{{item.pushd}}</span>打卡{{item.pushCount.putCount}}次</p>
+        <p class="c-time"><span>{{item.pushd}}</span>打卡第{{item.pushCount.putCount}}次</p>
         <div class="c-text" >
           <!-- 知 学习 -->
           <p class="title">【知～学习】</p>
@@ -38,7 +38,7 @@
           </template>
           <!-- 积善 -->
           <p class="title">【积善】</p>
-          <p class="c-color">发愿从{{item.pushCount.bonaStart}}起{{item.pushCount.years}}年内{{item.pushCount.bonaCount}}善事。今日{{item.pushCount.bonaDays}}善，累计{{item.pushCount.bonaTotal}}善</p>
+          <p class="c-color">发愿从{{item.pushCount.bonaStart}}起{{item.pushCount.years}}年内{{item.pushCount.bonaTotal}}善事。今日{{item.pushCount.bonaDays}}善，累计{{item.pushCount.bonaTotal}}善</p>
           <!-- 省 觉悟 -->
           <template v-if="item.introspective">
             <p class="title">【省～觉悟】</p>
@@ -56,7 +56,7 @@
           </template>
         </div>
       </div>
-      <h5 class="full" v-if="item.classic||(item.practice.character!=''&&item.practice.family!=''&&item.practice.work!='')||item.introspective||item.thanks||item.volunteer">
+      <h5 class="full" v-if="item.classic||(item.practice.character!=''&&item.practice.family!=''&&item.practice.work!='')||item.introspective||item.thanks||item.volunteer||item.books.length>1">
         <span @click="fullClick(index)">{{item.fullTxt}}</span>
       </h5>
       <div class="c-func">
@@ -71,10 +71,10 @@
           </template>
 
         </div>
-        <div class="c-zan">
-          <span class="icon icon-fx"></span>
-          <span>详情</span>
-        </div>
+        <!--<div class="c-zan">-->
+          <!--<span class="icon icon-fx"></span>-->
+          <!--<span>详情</span>-->
+        <!--</div>-->
       </div>
       <div class="laudBox" v-if="item.praise.length!=0" >
         <span class="icon pickZan"></span>
@@ -230,7 +230,7 @@
     // margin-top: 100px;
     // margin-bottom: 39px;
     float: right;
-    width: 300px;
+    width: 150px;
     color: #999;
     font-size: 28px;
     display: flex;
@@ -241,7 +241,7 @@
     }
     .c-zan{
       display: flex;
-      justify-content: space-around;
+      justify-content: flex-end;
       align-items: center;
     }
   }
@@ -251,7 +251,7 @@
     margin-right: 8px;
   }
   .pickZ{
-    background: url("../assets/img/z.png");
+    background: url("../assets/img/z.png") no-repeat;
     background-size: cover;
   }
   .pickZan{

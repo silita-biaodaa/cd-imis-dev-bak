@@ -403,9 +403,10 @@ export default {
     text-align: center;
      .l-mi {
       margin:  auto  0;
+       width:136px;
       .van-stepper__minus, .van-stepper__plus {
-        width: 62px;
-        height: 62px;
+        width: 33%;
+        height: 42px;
         border-color: #ccc;
 
       }
@@ -418,9 +419,11 @@ export default {
         box-sizing: border-box;
       }
       .van-stepper__input{
-        line-height: 56px;
-         width: 70px;
-         height: 55px;
+        line-height: 42px;
+         width: 33%;
+         height: 42px;
+        font-size: 24px;
+        box-sizing: border-box;
       }
       .van-stepper__minus::before, .van-stepper__plus::before {
         width: 30px !important;
@@ -431,9 +434,6 @@ export default {
         height: 30px !important;
         width: 2px !important;
         color: #999 !important;
-      }
-      .van-stepper__input {
-        font-size: 36px;
       }
    }
 }

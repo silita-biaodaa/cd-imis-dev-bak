@@ -152,7 +152,7 @@ export default {
       introspective: '', //省省悟
       thanks: '', //感谢
       btnTitle:'',
-      first:false
+      first:true
     }
   },
   methods: {
@@ -243,9 +243,10 @@ export default {
    text-align: center;
    .l-mi {
       margin:  auto  0;
+      width:136px;
       .van-stepper__minus, .van-stepper__plus {
-        width: 62px;
-        height: 56px;
+        width:33%;
+        height: 42px;
         border-color: #ccc;
 
       }
@@ -256,9 +257,11 @@ export default {
         border-radius: 0 18px 18px 0;
       }
       .van-stepper__input{
-         width: 62px;
-         line-height: 56px;
-         height: 56px;
+        line-height: 42px;
+        width:33%;
+        height: 42px;
+        font-size: 24px;
+        box-sizing: border-box;
       }
       .van-stepper__minus::before, .van-stepper__plus::before {
         width: 30px !important;
@@ -269,9 +272,6 @@ export default {
         height: 30px !important;
         width: 2px !important;
         color: #999 !important;
-      }
-      .van-stepper__input {
-        font-size: 36px;
       }
    }
 }
@@ -423,6 +423,8 @@ export default {
      padding: 0 36px;
   }
 }
-
+textarea[disabled]{
+  background: #f2f2f2;
+}
 
 </style>
