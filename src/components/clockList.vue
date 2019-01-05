@@ -15,6 +15,10 @@
           <div v-for="(el,index) in item.books" :key="index">
             <p class="c-color">《{{el.title}}》{{el.readCount}}遍 共{{el.readTotal}}遍</p>
           </div>
+          <div v-for="(el,index) in item.bookish" :key="index" v-if="item.bookish.length">
+            <p class="c-color">《{{el.bookName}}》-{{el.section}}</p>
+            <!--<p>{{el.section}}</p>-->
+          </div>
           <!-- 经典名句 -->
           <template v-if="item.classic">
             <p class="title">【经典名句分享】</p>
@@ -116,7 +120,7 @@
         this.$set(this.clocklist,i,obj);
       },
       isPariseFn(i){
-        let obj=that.clocklist[i];
+        let obj=this.clocklist[i];
         obj.isParise=true;
         if(this.name==''){
           return false
@@ -131,7 +135,7 @@
             }
             that.$set(that.clocklist,i,obj);
           }else{
-            alert('因网络原因，点赞失败')
+            that.$toast('因网络原因，点赞失败')
             obj.isParise=false;
           }
       })
@@ -189,7 +193,7 @@
     }
     .c-content {
       overflow: hidden;
-      height: 285px;
+      height: 260px;
     }
     .c-content.active{
       height:auto;

@@ -15,6 +15,12 @@
                 <button @click="cancelFn">确定</button>
               </div>
             </template>
+             <template v-if="popupType=='save'">
+              <div class="tipBox">
+                <div class="txt-box">个人信息更新成功。</div>
+                <button @click="cancelFn">确定</button>
+              </div>
+            </template>
         </div>
     </div>
 </template>

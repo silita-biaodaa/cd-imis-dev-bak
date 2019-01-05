@@ -72,7 +72,7 @@
             <span class="laca">增加书本
               <div class="laca-add"><img src="../assets/img/add (1).png" alt=""></div>
             </span>
-        </div> 
+        </div>
 
        <div class="card-top card-com laca card-ma">
            <div class="siz">
@@ -81,7 +81,7 @@
           <div class="card-size">
               积善行
           </div>
-       </div> 
+       </div>
        <div class="card-b">
           <div class="card-book l-fire">
             发愿从{{pushCount.bonaStart}}起，累计 {{pushCount.bonaTotal + pushCount.bonaCount}} 善。
@@ -118,6 +118,10 @@
       <div class='toast' v-show='layout' >
           请输入正确得手机号码格式
       </div>
+      <div class="toast" v-show="mask">
+          个人信息更新成功
+      </div>
+      <!-- <v-popup :popup-type="'save'" :popup-show="mask"></v-popup> -->
  </div>
 </template>
 <script>
@@ -137,7 +141,8 @@ export default {
        Blength:0,
        pushCount:[],
        Number: true,
-       delay:true
+       delay:true,
+       mask:false
     }
   },
   methods: {
@@ -176,7 +181,7 @@ export default {
                   title: '请输入必填选项',
                   content: '请输入正确的手机格式',
                 })
-         } 
+         }
          if(!this.user.name) {
           this.pass = false
            return this.$vux.alert.show({
@@ -200,10 +205,10 @@ export default {
            Saveuser({books:this.bookss,user:this.user,pushCount:this.pushCount,volunteer:this.values}).then( res => {
               if(res.code ==1) {
                  this.delay = true
-                 return  this.$vux.alert.show({
-                          title: '保存成功',
-                          content: '个人信息更新完毕'
-                         })
+                 this.mask = true
+                 return  setTimeout(() => {
+                    this.mask = false
+                 }, 1500);
               }
            })
         }
@@ -432,7 +437,7 @@ export default {
   .pdd {
     background: #fff;
     padding: 0 46px;
-  }  
+  }
   .no-f {
     padding-left: 0 !important;
   }

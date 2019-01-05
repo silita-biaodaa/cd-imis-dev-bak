@@ -18,7 +18,7 @@
 
       <div class="ma10">
        <div  class="fold none" @click="show(0)"  >
-        <span>我创建得群{{this.createstle}}</span>
+        <span>我创建的群{{this.createstle}}</span>
         <i :class=" this.folds[0].showContent ? 'iconfont icon-jiantoushang g-size' : ' iconfont icon-jiantouxia g-size'"></i>
        </div>
          <div class="group-p" v-show="this.folds[0].showContent" >

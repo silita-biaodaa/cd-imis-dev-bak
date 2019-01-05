@@ -11,7 +11,7 @@
           <div class="right"  @click="jumpFriend(i)">
             <h5>{{o.name}}</h5>
             <p>
-              打卡持续<span style="color: #E62129">{{o.pushDays}}</span>天，本月缺卡<span style="color:#0BA61D">{{o.monthLostCount}}</span>次，共缺卡<span style="color:#D8B305">{{o.lostCount}}</span>次。
+              日精进打卡第<span style="color: #E62129">{{o.pushDays}}</span>天，本月缺卡<span style="color:#0BA61D">{{o.monthLostCount}}</span>次，共缺卡<span style="color:#D8B305">{{o.lostCount}}</span>次。
             </p>
           </div>
           <span class="delete" @click="deleteFn(i)" v-if="o.isCreate!=1&&type==true"></span>
