@@ -176,8 +176,8 @@ export default {
             let day=arr[i].showDate;
             let month=arr[i].month;
             let ye=this.thisMonthDays.year;
-            let str=ye+'-'+this.fillZero(month)+'-'+day+' 00:00:00';
-            let time=new Date(str).getTime();
+            let str=ye+'-'+this.fillZero(month)+'-'+day;
+            let time=new Date(str+' 00:00:00').getTime();
             let nowTime=new Date().getTime();
             if(nowTime>time){
                 for(let x of arr){
