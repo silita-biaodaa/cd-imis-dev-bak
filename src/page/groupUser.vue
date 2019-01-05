@@ -113,7 +113,7 @@
       groups({}).then( res => {
         let arr=[];
         arr=res.data.create.concat(res.data.join);
-        sessionStorage.setItem('groupList',JSON.stringify(arr));
+        localStorage.setItem('groupList',JSON.stringify(arr));
       })
     }
   }

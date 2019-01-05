@@ -49,12 +49,12 @@ router.beforeEach((to, from, next) => {
       }
       if(res.data.isFirst==1){
         //进入打卡
-        sessionStorage.setItem('tabNum','2');
+        localStorage.setItem('tabNum','2');
         next('nav/card')
       }
       if(res.data.isFirst==2){
         //进入打卡圈
-        sessionStorage.setItem('tabNum','0');
+        localStorage.setItem('tabNum','0');
         next('nav/friend')
       }
     }

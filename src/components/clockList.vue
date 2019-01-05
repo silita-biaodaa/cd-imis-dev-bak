@@ -100,7 +100,7 @@
     data() {
       return {
         // 数据模型
-        name:sessionStorage.getItem('userName')
+        name:localStorage.getItem('userName')
       }
     },
     props: {
