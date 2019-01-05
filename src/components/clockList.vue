@@ -27,7 +27,7 @@
             <p class="c-color">{{item.classic}}</p>
           </template>
           <!-- 行 实践 -->
-          <template v-if="item.practice.character!=''&&item.practice.family!=''&&item.practice.work!=''">
+          <template v-if="item.practice">
             <p class="title">【行～实践】</p>
             <template v-if="item.practice.character!=''">
               <h5>一、修身：（对自己个人）</h5>
