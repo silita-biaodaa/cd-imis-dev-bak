@@ -202,6 +202,7 @@ export default {
                  this.delay = true
                  return  this.$vux.alert.show({
                           title: '保存成功',
+                          content: '个人信息更新完毕'
                          })
               }
            })
