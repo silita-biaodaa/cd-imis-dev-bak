@@ -1,5 +1,5 @@
 <template>
-   <div class="home">
+   <div class="home" :class="{mask:mask}">
       <div class="person">
          <div class="person-top">
              <div class="img-post img-book">
@@ -264,7 +264,7 @@ export default {
             setTimeout(() => {
               this.tiems = dateFormat(new Date(), 'YYYY-MM-DD')
             }, 100);
-            
+
         }
     }
   },
@@ -305,6 +305,10 @@ export default {
 <style lang="less" >
   body .scroller-item{
     font-size:26px;
+  }
+  body .mask{
+    max-height: 100vh;
+    overflow: hidden;
   }
 .home {
   box-sizing: border-box;
