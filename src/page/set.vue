@@ -128,7 +128,7 @@
           请输入您的姓名
       </div>
       <div class="toast" v-show="text3">
-          请填写或者删除多余空白书本
+          请填写书本信息
       </div>
  </div>
 </template>

@@ -91,7 +91,7 @@
       <div>
         <datetime title='积善开始时间' v-model="begin" placeholder='请选择' text-align='right' class="cc p-line" ></datetime>
         <div class="l-put  p-line p-l">
-          <div class="label">积善持续年份</div> <input type="text" placeholder="请输入年份"  v-model='end'  @blur="bblur" >
+          <div class="label">积善持续年份</div> <input type="tel" placeholder="请输入年份"  v-model='end'  @blur="bblur" >
         </div>
         <div class="card-com">
           <div class="l-pu">
@@ -133,7 +133,7 @@
       请输入手机号
     </div>
     <div class='toast' v-show='text3' >
-      请填写或者删除多余空白书本
+      请填写书本信息
     </div>
   </div>
 </template>
@@ -297,7 +297,7 @@
         if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
           setTimeout(() => {
             // activeElement.scrollIntoView({block:'start'})
-            window.scroll(0,0);
+            // window.scroll(0,0);
             activeElement.scrollIntoViewIfNeeded()
 
           }, 0)
@@ -309,7 +309,7 @@
         const activeElement = document.activeElement
         if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
           setTimeout(() => {
-            window.scroll(0,0);
+            // window.scroll(0,0);
             activeElement.scrollIntoViewIfNeeded()
 
           }, 0)
