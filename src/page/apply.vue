@@ -26,7 +26,7 @@
           </div>
       </div>
       <div v-show="!dont" class="hint" >
-          请无群数据, 请先创建群
+          暂无群数据, 请先创建群
       </div>
 
     </div>

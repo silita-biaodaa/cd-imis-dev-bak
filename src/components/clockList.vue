@@ -116,14 +116,15 @@
         this.$set(this.clocklist,i,obj);
       },
       isPariseFn(i){
+        let obj=that.clocklist[i];
+        obj.isParise=true;
         if(this.name==''){
           return false
         }
         let id=this.clocklist[i].pkid;
         let that=this;
         Parise({logId:id}).then(res =>{
-          let obj=that.clocklist[i];
-          obj.isParise=true;
+
           if(res.msg=='操作成功'){
             if(that.strInArr(obj.praise)){
               obj.praise.push(that.name);
