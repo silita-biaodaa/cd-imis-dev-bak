@@ -70,7 +70,7 @@ export default {
             headYear:'',//顶部年
             setYear: new Date().getFullYear(),
             setMonth: new Date().getMonth()+1,
-            setDay:new Date().getDay()-1,
+            setDay:new Date().getDate(),
             signMark: [],
             groups:[],//群组列表
             pageList: {total: '',pageNo:1,pageSize:2},
