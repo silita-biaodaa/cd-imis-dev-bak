@@ -167,14 +167,6 @@
         this.gainUser();
         this.gainList();
       }
-
-      if(!sessionStorage.getItem('groupList')){
-        groups({}).then( res => {
-          let arr=[];
-          arr=res.data.create.concat(res.data.join);
-          sessionStorage.setItem('groupList',JSON.stringify(arr));
-        })
-      }
     },
     components: {
 

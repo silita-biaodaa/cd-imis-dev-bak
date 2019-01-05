@@ -2,25 +2,23 @@
 <template>
   <div class="groupUser">
       <div class="title">
-        <span class="iconfont icon-fanhui"></span>
-        <span>{{groupName}}</span>
+        <span class="iconfont icon-fanhui" @click="$router.go(-1)"></span>
+        <span class="nameTxt">{{groupName}}</span>
         <span></span>
       </div>
       <div class="serBox"><div></div></div>
       <ul class="listBox">
-        <li v-for="(o,i) of list" :key="i" @click="jumpFriend(i)">
+        <li v-for="(o,i) of list" :key="i">
           <div class="left">
             <img :src="o.imgUrl">
           </div>
-          <div class="right">
-            <h5>
-              {{o.name}}
-              <span class="delete" @click="deleteFn(i)"></span>
-              <span class="turn" @click="turnFn(i)"></span>
-            </h5>
+          <div class="right"  @click="jumpFriend(i)">
+            <h5>{{o.name}}</h5>
             <p>
               打卡持续<span style="color: #E62129">{{o.pushDays}}</span>天，本月缺卡<span style="color:#0BA61D">{{o.monthLostCount}}</span>次，共缺卡<span style="color:#D8B305">{{o.lostCount}}</span>次。
             </p>
+            <span class="delete" @click="deleteFn(i)" v-if="o.isCreate!=1"></span>
+            <span class="turn" @click="turnFn(i)" v-if="o.isCreate!=1"></span>
           </div>
         </li>
       </ul>
@@ -126,6 +124,12 @@
   display:flex;
   align-items:center;
   justify-content: space-between;
+  .nameTxt{
+    max-width: 80%;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap
+  }
 }
 .serBox{
   background: #F5F5F5;
@@ -152,30 +156,32 @@
     }
     .right{
       width: calc(100% - 150px);
+      position: relative;
+      .delete{
+        width: 31px;
+        height: 31px;
+        background: url("../assets/img/sc.png") no-repeat;
+        background-size: cover;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 999;
+      }
+      .turn{
+        width: 32px;
+        height: 32px;
+        background: url("../assets/img/zr.png") no-repeat;
+        background-size: cover;
+        position: absolute;
+        top: 0;
+        right: 85px;
+        z-index: 999;
+      }
       h5{
         color: #000;
         font-size: 36px;
         font-weight: bold;
         margin-bottom: 40px;
-        position: relative;
-        .delete{
-          width: 31px;
-          height: 31px;
-          background: url("../assets/img/sc.png") no-repeat;
-          background-size: cover;
-          position: absolute;
-          top: 0;
-          right: 0;
-        }
-        .turn{
-          width: 32px;
-          height: 32px;
-          background: url("../assets/img/zr.png") no-repeat;
-          background-size: cover;
-          position: absolute;
-          top: 0;
-          right: 85px;
-        }
       }
       p{
         font-size: 24px;

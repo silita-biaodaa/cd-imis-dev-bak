@@ -7,8 +7,19 @@
 </template>
 
 <script>
+  import { groups } from '@/api/index'
 export default {
-  name: 'app'
+
+  name: 'app',
+  created(){
+    if(!sessionStorage.getItem('groupList')){
+      groups({}).then( res => {
+        let arr=[];
+        arr=res.data.create.concat(res.data.join);
+        sessionStorage.setItem('groupList',JSON.stringify(arr));
+      })
+    }
+  }
 }
 </script>
 

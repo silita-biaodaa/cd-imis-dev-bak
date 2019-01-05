@@ -17,18 +17,18 @@
             </div>
             <div class="card-com">
                <div class="l-pu">
-                    <div class="label label-f">今日朗读遍数</div> 
-                    <van-stepper  v-model.number="el.readCount" class="l-mi" :min="0" />                    
+                    <div class="label label-f">今日朗读遍数</div>
+                    <van-stepper  v-model.number="el.readCount" class="l-mi" :min="0" />
                </div>
             </div>
         </div>
-         
+
 
         <div  v-for="(item,index) in books" :key="index">
            <div class="card-b card-book add-book">
              <span>书本&nbsp({{index + 3}})</span>
              <span class="del-book" @click='cardDel(index)' >删除</span>
-            </div> 
+            </div>
            <div class="pdd">
               <div class="l-put put-bot">
                <div class="label label-f">书本名称</div> <input type="text" placeholder="请输入书本名称" v-model='item.bookName' >
@@ -36,7 +36,7 @@
               <div class="l-put">
                <div class="label label-f">朗读章节</div> <input type="text" placeholder="请输入" v-model='item.section' >
               </div>
-           </div>           
+           </div>
         </div>
         <div class="card-com card-add" @click='cardBook'>
             <span class="laca">增加书本
@@ -91,8 +91,8 @@
 
                <!-- <div class="label label-f">今日行善件数</div> <input type="text" placeholder="1善" v-model="pushCount.bonaDays" > -->
                <div class="l-pu">
-                    <div class="label label-f">今日行善次数</div> 
-                    <van-stepper  v-model="pushCount.bonaDays" class="l-mi" :min="0" />                    
+                    <div class="label label-f">今日行善次数</div>
+                    <van-stepper  v-model="pushCount.bonaDays" class="l-mi" :min="0" />
                </div>
        </div>
        <div class="card-top card-com laca card-ma">
@@ -128,7 +128,7 @@
        <div class="card-put">
           <textarea  rows="4" placeholder='请输入您的感谢'  v-model="thanks" class="ccc" @blur='bblur'  ></textarea>
         </div>
-        
+
         <div class="card-btn" @click="punch">
            <div :class="[this.btnTitle =='提交'? 'card-div' : 'card-red' ]">
               {{btnTitle}}
@@ -172,7 +172,7 @@ export default {
               this.bookss = res.data.books
               this.pushCount = res.data.pushCount
               this.volunteer = res.data.volunteer
-          } 
+          }
        })
     },
     punch(){
@@ -197,11 +197,6 @@ export default {
   },
   created () {
      this.gainPer()
-      groups({}).then( res => {
-          let arr=[];
-        arr=res.data.create.concat(res.data.join);
-        sessionStorage.setItem('groupList',JSON.stringify(arr));
-      })
   },
   components: {
   },
@@ -231,7 +226,7 @@ export default {
       }
     })
   },
-  
+
 }
 </script>
 <style lang="less" >
@@ -250,7 +245,7 @@ export default {
         width: 62px;
         height: 56px;
         border-color: #ccc;
-        
+
       }
       .van-stepper__minus {
         border-radius: 18px 0 0 18px;
@@ -288,15 +283,15 @@ export default {
    padding: 25px 0;
    .label {
      padding-left: 0px;
-     color:#000;  
+     color:#000;
    }
    input {
       height: 46px;
       line-height: 46px;
       width: 100%;
       text-align: right;
-      background:none;  
-	    outline:none;  
+      background:none;
+	    outline:none;
       border:0px;
       box-sizing: border-box;
       caret-color:blue;
@@ -322,7 +317,7 @@ export default {
     line-height: 96px;
  }
  .laca {
-    position: relative; 
+    position: relative;
  }
  .laca-add {
    position: absolute;
@@ -335,7 +330,7 @@ export default {
    }
  }
  .siz {
-    position: absolute;   
+    position: absolute;
     top: 50%;
     transform:translateY(-50%);
     height: 30px;
@@ -351,7 +346,7 @@ export default {
    color: #999;
    font-size: 26px;
  }
- .add-book { 
+ .add-book {
    display: flex;
    justify-content: space-between;
    padding-right: 36px;
@@ -393,10 +388,10 @@ export default {
    padding: 10px 36px;
  }
  .card-btn {
-   margin-top: 110px;    
+   margin-top: 110px;
    padding: 0 32px;
     padding-bottom: 32px;
-    
+
     .card-div {
       height: 96px;
       font-size: 36px;
@@ -424,6 +419,6 @@ export default {
      padding: 0 36px;
   }
 }
- 
- 
+
+
 </style>
