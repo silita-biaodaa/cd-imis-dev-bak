@@ -45,8 +45,8 @@
     },
     computed: {
       tabNo(){
-        if(sessionStorage.getItem('tabNum')) {
-            let tabNum = sessionStorage.getItem('tabNum');
+        if(localStorage.getItem('tabNum')) {
+            let tabNum = localStorage.getItem('tabNum');
             return tabNum
         }else{
           return 0

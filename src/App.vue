@@ -11,19 +11,26 @@
 export default {
 
   name: 'app',
+  beforeCreate(){
+    if(localStorage.getItem('groupList')){
+      localStorage.removeItem('groupList');
+    }
+    if(localStorage.getItem('userName')){
+      localStorage.removeItem('userName');
+    }
+    if(localStorage.getItem('tabNum')){
+      localStorage.removeItem('tabNum');
+    }
+  },
   created(){
-    if(!sessionStorage.getItem('groupList')){
-      group({}).then( res => {
-        let arr=[];
-        arr=res.data;
-        sessionStorage.setItem('groupList',JSON.stringify(arr));
-      })
-    }
-    if(!sessionStorage.getItem('userName')){
-      User({}).then( res => {
-        sessionStorage.setItem('userName',res.data.name);
-      })
-    }
+    group({}).then( res => {
+      let arr=[];
+      arr=res.data;
+      localStorage.setItem('groupList',JSON.stringify(arr));
+    })
+    User({}).then( res => {
+      localStorage.setItem('userName',res.data.name);
+    })
   }
 }
 </script>

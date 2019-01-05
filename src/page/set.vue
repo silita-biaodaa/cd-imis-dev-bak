@@ -219,6 +219,8 @@ export default {
            delete this.pushCount.bonaTotal
            Saveuser({books:this.newbook,user:this.user,pushCount:this.pushCount}).then( res => {
               if(res.code ==1) {
+                  //保存用户信息
+                  localStorage.setItem('userName',this.user.name)
                  this.delay = true
                  this.mask = true
                  this.gainUser()
