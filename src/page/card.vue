@@ -188,7 +188,8 @@ export default {
       })
     },
     cardBook () {
-       this.books.push({})
+      let data={title:'',readCount:1,readTotal:0}
+       this.books.push(data)
     },
     cardDel(i) {
        this.books.splice(i,1)
@@ -262,16 +263,16 @@ export default {
         box-sizing: border-box;
         /*border-color: #ccc;*/
       }
-      .van-stepper__minus::before, .van-stepper__plus::before {
-        width: 15px !important;
-        height: 1px !important;
-        color: #999 !important;
-      }
-      .van-stepper__minus::after, .van-stepper__plus::after {
-        height: 15px !important;
-        width: 1px !important;
-        color: #999 !important;
-      }
+      /*.van-stepper__minus::before, .van-stepper__plus::before {*/
+        /*width: 15px !important;*/
+        /*height: 1px !important;*/
+        /*color: #999 !important;*/
+      /*}*/
+      /*.van-stepper__minus::after, .van-stepper__plus::after {*/
+        /*height: 15px !important;*/
+        /*width: 1px !important;*/
+        /*color: #999 !important;*/
+      /*}*/
    }
 }
 .l-put {
@@ -306,7 +307,8 @@ export default {
 }
   .card-top {
      img {
-        width: 100%;
+       height: 100%;
+       width: auto;
      }
   }
   .card-size {
@@ -387,6 +389,8 @@ export default {
  }
  .card-ma {
     margin-top: 10px;
+   display: flex;
+   align-items: center;
  }
  .weui-cell {
    padding: 10px 36px;

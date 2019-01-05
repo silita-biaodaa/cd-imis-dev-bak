@@ -161,7 +161,8 @@ export default {
   },
   methods: {
     addbook () {
-       this.first.push({})
+        let data={title:'',readCount:1,readTotal:0}
+       this.first.push(data)
     },
     delbook (i) {
       this.first.splice(i,1)
@@ -373,6 +374,8 @@ export default {
  .home-size {
     font-size: 30px;
     color:#666;
+   display: inline-block;
+   padding-left: 53px;
  }
   .cc {
     height: 96px;
@@ -428,20 +431,24 @@ export default {
         box-sizing: border-box;
         border-color: #ccc;
       }
-      .van-stepper__minus::before, .van-stepper__plus::before {
-        width: 15px !important;
-        height: 1px !important;
-        color: #999 !important;
-      }
-      .van-stepper__minus::after, .van-stepper__plus::after {
-        height: 15px !important;
-        width: 1px !important;
-        color: #999 !important;
-      }
+      /*.van-stepper__minus::before, .van-stepper__plus::before {*/
+        /*width: 15px !important;*/
+        /*height: 1px !important;*/
+        /*color: #999 !important;*/
+      /*}*/
+      /*.van-stepper__minus::after, .van-stepper__plus::after {*/
+        /*height: 15px !important;*/
+        /*width: 1px !important;*/
+        /*color: #999 !important;*/
+      /*}*/
    }
 }
    .p-line {
      border-bottom: 1px solid #F2F2F2;
+   }
+  .img-post img {
+     height: 100%;
+     width: auto;
    }
 .person {
    box-sizing: border-box;
@@ -460,12 +467,6 @@ export default {
          width: 30px;
          height: 30px;
       }
-      img {
-        height: 100%;
-      }
-      span{
-        padding-left: 35px;
-      }
    }
 }
 // 知学习样式
@@ -481,12 +482,6 @@ export default {
       font-size: 32px;
       border-bottom: 1px solid #F2F2F2;
       position: relative;
-      img {
-         height: 100%;
-      }
-      span{
-        padding-left: 38px;
-      }
   }
    .add-put{
      .add-book {
@@ -516,9 +511,6 @@ export default {
        background: #FFF;
         color: red;
      }
-     img {
-       height: 100%;
-     }
    }
 }
 // 打卡时间样式
@@ -535,13 +527,6 @@ export default {
       font-size: 28px;
       border-bottom: 1px solid #F2F2F2;
       position: relative;
-      img {
-        height: 31px;
-        width: 30px;
-      }
-      span{
-        padding-left: 38px;
-      }
   }
 }
 
@@ -559,12 +544,6 @@ export default {
       font-size: 32px;
       border-bottom: 1px solid #F2F2F2;
       position: relative;
-      img {
-         height: 100%;
-      }
-      span{
-        padding-left: 35px;
-      }
   }
 }
 
@@ -580,14 +559,6 @@ export default {
       font-size: 28px;
       border-bottom: 1px solid #F2F2F2;
       position: relative;
-      img {
-        //  height: 100%;
-        height: 34px;
-        width: 34px;
-      }
-      span{
-        padding-left: 38px;
-      }
   }
   .btn {
     margin-top: 110px;
