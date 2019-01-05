@@ -411,8 +411,6 @@ export default {
       .van-stepper__minus, .van-stepper__plus {
         width: 33%;
         height: 42px;
-        border-color: #ccc;
-
       }
       .van-stepper__minus {
         border-radius: 18px 0 0 18px;
@@ -428,15 +426,16 @@ export default {
          height: 42px;
         font-size: 24px;
         box-sizing: border-box;
+        border-color: #ccc;
       }
       .van-stepper__minus::before, .van-stepper__plus::before {
-        width: 30px !important;
-        height: 2px !important;
+        width: 15px !important;
+        height: 1px !important;
         color: #999 !important;
       }
       .van-stepper__minus::after, .van-stepper__plus::after {
-        height: 30px !important;
-        width: 2px !important;
+        height: 15px !important;
+        width: 1px !important;
         color: #999 !important;
       }
    }
