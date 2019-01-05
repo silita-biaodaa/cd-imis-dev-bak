@@ -7,16 +7,21 @@
 </template>
 
 <script>
-  import { groups } from '@/api/index'
+  import { group,User } from '@/api/index'
 export default {
 
   name: 'app',
   created(){
     if(!sessionStorage.getItem('groupList')){
-      groups({}).then( res => {
+      group({pageNo:1,pageSize:1000}).then( res => {
         let arr=[];
-        arr=res.data.create.concat(res.data.join);
+        arr=res.data.list;
         sessionStorage.setItem('groupList',JSON.stringify(arr));
+      })
+    }
+    if(!sessionStorage.getItem('userName')){
+      User({}).then( res => {
+        sessionStorage.setItem('userName',res.data.name);
       })
     }
   }
