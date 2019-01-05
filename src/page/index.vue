@@ -126,6 +126,15 @@
     <div class='toast' v-show='layout' >
       请输入正确得手机号码格式
     </div>
+    <div class='toast' v-show='text1' >
+      请输入您的姓名
+    </div>
+    <div class='toast' v-show='text2' >
+      请输入手机号
+    </div>
+    <div class='toast' v-show='text3' >
+      请填写或者删除多余空白书本
+    </div>
   </div>
 </template>
 <script>
@@ -153,7 +162,10 @@
         old:0,
         Number:true,
         mask:true,
-        layout: false
+        layout: false,
+        text1:false,
+        text2:false,
+        text3:false
       }
     },
     computed:{
@@ -211,26 +223,26 @@
         this.pass = true;
         if(!this.username) {
           this.pass = false
-          return this.$vux.alert.show({
-            title: '请输入必填选项',
-            content: '请输入您的姓名',
-          })
+          this.text1 = true
+          return setTimeout(() => {
+             this.text1 = false
+          }, 1500);
         }
         if (!this.mobile) {
           this.pass = false
-          return this.$vux.alert.show({
-            title: '请输入必填选项',
-            content: '请输入手机号',
-          })
+           this.text2 = true
+          return setTimeout(() => {
+             this.text2 = false
+          }, 1500);
         }
         this.first.forEach( el => {
           var arr = Object.keys(el)
           if(  arr.length != 3 ) {
             this.pass = false;
-            return  this.$vux.alert.show({
-              title: '请输入必填选项',
-              content: '请填写或者删除多余空白书本',
-            })
+             this.text3 = true
+            return setTimeout(() => {
+             this.text3 = false
+            }, 1500);
           }
         });
 
@@ -317,7 +329,7 @@
   .toast {
     position: fixed;
     left: 50%;
-    top: 50%;
+    top: 40%;
     background: #000;
     padding: 20px;
     font-size: 26px;

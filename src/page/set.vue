@@ -61,10 +61,10 @@
             </div>
            <div class="pdd">
               <div class="l-put put-bot">
-               <div class="label label-f no-f">书本名称</div> <input type="text" placeholder="请输入书本名称" v-model='item.bookName' @blur="bblur" >
+               <div class="label label-f no-f">书本名称</div> <input type="text" placeholder="请输入书本名称" v-model='item.title' @blur="bblur" >
               </div>
               <div class="l-put">
-               <div class="label label-f no-f">每日朗读遍数</div> <input type="tel" placeholder="请输入" v-model='item.section' @blur="bblur" >
+               <div class="label label-f no-f">每日朗读遍数</div> <input type="tel" placeholder="请输入" v-model='item.readCount' @blur="bblur" >
               </div>
            </div>
         </div>
@@ -138,7 +138,8 @@ export default {
        pushCount:[],
        Number: true,
        delay:true,
-       mask:false
+       mask:false,
+       newbook:[]
     }
   },
   methods: {
@@ -202,10 +203,13 @@ export default {
            this.pushCount.bonaStart = this.pushCount.bonaStart.replace('年','-')
            this.pushCount.bonaStart = this.pushCount.bonaStart.replace('月','-')
            this.pushCount.bonaStart = this.pushCount.bonaStart.replace('日','')
-           Saveuser({books:this.bookss,user:this.user,pushCount:this.pushCount}).then( res => {
+           this.newbook = this.bookss.concat(this.books)
+           delete this.pushCount.bonaTotal
+           Saveuser({books:this.newbook,user:this.user,pushCount:this.pushCount}).then( res => {
               if(res.code ==1) {
                  this.delay = true
                  this.mask = true
+                 this.gainUser()
                  return  setTimeout(() => {
                     this.mask = false
                  }, 1500);

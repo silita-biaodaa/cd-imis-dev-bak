@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     onSearch() {
-      Glisy({pageNo: '1', pageSize: '10', keywords: this.value}).then( res => {
+      Glisy({pageNo: '1', pageSize: '20', keywords: this.value}).then( res => {
           if(res.code == 1 ) {
             console.log(res,53)
               if( res.data.list.length ) {
