@@ -420,14 +420,15 @@ export default {
      width: 100%;
      outline:none;
      border: none;
-     padding: 0 36px;
+     padding:20px;
   }
 }
 textarea{
   border-radius: 5px;
+  padding: 10px;
 }
 textarea[disabled]{
-  background: #f2f2f2;
+  background: #f5f5f5;
 }
 
 </style>
