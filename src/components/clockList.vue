@@ -197,7 +197,7 @@
   }
   .c-content {
     overflow: hidden;
-    height: 295px;
+    height: 285px;
     margin-bottom: 30px;
   }
   .c-content.active{

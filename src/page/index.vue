@@ -333,11 +333,13 @@
   }
   body .mask{
     max-height: 100vh;
-    overflow-x: hidden;
-    overflow-y: auto;
+    // overflow: hidden;
   }
   .home {
     box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: auto;
+  // position: relative;
     background: #f5f5f5;
   .toast {
     position: fixed;
