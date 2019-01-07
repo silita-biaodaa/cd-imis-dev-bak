@@ -58,7 +58,10 @@
         </div>
         <div class="left">
           <div class="sign p-line  ">
-            <x-input title='书本名称' v-model='item.title' placeholder='请输入书本名称' @on-blur='bblur' placeholder-align='right' text-align='right' class="cc" ></x-input>
+            <div class="l-put"  > 
+              <div class="label">书本名称</div> <input type="tel" placeholder="请输入书本名称" v-model='item.title'  @blur='bblur' maxlength="5" >
+            </div>
+            <!-- <x-input title='书本名称' v-model='item.title' placeholder='请输入书本名称' @on-blur='bblur' placeholder-align='right' text-align='right' class="cc" ></x-input> -->
           </div>
           <div class="sign p-line">
             <div class="card-com">
@@ -69,7 +72,10 @@
             </div>
           </div>
           <div class="sign" >
-            <x-input title='总朗读遍数' v-model='item.readTotal' placeholder='请输入' placeholder-align='right' @on-blur='bblur' text-align='right' type='tel' :max="5"  class="cc" ></x-input>
+            <div class="l-put"  >
+              <div class="label">总朗读遍数</div> <input type="tel" placeholder="请输入" v-model='item.readTotal' @blur='bblur' maxlength="5" >
+            </div>
+            <!-- <x-input title='总朗读遍数' v-model='item.readTotal' placeholder='请输入' placeholder-align='right' @on-blur='bblur' text-align='right' type='tel' :max="5"  class="cc" ></x-input> -->
           </div>
         </div>
 
@@ -99,7 +105,10 @@
             <van-stepper  v-model.number="number" class="l-mi" :min="0" />
           </div>
         </div>
-        <x-input title='累计积善件数' v-model='alls'  placeholder='请输入' placeholder-align='right' text-align='right' type='tel' class="cc" :max="5" ></x-input>
+        <div class="l-put"  >
+              <div class="label">累计积善件数</div> <input type="tel" placeholder="请输入" v-model='alls' @blur='bblur' maxlength="5" >
+        </div>
+        <!-- <x-input title='累计积善件数' v-model='alls'  placeholder='请输入' placeholder-align='right' text-align='right' type='tel' class="cc" :max="5" ></x-input> -->
       </div>
     </div>
 
@@ -300,7 +309,7 @@
           setTimeout(() => {
             activeElement.scrollIntoViewIfNeeded()
 
-          }, 10)
+          }, 0)
         }
       })
     },
@@ -311,7 +320,7 @@
           setTimeout(() => {
             activeElement.scrollIntoViewIfNeeded()
 
-          }, 10)
+          }, 0)
         }
       })
     },
@@ -324,11 +333,11 @@
   }
   body .mask{
     max-height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
   .home {
     box-sizing: border-box;
-  // position: relative;
     background: #f5f5f5;
   .toast {
     position: fixed;
