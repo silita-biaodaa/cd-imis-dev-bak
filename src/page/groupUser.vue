@@ -2,9 +2,9 @@
 <template>
   <div class="groupUser">
       <v-head :head-txt="groupName"></v-head>
-      <!--<div class="serBox"><div></div></div>-->
-      <ul class="listBox">
-        <li v-for="(o,i) of list" :key="i">
+       <van-search placeholder="请输入搜索关键词" v-model="keywords" @blur="ajax" />
+      <ul class="listBox" v-show=" this.list.length" >
+        <li v-for="(o,i) of list" :key="i" >
           <div class="left">
             <img :src="o.imgUrl">
           </div>
@@ -18,6 +18,12 @@
           <span class="turn" @click="turnFn(i)" v-if="o.isCreate!=1&&type==true"></span>
         </li>
       </ul>
+      <div class="hint" v-show=" !this.list.length && !this.keywords.trim()">
+          暂无群成员
+      </div>
+      <div class="hint" v-show=" !this.list.length && this.keywords.trim()">
+          查询无结果
+      </div>
       <v-popup :popupShow="mask" :popupType="'tip1'" :tip-text="tipTxt" @sure="maskFn"></v-popup>
   </div>
 </template>
@@ -167,7 +173,7 @@
     }
   }
 </script>
-<style lang='less' scoped>
+<style lang='less' >
 .title{
   padding: 33px;
   background: #fff;
@@ -250,5 +256,32 @@
   li:last-child{
     border-bottom: none;
   }
+ 
 }
+.groupUser {
+  .van-search {
+    padding: 20px 36px;
+  }
+  .van-cell {
+    line-height: 72px;
+  }
+  .van-search .van-cell {
+    border-radius: 10px;
+  }
+  .van-field__control {
+    font-size: 36px;
+    text-align: center;
+  }
+  .van-cell__left-icon, .van-cell__right-icon {
+    line-height: 72px !important;
+    font-size: 40px !important;
+  }
+  .hint {
+     margin-top: 200px;
+     color: #666;
+     text-align: center;
+     font-size: 40px;
+  }
+}
+ 
 </style>

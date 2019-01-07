@@ -85,7 +85,7 @@ export default {
    }
 
   .van-search {
-      padding: 20px 36px;
+    padding: 20px 36px;
   }
   .van-cell {
     line-height: 72px;
@@ -93,6 +93,9 @@ export default {
   .van-field__control {
     font-size: 36px;
     text-align: center;
+  }
+  .van-search .van-cell {
+    border-radius: 10px;
   }
   .van-cell__left-icon, .van-cell__right-icon {
     line-height: 72px !important;
