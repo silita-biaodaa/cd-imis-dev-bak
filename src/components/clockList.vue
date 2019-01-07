@@ -169,6 +169,7 @@
     padding: 37px;
     padding-left: 159px;
     border-bottom: 16px solid #F5F5F5;
+    background: #fff;
     position: relative;
     .full{
       margin-top: 34px;
