@@ -154,13 +154,14 @@ export default {
       btnTitle:'',
       first:false,
       mask:false,
-      tipTxt:'确认提交打卡信息吗？'
+      tipTxt:''
     }
   },
   methods: {
     maskFn(){
       if(this.btnTitle=='提交'){
-        this.mask=true
+        this.tipTxt='确认提交打卡信息吗？';
+        this.mask=true;
       }
     },
     gainPer() {
