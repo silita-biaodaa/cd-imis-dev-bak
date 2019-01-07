@@ -1,8 +1,8 @@
 
 <template>
   <div class="groupUser">
-      <v-head :head-txt="groupName"></v-head>
-       <van-search placeholder="请输入搜索关键词" v-model="keywords" @blur="ajax" />
+      <v-head :head-txt="grupName"></v-head>
+       <van-search placeholder="请输入搜索o关键词" v-model="keywords" @blur="ajax" />
       <ul class="listBox" v-show=" this.list.length" >
         <li v-for="(o,i) of list" :key="i" >
           <div class="left">

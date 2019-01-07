@@ -9,7 +9,7 @@
           </div>
        </div>
 
-        <div v-for="el in bookss" :key="el.pkid">
+        <div v-for="el in bookss" :key="el.pkid" v-show="el.readCount" >
             <div class="card-b">
                <div class="card-book">
                  《{{el.title}}》共朗读{{el.readTotal + el.readCount}}遍

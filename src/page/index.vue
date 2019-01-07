@@ -91,7 +91,7 @@
       <div>
         <datetime title='积善开始时间' v-model="begin" placeholder='请选择' text-align='right' class="cc p-line" ></datetime>
         <div class="l-put  p-line p-l">
-          <div class="label">积善持续年份</div> <input type="tel" placeholder="请输入年份"  v-model='end'  @blur="bblur" >
+          <div class="label">积善持续年数</div> <input type="tel" placeholder="请输入年份"  v-model='end'  @blur="bblur" >
         </div>
         <div class="card-com">
           <div class="l-pu">
