@@ -453,6 +453,9 @@ export default {
 };
 </script>
 <style lang="less">
+  .picker-slot{
+    width: 80%;
+  }
 .picker-item{
     font-size: 28px
 }

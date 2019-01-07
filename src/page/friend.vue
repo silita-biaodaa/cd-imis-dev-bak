@@ -8,11 +8,11 @@
       </div>
       <div class="p-name">
         <p class="name">{{name}}</p>
-        <p class="company" >{{compang}}</p>
+        <!--<p class="company" >{{compang}}</p>-->
         <p class="start s-top">打卡始于<span class="p-ye">{{pushStart}}</span>,持续打卡于<span class="p-ye">{{pushEnd}}</span>,</p>
         <p class="start">  日精进打卡第<span class="p-ye">{{time}}</span>天,共打卡<span class="p-ye">{{total}}</span>次,缺卡<span class="p-ye" >{{que}}</span>次</p>
       </div>
-      <span v-if="$route.query.id" class="returnClass" @click="$router.go(-1)">返回</span>
+      <span v-if="$route.query.id" class="iconfont icon-fanhui" @click="$router.go(-1)"></span>
     </div>
     <v-clock :clocklist="list"></v-clock>
   </div>
@@ -88,33 +88,6 @@
       });
       })
       },
-      // fullClick(i){
-      //   let obj=this.list[i];
-      //   if(obj.fullTxt=='收起'){
-      //     obj.isFull=false;
-      //     obj.fullTxt='全文';
-      //   }else{
-      //     obj.isFull=true;
-      //     obj.fullTxt='收起';
-      //   }
-      //   this.$set(this.list,i,obj);
-      // },
-      // isPariseFn(i){
-      //   if(this.name==''){
-      //     return false
-      //   }
-      //   let id=this.list[i].pkid;
-      //   let that=this;
-      //   Parise({logId:id}).then(res =>{
-      //     if(res.msg=='操作成功'){
-      //       let obj=that.list[i];
-      //       if(that.strInArr(obj.praise)){
-      //         obj.praise.push(that.name);
-      //       }
-      //       that.$set(that.list,i,obj);
-      //     }
-      //   })
-      // },
       sh(){
         let bodyScrollHeight = 0
         let documentScrollHeight = 0
@@ -126,18 +99,6 @@
         }
         return (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight
       },
-      // strInArr(arr){
-      //   if(arr.length==0){
-      //     return true
-      //   }
-      //   for(let x of arr){
-      //     if(x==this.name){
-      //       return false
-      //     }else{
-      //       return true
-      //     }
-      //   }
-      // },
       //监听滚轮
       scrollgun(){
         let getSt=document.documentElement.scrollTop || document.body.scrollTop,
@@ -187,31 +148,28 @@
 <style lang='less' >
   .friends {
     background: #fff;
-    padding-top: 25px;
       .f-person {
-        width: 710px;
-        height: 241px;
-        background: linear-gradient(0deg, rgba(230, 33, 41, 1) 0%, rgba(255, 85, 1, 1) 100%);
-        border-radius: 10px;
-        margin: 0 auto;
-        padding: 56px 0 0 27px;
+        width:100%;
+        height: 409px;
+        background: url("../assets/img/bg.png") no-repeat;
+        background-size: cover;
+        padding-top: 94px;
         box-sizing: border-box;
         position: relative;
-        .returnClass{
+        .icon-fanhui{
           position: absolute;
-          right: 27px;
-          top: 56px;
+          left: 39px;
+          top: 32px;
           color: #fff;
-          font-size: 28px;
+          font-size: 30px;
+          font-weight: bold;
         }
       .p-img {
         height: 129px;
         width: 129px;
         border-radius: 50%;
-        background: #fff;
         overflow: hidden;
-        margin-right: 15px;
-        float: left;
+        margin:0 auto;
 
       img {
         width: 100%;
@@ -219,12 +177,13 @@
 
       }
         .p-name {
-          width: 500px;
-          float: left;
-
+          margin: 0 auto;
+          text-align: center;
+          width:397px;
         .name {
           color: #fff;
           font-size: 36px;
+          margin: 12px 0 24px;
         }
 
         .company {
@@ -239,6 +198,7 @@
           color: #DDD;
           font-size: 20px;
           margin-top: 4px;
+          text-align: left;
         }
 
         .s-top {

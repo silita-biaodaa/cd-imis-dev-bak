@@ -34,6 +34,10 @@
         mask:false,
         thisNum:'',
         tipTxt:'',
+        pageList: {total: '',pageNo:1,pageSize:8},
+        keywords:'',
+        isScroll:true,
+        noGet:false,
       }
     },
     name:'groupUser',
@@ -85,31 +89,76 @@
         this.thisNum=i;
         this.tipTxt='确认要转让该群组？';
         this.mask=true;
-      }
+      },
+      ajax(){
+        let that=this;
+        let data={
+          pageNo:this.pageList.pageNo,
+          pageSize:this.pageList.pageSize,
+          groId:this.$route.query.id,//
+          keywords:this.keywords,
+        }
+        CardRecord.groupPerson(data).then(res =>{
+          if(res){
+            that.list=res.data.list
+            if(that.pageList.pageNo>1){
+              that.list = that.list.concat(res.data.list);
+              that.pageList.total = res.data.total;
+            }else{
+              that.list = res.data.list;
+              that.pageList.total = res.data.total;
+            }
+            if(res.data.total==that.list.length||that.list.length<that.pageList.pageSize){
+              that.noGet=true;//如果返回总条数等于当前list长度
+            }
+          }
+        })
+      },
+      sh(){
+        let bodyScrollHeight = 0
+        let documentScrollHeight = 0
+        if (document.body) {
+          bodyScrollHeight = document.body.scrollHeight
+        }
+        if (document.documentElement) {
+          documentScrollHeight = document.documentElement.scrollHeight
+        }
+        return (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight
+      },
+      //监听滚轮
+      scrollgun(){
+        let getSt=document.documentElement.scrollTop || document.body.scrollTop,
+          getWh=document.documentElement.clientHeight || document.body.clientHeight;
+        let scrollBottom=this.sh()-(getSt+getWh),//滚动条距离底部距离
+          rem=parseInt(window.getComputedStyle(document.documentElement)["fontSize"]),
+          h=20;
+        if(this.noGet){
+          return false
+        }
+        if(!this.isScroll){
+          return false
+        }
+        if(scrollBottom<h){
+          this.isScroll=false;
+          this.pageList.pageNo+=1;
+          this.ajax();
+        }
+      },
     },
     created () {
       this.groupName=this.$route.query.name;
       this.type=this.$route.query.type;
       this.groId=this.$route.query.id;
-      let that=this;
-      let data={
-        pageNo:1,
-        pageSize:100,
-        groId:this.$route.query.id,//
-      }
-      CardRecord.groupPerson(data).then(res =>{
-        if(res){
-          that.list=res.data.list
-        }
-      })
+      this.ajax();
     },
     components: {
 
     },
     mounted(){
-
+      window.addEventListener('scroll',this.scrollgun,true);
     },
     destroyed(){
+      window.removeEventListener('scroll',this.scrollgun,true);
       groups({}).then( res => {
         let arr=[];
         arr=res.data.create.concat(res.data.join);

@@ -1,6 +1,6 @@
 <template>
   <div class="headTitle">
-    <span class="iconfont icon-fanhui" @click="$router.go(-1)"></span>
+    <span class="iconfont icon-fanhui" @click="jump"></span>
     <span class="nameTxt">{{headTxt}}</span>
     <span></span>
   </div>
@@ -13,7 +13,14 @@
           headTxt:{
             type:String
           }
+        },
+      methods:{
+          jump(){
+            localStorage.setItem('tabNum','3')
+            this.$router.go(-1);
+          }
         }
+
     }
 </script>
 
