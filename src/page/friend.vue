@@ -179,7 +179,7 @@
         .p-name {
           margin: 0 auto;
           text-align: center;
-          width:397px;
+          width:420px;
         .name {
           color: #fff;
           font-size: 36px;

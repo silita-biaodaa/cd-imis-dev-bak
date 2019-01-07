@@ -13,7 +13,7 @@
           <!-- 知 学习 -->
           <p class="title">【知～学习】</p>
           <div v-for="(el,bs) in item.books" :key="bs">
-            <p class="c-color">《{{el.title}}》{{el.readCount}}遍 共{{el.readTotal}}遍</p>
+            <p class="c-color" v-if="el.readCount!=0">《{{el.title}}》{{el.readCount}}遍 共{{el.readTotal}}遍</p>
           </div>
           <template v-if="item.bookish.length>0">
             <div v-for="(o,i) in item.bookish" :key="'i'+i">
@@ -23,12 +23,12 @@
 
           <!-- 经典名句 -->
           <template v-if="item.classic">
-            <p class="title">【经典名句分享】</p>
+            <p class="tit">【经典名句分享】</p>
             <p class="c-color">{{item.classic}}</p>
           </template>
           <!-- 行 实践 -->
           <template v-if="item.practice!=undefined">
-            <p class="title">【行～实践】</p>
+            <p class="tit">【行～实践】</p>
             <template v-if="item.practice.character!=''">
               <h5>一、修身：（对自己个人）</h5>
               <p class="c-color">{{item.practice.character}}</p>
@@ -43,21 +43,21 @@
             </template>
           </template>
           <!-- 积善 -->
-          <p class="title">【积善】</p>
+          <p class="tit">【积善】</p>
           <p class="c-color">发愿从{{item.pushCount.bonaStart}}起{{item.pushCount.years}}年内{{item.pushCount.bonaTotal}}善事。今日{{item.pushCount.bonaDays}}善，累计{{item.pushCount.bonaTotal}}善</p>
           <!-- 省 觉悟 -->
           <template v-if="item.introspective">
-            <p class="title">【省～觉悟】</p>
+            <p class="tit">【省～觉悟】</p>
             <p class="c-color">{{item.introspective}}</p>
           </template>
           <!-- 感谢 -->
           <template v-if="item.thanks">
-            <p class="title">【感谢】</p>
+            <p class="tit">【感谢】</p>
             <p class="c-color">{{item.thanks}}</p>
           </template>
           <!-- 祝愿 -->
           <template v-if="item.volunteer">
-            <p class="title">【志愿】</p>
+            <p class="tit">【志愿】</p>
             <p class="c-color">{{item.volunteer}}</p>
           </template>
         </div>
@@ -202,7 +202,7 @@
     }
     .c-content.active{
       height:auto;
-      .title{
+      .tit{
         line-height: 2.8
       }
       .c-text{
