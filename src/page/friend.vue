@@ -82,7 +82,7 @@
             that.noGet=true;//如果返回总条数等于当前list长度
           }
         }
-        that.list.forEach(el => {
+        res.data.list.forEach(el => {
           el.isFull=false;
         el.fullTxt='全文'
       });
