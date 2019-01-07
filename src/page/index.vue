@@ -69,7 +69,7 @@
             </div>
           </div>
           <div class="sign" >
-            <x-input title='总朗读遍数' v-model='item.readTotal' placeholder='请输入' placeholder-align='right' @on-blur='bblur' text-align='right' type='tel' class="cc" ></x-input>
+            <x-input title='总朗读遍数' v-model='item.readTotal' placeholder='请输入' placeholder-align='right' @on-blur='bblur' text-align='right' type='tel' :max="5"  class="cc" ></x-input>
           </div>
         </div>
 
@@ -91,7 +91,7 @@
       <div>
         <datetime title='积善开始时间' v-model="begin" placeholder='请选择' text-align='right' class="cc p-line" ></datetime>
         <div class="l-put  p-line p-l">
-          <div class="label">积善持续年数</div> <input type="tel" placeholder="请输入年份"  v-model='end'  @blur="bblur" >
+          <div class="label">积善持续年数</div> <input type="tel" placeholder="请输入年份"  v-model='end' maxlength="5"  @blur="bblur">
         </div>
         <div class="card-com">
           <div class="l-pu">
@@ -99,7 +99,7 @@
             <van-stepper  v-model.number="number" class="l-mi" :min="0" />
           </div>
         </div>
-        <x-input title='累计积善件数' v-model='alls'  placeholder='请输入' placeholder-align='right' text-align='right' type='tel' class="cc"  ></x-input>
+        <x-input title='累计积善件数' v-model='alls'  placeholder='请输入' placeholder-align='right' text-align='right' type='tel' class="cc" :max="5" ></x-input>
       </div>
     </div>
 
@@ -173,8 +173,7 @@
     },
     methods: {
       addbook () {
-        let data={title:'',readCount:1,readTotal:0}
-        this.first.push(data)
+        this.first.push({title: '', readCount: 1, readTotal:0})
       },
       delbook (i) {
         this.first.splice(i,1)
@@ -202,16 +201,17 @@
         }
       },
       textM() {
-        window.scroll(0,0)
-        var myreg= /^[1][3,4,5,6,7,8,9][0-9]{9}$/
+        var myreg = /^[1][3,4,5,6,7,8,9][0-9]{9}$/
         if( myreg.test(this.mobile)) {
           this.$refs.Moblie.style.color = '#000'
+          window.scroll(0,0)
           this.Number = true
         } else {
           this.$refs.Moblie.style.color = 'red'
           this.Number = false
           this.layout = true
           this.verify()
+        window.scroll(0,0)
         }
       },
       verify() {
@@ -220,6 +220,7 @@
         }, 1500);
       },
       record () {
+        console.log(this.first,222)
         this.pass = true;
         if( !this.Number ) {
            return  this.layout = true
@@ -297,11 +298,9 @@
         const activeElement = document.activeElement
         if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
           setTimeout(() => {
-            // activeElement.scrollIntoView({block:'start'})
-            // window.scroll(0,0);
             activeElement.scrollIntoViewIfNeeded()
 
-          }, 0)
+          }, 10)
         }
       })
     },
@@ -310,10 +309,9 @@
         const activeElement = document.activeElement
         if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
           setTimeout(() => {
-            // window.scroll(0,0);
             activeElement.scrollIntoViewIfNeeded()
 
-          }, 0)
+          }, 10)
         }
       })
     },
