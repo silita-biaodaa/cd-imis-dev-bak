@@ -12,9 +12,9 @@ export default {
 
   name: 'app',
   beforeCreate(){
-    if(localStorage.getItem('groupList')){
-      localStorage.removeItem('groupList');
-    }
+    // if(localStorage.getItem('groupList')){
+    //   localStorage.removeItem('groupList');
+    // }
     if(localStorage.getItem('userName')){
       localStorage.removeItem('userName');
     }

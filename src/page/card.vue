@@ -128,11 +128,12 @@
           <textarea  :disabled='first' rows="4" placeholder='请输入您的感谢'  v-model="thanks" class="ccc" @blur='bblur'  ></textarea>
         </div>
 
-        <div class="card-btn" @click="punch">
+        <div class="card-btn" @click="maskFn">
            <div :class="[this.btnTitle =='提交'? 'card-div' : 'card-red' ]">
               {{btnTitle}}
            </div>
         </div>
+        <v-popup :popupShow="mask" :popupType="'tip1'" :tip-text="tipTxt" @sure="punch"></v-popup>
    </div>
 </template>
 <script>
@@ -151,10 +152,17 @@ export default {
       introspective: '', //省省悟
       thanks: '', //感谢
       btnTitle:'',
-      first:false
+      first:false,
+      mask:false,
+      tipTxt:'确认提交打卡信息吗？'
     }
   },
   methods: {
+    maskFn(){
+      if(this.btnTitle=='提交'){
+        this.mask=true
+      }
+    },
     gainPer() {
        recordPer({}).then( res => {
          console.log(res,157)

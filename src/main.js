@@ -9,6 +9,10 @@ import Vant from 'vant'
 import 'vant/lib/index.css'
 Vue.use(Vant)
 
+import Mint from 'mint-ui';
+import 'mint-ui/lib/style.css'
+Vue.use(Mint);
+
 import clocklist from '@/components/clockList'
 import popup from '@/components/popup'
 import head from '@/components/headgoto'
@@ -23,9 +27,7 @@ Vue.component('v-clock', clocklist)
 Vue.component('v-popup', popup)
 Vue.component('v-head', head)
 Vue.use(AlertPlugin)
-import Mint from 'mint-ui';
-import 'mint-ui/lib/style.css'
-Vue.use(Mint);
+
 
 import { queryList,User } from "./api/index"
 import util from "./util/util"
@@ -47,8 +49,8 @@ router.beforeEach((to, from, next) => {
         //进入打卡设置
         next()
       }else{
-        User({}).then( res => {
-          localStorage.setItem('userName',res.data.name);
+        User({}).then( resd => {
+          localStorage.setItem('userName',resd.data.name);
         })
       }
 
