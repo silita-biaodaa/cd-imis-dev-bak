@@ -135,6 +135,8 @@ export default {
 @import '../assets/iconfont.css';
 .group {
   background: #f5f5f5;
+  height: 100%;
+   overflow-y: scroll;
   .g-size {
     font-size: 34px;
     font-weight: 500px;

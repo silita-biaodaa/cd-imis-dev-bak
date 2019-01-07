@@ -156,7 +156,7 @@
         number: 1,
         alls: 0,
         values: '',
-        first: [{title:'六项精进',readCount:3,readTotal:0},{title:'大学',readCount:3,readTotal:0}],
+        first: [{title:'六项精进大纲',readCount:3,readTotal:0},{title:'大学开篇',readCount:3,readTotal:0}],
         pass: true,
         pickerValue: '',
         old:0,

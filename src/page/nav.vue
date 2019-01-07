@@ -77,7 +77,6 @@
       background: #fff;
       height: 100px;
       width: 100%;
-      // border: 1px solid red;
       position: fixed;
       left: 0;
       bottom: 0;
