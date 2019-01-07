@@ -67,23 +67,23 @@
       </h5>
       <div class="c-func">
 
-          <template v-if="item.isParise">
-            <div class="c-zan">
-                  <span class="icon pickZ"></span>
-                  <span  style="color:#E60012">赞</span>
-            </div>
-          </template>
-          <template v-else>
-            <div class="c-zan" @click="isPariseFn(index)">
-              <span class="icon pickZan"></span>
-              <span>赞</span>
-            </div>
-          </template>
+        <template v-if="item.isParise">
+          <div class="c-zan">
+            <span class="icon pickZ"></span>
+            <span  style="color:#E60012">赞</span>
+          </div>
+        </template>
+        <template v-else>
+          <div class="c-zan" @click="isPariseFn(index)">
+            <span class="icon pickZan"></span>
+            <span>赞</span>
+          </div>
+        </template>
 
 
         <!--<div class="c-zan">-->
-          <!--<span class="icon icon-fx"></span>-->
-          <!--<span>详情</span>-->
+        <!--<span class="icon icon-fx"></span>-->
+        <!--<span>详情</span>-->
         <!--</div>-->
       </div>
       <div class="laudBox" v-if="item.praise.length!=0" >
@@ -123,33 +123,31 @@
         this.$set(this.clocklist,i,obj);
       },
       isPariseFn(i){
-        console.log(this.name)
         let obj=this.clocklist[i];
         obj.isParise=true;
-        if(this.name==''){
-          return false
-        }
+        // if(this.name==''){
+        //   return false
+        // }
         let id=this.clocklist[i].pkid;
         let that=this;
         Parise({logId:id}).then(res =>{
-
           if(res.msg=='操作成功'){
-            if(that.strInArr(obj.praise)){
-              obj.praise.push(that.name);
+            if(that.strInArr(obj.praise,res.data)){
+              obj.praise.push(res.data);
             }
             that.$set(that.clocklist,i,obj);
           }else{
             that.$toast('因网络原因，点赞失败')
             obj.isParise=false;
           }
-      })
+        })
       },
-      strInArr(arr){
+      strInArr(arr,str){
         if(arr.length==0){
           return true
         }
         for(let x of arr){
-          if(x==this.name){
+          if(x==str){
             return false
           }else{
             return true
@@ -164,70 +162,71 @@
 <!-- 增加 "scoped" 属性 限制 CSS 属于当前部分 -->
 <style scoped lang='less'>
   .f-content{
+    background: #fff;
     overflow: hidden;
     padding: 37px;
     padding-left: 159px;
     border-bottom: 16px solid #F5F5F5;
     background: #fff;
     position: relative;
-    .full{
-      margin-top: 34px;
-      color: #E62129;
-      font-size: 28px
-    }
-    .c-img {
-      height: 83px;
-      width: 83px;
-      position: absolute;
-      background: red;
-      border-radius: 50%;
-      top: 37px;
-      left: 37px;
-      img{
-        width: 100%;
-        border-radius: 50%
-      }
-    }
-    .c-name {
-      color :#010101;
-      font-weight: 500;
-      font-size: 36px;
-      .fc-n {
-        color: #633B1E;
-      }
-    }
-    .c-content {
-      overflow: hidden;
-      height: 280px;
-      margin-bottom: 30px;
-    }
-    .c-content.active{
-      height:auto;
-      .tit{
-        line-height: 2.8
-      }
-      .c-text{
-        margin-top: 14px;
-      }
-    }
-    .c-time {
-      color: #ccc;
-      font-size: 24px;
-      margin-top: 5px;
-      span{
-        margin-right:55px;
-      }
-    }
-    .c-text {
-      color: #000;
-      font-size: 28px;
-      color: #000;
-      font-weight: 400;
-      margin-top: 34px;
-      .c-color {
-        color:#999;
-      }
-    }
+  .full{
+    margin-top: 34px;
+    color: #E62129;
+    font-size: 28px
+  }
+  .c-img {
+    height: 83px;
+    width: 83px;
+    position: absolute;
+    background: red;
+    border-radius: 50%;
+    top: 37px;
+    left: 37px;
+  img{
+    width: 100%;
+    border-radius: 50%
+  }
+  }
+  .c-name {
+    color :#010101;
+    font-weight: 500;
+    font-size: 36px;
+  .fc-n {
+    color: #633B1E;
+  }
+  }
+  .c-content {
+    overflow: hidden;
+    height: 295px;
+    margin-bottom: 30px;
+  }
+  .c-content.active{
+    height:auto;
+  .tit{
+    line-height: 2.8
+  }
+  .c-text{
+    margin-top: 14px;
+  }
+  }
+  .c-time {
+    color: #ccc;
+    font-size: 24px;
+    margin-top: 5px;
+  span{
+    margin-right:55px;
+  }
+  }
+  .c-text {
+    color: #000;
+    font-size: 28px;
+    color: #000;
+    font-weight: 400;
+    margin-top: 34px;
+  .c-color {
+    color:#999;
+  }
+  }
   }
   .laudBox{
     background: #F5F5F5;
@@ -238,8 +237,8 @@
     align-items: center;
   }
   .c-func {
-    // margin-top: 100px;
-    // margin-bottom: 39px;
+  // margin-top: 100px;
+  // margin-bottom: 39px;
     float: right;
     width: 150px;
     color: #999;
@@ -247,14 +246,14 @@
     display: flex;
     justify-content: space-between;
     overflow: hidden;
-    .iconfont{
-      margin-right: 7px
-    }
-    .c-zan{
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-    }
+  .iconfont{
+    margin-right: 7px
+  }
+  .c-zan{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
   }
   .icon{
     width: 34px;
@@ -283,19 +282,19 @@
     box-sizing: border-box;
     position: relative;
     padding-left: 24px;
-    img {
-      height: 25px;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 28px;
-      margin-right: 22px;
-    }
-    p {
-      padding-left: 50px;
-      color:#633B1E;
-      font-size: 28px;
-    }
+  img {
+    height: 25px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px;
+    margin-right: 22px;
+  }
+  p {
+    padding-left: 50px;
+    color:#633B1E;
+    font-size: 28px;
+  }
   }
 
 
