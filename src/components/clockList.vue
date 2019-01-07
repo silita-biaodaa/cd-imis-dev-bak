@@ -11,7 +11,7 @@
         <p class="c-time"><span>{{item.pushd}}</span>打卡第{{item.pushCount.putCount}}次</p>
         <div class="c-text" >
           <!-- 知 学习 -->
-          <p class="title">【知～学习】</p>
+          <p class="tit">【知～学习】</p>
           <div v-for="(el,bs) in item.books" :key="bs">
             <p class="c-color" v-if="el.readCount!=0">《{{el.title}}》{{el.readCount}}遍 共{{el.readTotal}}遍</p>
           </div>
@@ -164,6 +164,7 @@
 <!-- 增加 "scoped" 属性 限制 CSS 属于当前部分 -->
 <style scoped lang='less'>
   .f-content{
+    background: #fff;
     overflow: hidden;
     padding: 37px;
     padding-left: 159px;
