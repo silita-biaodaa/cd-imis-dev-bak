@@ -124,16 +124,15 @@
               感谢
           </div>
        </div>
-       <div class="card-put btn-b">
+       <div class="card-put">
           <textarea  :disabled='first' rows="4" placeholder='请输入您的感谢'  v-model="thanks" class="ccc" @blur='bblur'  ></textarea>
         </div>
 
-        <div class="card-btn" @click="maskFn">
+        <div class="card-btn" @click="punch">
            <div :class="[this.btnTitle =='提交'? 'card-div' : 'card-red' ]">
               {{btnTitle}}
            </div>
         </div>
-        <v-popup :popupShow="mask" :popupType="'tip1'" :tip-text="tipTxt" @sure="punch"></v-popup>
    </div>
 </template>
 <script>
@@ -152,18 +151,10 @@ export default {
       introspective: '', //省省悟
       thanks: '', //感谢
       btnTitle:'',
-      first:false,
-      mask:false,
-      tipTxt:''
+      first:false
     }
   },
   methods: {
-    maskFn(){
-      if(this.btnTitle=='提交'){
-        this.tipTxt='确认提交打卡信息吗？';
-        this.mask=true;
-      }
-    },
     gainPer() {
        recordPer({}).then( res => {
          console.log(res,157)
@@ -246,8 +237,7 @@ export default {
 <style lang="less" >
 .card{
    background: #F5F5F5;
-   height: 100%;
-   overflow-y: scroll;
+
 .l-pu {
     height: 96px;
    font-size: 32px;
@@ -397,9 +387,7 @@ export default {
     font-size: 32px;
     background: #fff;
     padding: 36px;
- }
- .btn-b {
-    margin-bottom: 200px;  
+    // height: ;
  }
  .card-ma {
     margin-top: 10px;
@@ -410,11 +398,9 @@ export default {
    padding: 10px 36px;
  }
  .card-btn {
-    position: fixed;
-    bottom: 150px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
+    margin-top: 110px;
+    padding: 0 32px;
+    padding-bottom: 32px;
     .card-div {
       height: 96px;
       font-size: 36px;
