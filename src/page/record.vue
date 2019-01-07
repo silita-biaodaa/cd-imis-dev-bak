@@ -3,7 +3,7 @@
         <div class="calender">
             <div class="ui-datepicker-wrapper ui-datepicker-wrapper-show">
                 <div class="header">
-                    <span class="datepicker">{{headYear}}年{{thisMonthDays.month}}月 <span class="arrow"></span></span>
+                    <span class="datepicker" @click="datePicker">{{headYear}}年{{thisMonthDays.month}}月 <span class="arrow"></span></span>
                     <span class="dategroup" @click="groupPopup"><span class="txt">{{popup.groupName}}</span> <span class="arrow"></span></span>
                   <span class="personal" @click="userPopup"><span class="txt">{{popup.userName}}</span><span class="arrow"></span></span>
                 </div>
@@ -34,20 +34,20 @@
             <div class="cardPer">
                 <template v-if="type=='groups'">
                     <p>
-                        <span class="title">打卡人数：{{cardStatistics.cardsPer.length}}人</span>
+                        <span class="tit">打卡人数：{{cardStatistics.cardsPer.length}}人</span>
                         <span v-if="cardStatistics.cardsPer.length>0">({{cardStatistics.cardsPer.join(',')}})</span>
                     </p>
                     <p>
-                        <span class="title">缺卡人数：{{cardStatistics.noCardsPer.length}}人</span>
+                        <span class="tit">缺卡人数：{{cardStatistics.noCardsPer.length}}人</span>
                         <span v-if="cardStatistics.noCardsPer.length>0">({{cardStatistics.noCardsPer.join(',')}})</span>
                     </p>
                 </template>
                 <template v-else>
                     <p>
-                        <span class="title">打卡次数：{{cardStatistics.userCard}}次</span>
+                        <span class="tit">打卡次数：{{cardStatistics.userCard}}次</span>
                     </p>
                     <p>
-                        <span class="title">缺卡次数：{{cardStatistics.noUserCard}}次</span>
+                        <span class="tit">缺卡次数：{{cardStatistics.noUserCard}}次</span>
                     </p>
                 </template>
             </div>
@@ -55,6 +55,16 @@
                 <mt-picker :slots="popup.slots" value-key="groName" ref="picker"></mt-picker>
                 <button @click="confirm" class="sureBtn">确定</button>
             </mt-popup>
+            <van-popup v-model="dateObj.dateMask" position="bottom" :overlay="true">
+              <van-datetime-picker
+                type="year-month"
+                :formatter="dateConfirm"
+                :min-date="dateObj.minDate"
+                :max-date="dateObj.maxDate"
+                v-model="dateObj.date"
+                @confirm="confirm"
+              ></van-datetime-picker>
+            </van-popup>
         </div>
         <v-clock :clocklist="list"></v-clock>
     </div>
@@ -77,6 +87,7 @@ export default {
             list:[],//打卡记录list
             type:'groups',//模式，个人or群组
             groupArr:[],//打卡日历list
+            groupCreat:'',
             cardStatistics:{
                 cardsPer:[],//群组内打卡人
                 noCardsPer:[],//群组内缺卡人
@@ -92,15 +103,17 @@ export default {
                 userName:'选择个人',
                 groupid:'',
                 userid:'',
+            },
+            dateObj:{
+              dateMask:false,
+              minDate:new Date('2019-01'),
+              maxDate:new Date(),
+              date:''
             }
 
         };
     },
     created() {
-        if(localStorage.getItem('groupList')==''||localStorage.getItem('groupList')==undefined){
-            this.$toast('您没有群组或网络连接有问题');
-            this.$router.go(-1);
-        }
         var list=localStorage.getItem('groupList');
         list=JSON.parse(list);
         this.groups=list;
@@ -115,6 +128,19 @@ export default {
         }
     },
     methods: {
+        //
+        dateConfirm(type,value){
+          if (type === 'year') {
+            return `${value}年`;
+          } else if (type === 'month') {
+            return `${value}月`
+          }
+          return value;
+        },
+        //日期选择
+        datePicker(){
+          this.dateObj.dateMask=true;
+        },
         //群组选择
         groupPopup(){
             this.popup.slots[0].values=this.groups;
@@ -125,9 +151,17 @@ export default {
             this.popup.mask=true;
         },
         //确认
-        confirm(){
+        confirm(pick){
             let picker=this.$refs.picker.getValues()[0];
-            let timeStr=this.setYear+'-'+this.fillZero(this.setMonth)+'-'+this.fillZero(this.setDay);
+            let year=this.setYear,
+                mon=this.fillZero(this.setMonth),
+                da=this.fillZero(this.setDay);
+            if(this.dateObj.dateMask){
+              year=pick.getFullYear();
+              mon=this.fillZero(pick.getMonth()+1);
+              da='01';
+            }
+            let timeStr=year+'-'+mon+'-'+da;
             //每次点击确认，重置页码
             this.pageList={total: '',pageNo:1,pageSize:2};
 
@@ -151,6 +185,7 @@ export default {
                 this.getUsersDate(picker.pkid,this.setYear+'-'+this.fillZero(this.setMonth)+'-01')
             }
             this.popup.mask=false;
+            this.dateObj.dateMask=false;
         },
         //个人选择
         userPopup(){
@@ -246,19 +281,23 @@ export default {
                     active=true;
                 }
                 let cardType='';
+                let sss=this.setYear+'-'+this.fillZero(this.setMonth)+'-'+this.fillZero(showDate),
+                    dateTime=new Date(sss).getTime(),
+                    creatTime=new Date(this.groupCreat).getTime();
                 if(groupArr.length>0){
                     for(let x of groupArr){
-                        if(ifThisMonthDays&&x==showDate){
+                        let ddd=x.date.substr(-2);
+                        if(ifThisMonthDays&&ddd==showDate){
                           cardType='0';//打卡
                           break
-                        }else if(ifThisMonthDays&&x!=showDate&&showDate<this.setDay){
+                        }else if(ifThisMonthDays&&ddd!=showDate&&showDate<this.setDay&&dateTime>=creatTime){
                           cardType='1'
                         }else{
                           cardType=''
                         }
                     }
                 }else{
-                    if(ifThisMonthDays&&showDate<this.setDay){
+                    if(ifThisMonthDays&&showDate<this.setDay&&dateTime>=creatTime){
                       cardType='1'
                     }else{
                       cardType=''
@@ -339,14 +378,18 @@ export default {
                 date:str,
             };
             CardRecord.groupsDate(data).then(res =>{
-                if(res.data.length>0){
-                    for(let x of res.data){
+                if(res.data.list.length>0){
+                    for(let x of res.data.list){
                         if(x.lostCount==0){
-                          arr.push(x.days.substr(-2));
+                          let data={
+                            date:x.days
+                          }
+                          arr.push(data);
                         }
                     }
                     this.groupArr=arr;
                 }
+                this.groupCreat=res.data.created
                 //日历初始化
                 this.getMonthData(this.setYear,this.setMonth);
             })
@@ -439,7 +482,11 @@ export default {
             CardRecord.usersDate(data).then(res =>{
                 if(res.data.list.length>0){
                     for(let x of res.data.list){
-                        arr.push(x.pushd.substr(-2));
+                        let data={
+                            date:x.days,
+                        }
+                        this.groupCreat=x.creat
+                        arr.push(data);
                     }
                 }
                 this.groupArr=arr;
@@ -461,6 +508,18 @@ export default {
 }
 .picker-item.picker-selected{
     font-size: 32px
+}
+.van-picker-column__item{
+  font-size: 32px;
+}
+body .van-picker__cancel,body .van-picker__confirm{
+  font-size: 28px;
+  color: #E62129;
+  padding: 0 20px;
+}
+body .van-picker__toolbar{
+  height: 80px;
+  line-height: 80px;
 }
 body .mask{
   max-height: 100vh;
@@ -594,7 +653,7 @@ body .mask{
             color: #ccc;
             max-width:calc(100% - 76px);
         }
-        .title{
+        .tit{
             color: #999;
             margin-right: 10px
         }
