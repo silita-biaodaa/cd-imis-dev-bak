@@ -108,10 +108,8 @@ export default {
       })
     },
     addGroups(val) {
-      console.log(1111)
        Addgroup({groId:val.groId}).then( res => {
-         console.log(res,61)
-          if(res.code == 403 ) {
+          if(res.code == 1 ) {
                  this.onSearch()
           }
        })
