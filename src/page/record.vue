@@ -67,6 +67,7 @@
             </van-popup>
         </div>
         <v-clock :clocklist="list"></v-clock>
+        <v-popup :popup-type="'recordTip'" :popup-show="mask" @sure="sureFn"></v-popup>
     </div>
 </template>
 <script>
@@ -109,19 +110,23 @@ export default {
               minDate:new Date('2019-01'),
               maxDate:new Date(),
               date:''
-            }
+            },
+            mask:false
 
         };
     },
     created() {
         this.loading();
+        //首次加载静态日历
+        this.getMonthData(this.setYear,this.setMonth,true);
         var list=localStorage.getItem('groupList');
+        if(list==undefined||list.length==0){
+          this.mask=true;
+        }
         list=JSON.parse(list);
         this.groups=list;
         this.popup.groupName=list[0].groName;
         this.popup.groupid=list[0].groId;
-        //首次加载静态日历
-        this.getMonthData(this.setYear,this.setMonth,true);
         this.getGroupsDate(this.groups[0].groId,this.setYear+'-'+this.fillZero(this.setMonth)+'-01');
         this.getGroupsUser(this.groups[0].groId,this.setYear+'-'+this.fillZero(this.setMonth)+'-'+this.fillZero(this.setDay))
     },
@@ -131,6 +136,10 @@ export default {
         }
     },
     methods: {
+        //确定跳转
+        sureFn(){
+          this.$router.push({path:'/nav/group'})
+        },
         //
         dateConfirm(type,value){
           if (type === 'year') {
@@ -293,11 +302,11 @@ export default {
                       creatTime=new Date(this.groupCreat).getTime();
                     if(groupArr.length>0){
                       for(let x of groupArr){
-                        let ddd=x.date.substr(-2);
-                        if(ifThisMonthDays&&ddd==showDate){
+                        let days=new Date(x.date).getTime();
+                        if(ifThisMonthDays&&days==dateTime){
                           cardType='0';//打卡
                           break
-                        }else if(ifThisMonthDays&&ddd!=showDate&&showDate<this.setDay&&dateTime>=creatTime){
+                        }else if(ifThisMonthDays&&days!=dateTime&&showDate<this.setDay&&dateTime>=creatTime){
                           cardType='1'
                         }else{
                           cardType=''
@@ -499,12 +508,13 @@ export default {
                 if(res.data.list.length>0){
                     for(let x of res.data.list){
                         let data={
-                            date:x.days,
+                            date:x.pushd,
                         }
-                        this.groupCreat=x.creat
+                        this.groupCreat=x.created
                         arr.push(data);
                     }
                 }
+
                 this.groupArr=arr;
                 this.cardStatistics.userCard=res.data.pushCount;
                 this.cardStatistics.noUserCard=res.data.lostCount;
