@@ -419,7 +419,7 @@ export default {
                 that.list=[];
             }
             CardRecord.groupsCard(data).then( res => {
-                that.hideLoading();
+                // that.hideLoading();
                 that.isScroll=true;
                 if(res){
                     if(that.pageList.pageNo>1){
@@ -447,7 +447,7 @@ export default {
                 date:str,
             }
             CardRecord.groupsUser(data).then( res => {
-                this.hideLoading();
+                // this.hideLoading();
                 if(res.data){
                     that.cardStatistics.cardsPer=res.data.push;
                     that.cardStatistics.noCardsPer=res.data.lost;
@@ -467,7 +467,7 @@ export default {
                 that.list=[];
             }
             CardRecord.userCard(data).then( res => {
-                this.hideLoading();
+                // this.hideLoading();
                 that.isScroll=true;
                 if(res){
                     if(that.pageList.pageNo>1){
