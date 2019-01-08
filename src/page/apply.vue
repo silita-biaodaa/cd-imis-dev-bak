@@ -110,7 +110,8 @@ export default {
     addGroups(val) {
        Addgroup({groId:val.groId}).then( res => {
           if(res.code == 1 ) {
-                 this.onSearch()
+              this.onSearch()
+              val.isApply = 1
           }
        })
     }
