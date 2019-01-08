@@ -105,6 +105,7 @@
           keywords:this.keywords,
         }
         CardRecord.groupPerson(data).then(res =>{
+          this.hideLoading();
           if(res){
             that.list=res.data.list
             if(that.pageList.pageNo>1){
@@ -152,6 +153,7 @@
       },
     },
     created () {
+      this.loading();
       this.groupName=this.$route.query.name;
       this.type=this.$route.query.type;
       this.groId=this.$route.query.id;
@@ -256,7 +258,7 @@
   li:last-child{
     border-bottom: none;
   }
- 
+
 }
 .groupUser {
   .van-search {
@@ -283,5 +285,5 @@
      font-size: 40px;
   }
 }
- 
+
 </style>

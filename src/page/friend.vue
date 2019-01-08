@@ -69,6 +69,7 @@
         }
         Friends(data).then( res => {
           //  that.list = res.data.list;
+          that.hideLoading();
           that.isScroll=true;
         if(res){
           if(that.pageList.pageNo>1){
@@ -124,6 +125,7 @@
       },
     },
     created () {
+      this.loading();
       if(this.$route.query.id){
         let id=this.$route.query.id;
         this.gainUser(id);

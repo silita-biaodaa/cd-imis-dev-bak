@@ -102,6 +102,7 @@ export default {
       },
       gainGroup() {
         groups({}).then( res => {
+            this.hideLoading();
            if(res.code == 1) {
               this.join = res.data.join
               this.creates = res.data.create
@@ -123,6 +124,7 @@ export default {
       }
     },
     created () {
+      this.loading();
       this.gainGroup()
       this.gainInform()
     },

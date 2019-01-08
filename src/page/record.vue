@@ -114,6 +114,7 @@ export default {
         };
     },
     created() {
+        this.loading();
         var list=localStorage.getItem('groupList');
         list=JSON.parse(list);
         this.groups=list;
@@ -168,6 +169,7 @@ export default {
             this.pageList={total: '',pageNo:1,pageSize:2};
 
             if(this.type=='groups'){
+                this.loading();
                 this.popup.groupName=picker.groName;
                 this.popup.groupid=picker.groId;
                 //群组打卡
@@ -179,6 +181,7 @@ export default {
                 //群组成员
                 // this.userPopup();
             }else if(this.type=='user'){
+                this.loading();
                 this.popup.userName=picker.name;
                 this.popup.userid=picker.pkid;
                 //个人打卡
@@ -397,7 +400,8 @@ export default {
                     }
                     this.groupArr=arr;
                 }
-                this.groupCreat=res.data.created
+                this.groupCreat=res.data.created;
+                this.hideLoading();
                 //日历初始化
                 this.getMonthData(this.setYear,this.setMonth);
             })
@@ -415,6 +419,7 @@ export default {
                 that.list=[];
             }
             CardRecord.groupsCard(data).then( res => {
+                that.hideLoading();
                 that.isScroll=true;
                 if(res){
                     if(that.pageList.pageNo>1){
@@ -442,6 +447,7 @@ export default {
                 date:str,
             }
             CardRecord.groupsUser(data).then( res => {
+                this.hideLoading();
                 if(res.data){
                     that.cardStatistics.cardsPer=res.data.push;
                     that.cardStatistics.noCardsPer=res.data.lost;
@@ -461,6 +467,7 @@ export default {
                 that.list=[];
             }
             CardRecord.userCard(data).then( res => {
+                this.hideLoading();
                 that.isScroll=true;
                 if(res){
                     if(that.pageList.pageNo>1){
@@ -488,6 +495,7 @@ export default {
                 date:str,
             };
             CardRecord.usersDate(data).then(res =>{
+                this.hideLoading();
                 if(res.data.list.length>0){
                     for(let x of res.data.list){
                         let data={
