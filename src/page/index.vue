@@ -36,8 +36,21 @@
         </div>
         <span class='home-size' >打卡时间</span>
       </div>
-      <div class="sign p-line">
-        <datetime title='打卡始于时间' v-model="tiems" placeholder='请选择' class="cc" ></datetime>
+      <div class="time-sel" @click='datePicker' >
+         <span>打卡始于时间</span>
+         <span>{{tiems}}</span>
+        <!-- <datetime title='打卡始于时间' v-model="tiems" placeholder='请选择' class="cc" ></datetime> -->
+        <van-popup v-model="dateObj.dateMask" position="bottom" :overlay="true">
+              <van-datetime-picker
+                type="date"
+                :formatter="dateConfirm"
+                :max-date=" new Date()"
+                v-model="newTime"
+                style="height:450px;"
+                :item-height='55'
+                @confirm='confirm' 
+              ></van-datetime-picker>
+       </van-popup>
       </div>
       <div class="l-put"  >
         <div class="label">打卡次数</div> <input type="tel" placeholder="请输入打卡次数" v-model='count' @keyup='text' @blur='bblur' >
@@ -95,7 +108,23 @@
         <span  class='home-size' >积善行</span>
       </div>
       <div>
-        <datetime title='积善开始时间' v-model="begin" placeholder='请选择' text-align='right' class="cc p-line" ></datetime>
+          <div class="time-sel" @click='datePicker' >
+           <span>积善开始时间</span>
+           <span>{{begin}}</span>
+          <!-- <datetime title='打卡始于时间' v-model="tiems" placeholder='请选择' class="cc" ></datetime> -->
+          <van-popup v-model="dateObj.dateMasks" position="bottom" :overlay="true">
+                <van-datetime-picker
+                  type="date"
+                  :formatter="dateConfirm"
+                  :max-date=" new Date()"
+                  v-model="begins"
+                  style="height:450px;"
+                  :item-height='55'
+                  @confirm='confirms' 
+                ></van-datetime-picker>
+         </van-popup>
+      </div>
+        <!-- <datetime title='积善开始时间' v-model="begin" placeholder='请选择' text-align='right' class="cc p-line" ></datetime> -->
         <div class="l-put  p-line p-l">
           <div class="label five">积善持续年数</div> <input type="tel" placeholder="请输入年份"  v-model='end'   @blur="bblur">
         </div>
@@ -147,8 +176,8 @@
   </div>
 </template>
 <script>
-  import  util  from '../util/util'
-  import { recordBook } from "@/api/index";
+  import util from '../util/util'
+  import { recordBook } from "@/api/index"
   import { dateFormat } from 'vux'
   import { Toast } from 'vant'
   export default {
@@ -158,43 +187,75 @@
         company: '',
         post: '',
         mobile: '',
-        tiems: '',
+        tiems: '',  
         count: 0,
         begin: '',
         end: 1,
         number: 1,
         alls: 0,
         values: '',
-        first: [{title:'六项精进大纲',readCount:3,readTotal:0},{title:'大学开篇',readCount:3,readTotal:0}],
+        first: [{title: '六项精进大纲', readCount: 3, readTotal: 0}, {title: '大学开篇', readCount: 3, readTotal: 0}],
         pass: true,
         pickerValue: '',
-        old:0,
-        Number:true,
-        mask:true,
+        old: 0,
+        Number: true,
+        mask: true,
         layout: false,
-        text1:false,
-        text2:false,
-        text3:false
+        text1: false,
+        text2: false,
+        text3: false,
+        dateObj: {
+          dateMask: false,
+          dateMasks: false
+        },
+        newTime: '',
+        begins: ''
       }
     },
     computed:{
 
     },
     methods: {
+      dateConfirm(type,value){
+          if (type === 'year') {
+            return `${value}年`;
+          } else if (type === 'month') {
+            return `${value}月`
+          } else {
+            return `${value}日`
+          }
+          return value;
+        },
+      datePicker () {
+          this.dateObj.dateMask = !this.dateObj.dateMask
+      },
+      confirms() {
+        this.begin = dateFormat(val, 'YYYY-MM-DD')
+      },
+      confirm (val) {
+        var s1 = new Date(val);
+        var s2 = new Date();//当前日期
+        var days = s2.getTime() - s1.getTime();
+        this.count = parseInt(days / (1000 * 60 * 60 * 24))
+        this.old = parseInt(days / (1000 * 60 * 60 * 24))
+        this.tiems = dateFormat(val, 'YYYY-MM-DD')
+      },
       addbook () {
         this.first.push({title: '', readCount: 1, readTotal:0})
       },
       delbook (i) {
         this.first.splice(i,1)
       },
-      bblur() {
+      bblur () {
         window.scroll(0,0);
       },
-      bid() {
+      bid () {
         document.body.scrollTop= 0;
       },
       getTime () {
         this.tiems = dateFormat(new Date(), 'YYYY-MM-DD')
+        this.newTime = new Date();
+        this.begins =  new Date()
         this.begin = dateFormat(new Date(), 'YYYY-MM-DD')
       },
       func (index) {
@@ -204,12 +265,12 @@
           return true
         }
       },
-      text() {
+      text () {
         if(this.count >= this.old) {
           this.count = this.old
         }
       },
-      textM() {
+      textM () {
         var myreg = /^[1][3,4,5,6,7,8,9][0-9]{9}$/
         if( myreg.test(this.mobile)) {
           this.$refs.Moblie.style.color = '#000'
@@ -280,22 +341,22 @@
       pickerValue(val) {
         this.tiems = util.itcTiem(this.pickerValue)
       },
-      tiems(val) {
-        console.log(val)
-        var s1 = new Date(val.replace(/-/g, "/"));
-        var s2 = new Date();//当前日期
-        var days = s2.getTime() - s1.getTime();
-        if(days >= 0) {
-          this.old = parseInt(days / (1000 * 60 * 60 * 24));
-          this.count = parseInt(days / (1000 * 60 * 60 * 24));
-        } else {
-          this.count = 0
-          setTimeout(() => {
-            this.tiems = dateFormat(new Date(), 'YYYY-MM-DD')
-          }, 100);
+      // tiems(val) {
+      //   console.log(val)
+      //   var s1 = new Date(val.replace(/-/g, "/"));
+      //   var s2 = new Date();//当前日期
+      //   var days = s2.getTime() - s1.getTime();
+      //   if(days >= 0) {
+      //     this.old = parseInt(days / (1000 * 60 * 60 * 24));
+      //     this.count = parseInt(days / (1000 * 60 * 60 * 24));
+      //   } else {
+      //     this.count = 0
+      //     setTimeout(() => {
+      //       this.tiems = dateFormat(new Date(), 'YYYY-MM-DD')
+      //     }, 100);
 
-        }
-      }
+      //   }
+      // }
     },
     created () {
       this.getTime()
@@ -303,26 +364,45 @@
     components: {
     },
     mounted() {
-      window.addEventListener('resize', () => {
-        const activeElement = document.activeElement
-        if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
-          setTimeout(() => {
-            activeElement.scrollIntoViewIfNeeded()
+      // window.addEventListener('resize', () => {
+      //   const activeElement = document.activeElement
+      //   if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
+      //     setTimeout(() => {
+      //       activeElement.scrollIntoViewIfNeeded()
 
-          }, 0)
-        }
-      })
+      //     }, 0)
+      //   }
+      // }),
+      // window.addEventListener('scroll',() => {
+      //       const activeElement = document.activeElement
+      //   if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
+      //     setTimeout(() => {
+      //       // activeElement.disabled = 'true'
+      //       // console.log(activeElement.tagName)
+
+      //     }, 0)
+      //   } 
+      // });
     },
     beforeDestroy() {
-      window.removeEventListener('resize', () => {
-        const activeElement = document.activeElement
-        if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
-          setTimeout(() => {
-            activeElement.scrollIntoViewIfNeeded()
+      // window.removeEventListener('resize', () => {
+      //   const activeElement = document.activeElement
+      //   if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
+      //     setTimeout(() => {
+      //       activeElement.scrollIntoViewIfNeeded()
 
-          }, 0)
-        }
-      })
+      //     }, 0)
+      //   }
+      // }),
+      //   window.addEventListener('scroll',() => {
+      //       const activeElement = document.activeElement
+      //   if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
+      //     setTimeout(() => {
+      //       // activeElement.disabled = 'false'
+      //       console.log(activeElement)
+      //     }, 0)
+      //   } 
+      // });
     },
 
   }
@@ -336,13 +416,16 @@
     overflow: hidden;
   }
   body  {
-     overflow-x: hidden;
-     overflow-y: auto;
+    //  overflow-x: hidden;
+    //  overflow-y: auto;
   }
   .home {
     box-sizing: border-box;
   
     background: #f5f5f5;
+    .van-picker-column__item {
+      font-size: 45px;
+    }
   .toast {
     position: fixed;
     left: 50%;
@@ -615,6 +698,15 @@
       height: 100%;
       width: auto;
     }
+  }
+  .time-sel {
+     padding-left:10px; 
+     line-height: 96px;
+     font-size: 32px;
+     color: #000; 
+     display: flex;
+     justify-content: space-between;
+     border-bottom: 1px solid #f5f5f5;
   }
 
 

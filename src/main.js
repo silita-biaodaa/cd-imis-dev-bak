@@ -26,7 +26,7 @@ Vue.component('group', Group)
 Vue.component('v-clock', clocklist)
 Vue.component('v-popup', popup)
 Vue.component('v-head', head)
-Vue.use(AlertPlugin)
+// Vue.use(AlertPlugin)
 
 
 //load层
@@ -88,13 +88,6 @@ router.beforeEach((to, from, next) => {
   }else{
     next();
   }
-
-
-
-
-
-
-
 }
 })
 new Vue({

@@ -128,7 +128,6 @@ export default {
       // console.group('销毁完成状态===============》destroyed');
     },
   components: {
-
   }
 }
 </script>
