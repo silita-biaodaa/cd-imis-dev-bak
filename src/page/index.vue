@@ -108,7 +108,7 @@
         <span  class='home-size' >积善行</span>
       </div>
       <div>
-          <div class="time-sel" @click='datePicker' >
+          <div class="time-sel" @click='datePickers' >
            <span>积善开始时间</span>
            <span>{{begin}}</span>
           <!-- <datetime title='打卡始于时间' v-model="tiems" placeholder='请选择' class="cc" ></datetime> -->
@@ -229,7 +229,11 @@
       datePicker () {
           this.dateObj.dateMask = !this.dateObj.dateMask
       },
-      confirms() {
+      datePickers() {
+        this.dateObj.dateMasks = !this.dateObj.dateMasks
+      },
+      confirms (val) {
+        
         this.begin = dateFormat(val, 'YYYY-MM-DD')
       },
       confirm (val) {
