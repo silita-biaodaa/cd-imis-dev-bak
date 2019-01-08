@@ -119,6 +119,8 @@ export default {
         this.groups=list;
         this.popup.groupName=list[0].groName;
         this.popup.groupid=list[0].groId;
+        //首次加载静态日历
+        this.getMonthData(this.setYear,this.setMonth,true);
         this.getGroupsDate(this.groups[0].groId,this.setYear+'-'+this.fillZero(this.setMonth)+'-01');
         this.getGroupsUser(this.groups[0].groId,this.setYear+'-'+this.fillZero(this.setMonth)+'-'+this.fillZero(this.setDay))
     },
@@ -238,7 +240,7 @@ export default {
             return s < 10 ? '0' + s : s;
         },
         //日历初始化
-        getMonthData(year,month){
+        getMonthData(year,month,first){
             let groupArr=this.groupArr;
             // groupArr=['01','02'];
             var firstDay = new Date(year,month - 1, 1);
@@ -277,15 +279,17 @@ export default {
                 if (thisMonth === 0) thisMonth = 12;
                 if (thisMonth === 13) thisMonth = 1;
                 let active=false;
-                if(this.setDay!=''&&showDate==this.setDay&&ifThisMonthDays&&year==this.setYear&&month==this.setMonth){
-                    active=true;
-                }
                 let cardType='';
-                let sss=this.setYear+'-'+this.fillZero(this.setMonth)+'-'+this.fillZero(showDate),
-                    dateTime=new Date(sss).getTime(),
-                    creatTime=new Date(this.groupCreat).getTime();
-                if(groupArr.length>0){
-                    for(let x of groupArr){
+                //如果第一次进，不载数据
+                if(!first){
+                  if(this.setDay!=''&&showDate==this.setDay&&ifThisMonthDays&&year==this.setYear&&month==this.setMonth){
+                    active=true;
+                  }
+                  let sss=this.setYear+'-'+this.fillZero(this.setMonth)+'-'+this.fillZero(showDate),
+                      dateTime=new Date(sss).getTime(),
+                      creatTime=new Date(this.groupCreat).getTime();
+                    if(groupArr.length>0){
+                      for(let x of groupArr){
                         let ddd=x.date.substr(-2);
                         if(ifThisMonthDays&&ddd==showDate){
                           cardType='0';//打卡
@@ -295,14 +299,18 @@ export default {
                         }else{
                           cardType=''
                         }
-                    }
-                }else{
-                    if(ifThisMonthDays&&showDate<this.setDay&&dateTime>=creatTime){
-                      cardType='1'
+                      }
                     }else{
-                      cardType=''
+                      if(ifThisMonthDays&&showDate<this.setDay&&dateTime>=creatTime){
+                        cardType='1'
+                      }else{
+                        cardType=''
+                      }
                     }
                 }
+
+
+
 
                 this.ret.push({
                     month: thisMonth,

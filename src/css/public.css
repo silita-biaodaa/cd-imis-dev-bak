@@ -73,7 +73,3 @@ html,body {
   .top {
     margin-top: 10px;
   }
-
-  div{
-    -webkit-overflow-scrolling: touch;
-  }
