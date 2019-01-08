@@ -21,6 +21,12 @@
                 <button @click="cancelFn">确定</button>
               </div>
             </template>
+            <template v-if="popupType=='recordTip'">
+              <div class="tipBox">
+                <div class="txt-box">您还没有群组，请先加入或创建群组</div>
+                <button @click="sure">确定</button>
+              </div>
+            </template>
         </div>
     </div>
 </template>
