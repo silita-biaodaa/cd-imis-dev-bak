@@ -72,7 +72,7 @@
         <div class="left">
           <div class="sign p-line  ">
             <div class="l-put"  > 
-              <div class="label">书本名称</div> <input type="tel" placeholder="请输入书本名称" v-model='item.title'  @blur='bblur'  >
+              <div class="label">书本名称</div> <input type="text" placeholder="请输入书本名称" v-model='item.title'  @blur='bblur'  >
             </div>
             <!-- <x-input title='书本名称' v-model='item.title' placeholder='请输入书本名称' @on-blur='bblur' placeholder-align='right' text-align='right' class="cc" ></x-input> -->
           </div>
