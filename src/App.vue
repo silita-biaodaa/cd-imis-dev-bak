@@ -28,6 +28,9 @@ export default {
       arr=res.data;
       localStorage.setItem('groupList',JSON.stringify(arr));
     })
+  },
+  destroyed () {
+    localStorage.removeItem('zeno')
   }
 }
 </script>

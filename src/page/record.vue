@@ -114,11 +114,14 @@ export default {
         };
     },
     created() {
+        this.loading();
         var list=localStorage.getItem('groupList');
         list=JSON.parse(list);
         this.groups=list;
         this.popup.groupName=list[0].groName;
         this.popup.groupid=list[0].groId;
+        //首次加载静态日历
+        this.getMonthData(this.setYear,this.setMonth,true);
         this.getGroupsDate(this.groups[0].groId,this.setYear+'-'+this.fillZero(this.setMonth)+'-01');
         this.getGroupsUser(this.groups[0].groId,this.setYear+'-'+this.fillZero(this.setMonth)+'-'+this.fillZero(this.setDay))
     },
@@ -166,6 +169,7 @@ export default {
             this.pageList={total: '',pageNo:1,pageSize:2};
 
             if(this.type=='groups'){
+                this.loading();
                 this.popup.groupName=picker.groName;
                 this.popup.groupid=picker.groId;
                 //群组打卡
@@ -177,6 +181,7 @@ export default {
                 //群组成员
                 // this.userPopup();
             }else if(this.type=='user'){
+                this.loading();
                 this.popup.userName=picker.name;
                 this.popup.userid=picker.pkid;
                 //个人打卡
@@ -238,7 +243,7 @@ export default {
             return s < 10 ? '0' + s : s;
         },
         //日历初始化
-        getMonthData(year,month){
+        getMonthData(year,month,first){
             let groupArr=this.groupArr;
             // groupArr=['01','02'];
             var firstDay = new Date(year,month - 1, 1);
@@ -277,15 +282,17 @@ export default {
                 if (thisMonth === 0) thisMonth = 12;
                 if (thisMonth === 13) thisMonth = 1;
                 let active=false;
-                if(this.setDay!=''&&showDate==this.setDay&&ifThisMonthDays&&year==this.setYear&&month==this.setMonth){
-                    active=true;
-                }
                 let cardType='';
-                let sss=this.setYear+'-'+this.fillZero(this.setMonth)+'-'+this.fillZero(showDate),
-                    dateTime=new Date(sss).getTime(),
-                    creatTime=new Date(this.groupCreat).getTime();
-                if(groupArr.length>0){
-                    for(let x of groupArr){
+                //如果第一次进，不载数据
+                if(!first){
+                  if(this.setDay!=''&&showDate==this.setDay&&ifThisMonthDays&&year==this.setYear&&month==this.setMonth){
+                    active=true;
+                  }
+                  let sss=this.setYear+'-'+this.fillZero(this.setMonth)+'-'+this.fillZero(showDate),
+                      dateTime=new Date(sss).getTime(),
+                      creatTime=new Date(this.groupCreat).getTime();
+                    if(groupArr.length>0){
+                      for(let x of groupArr){
                         let ddd=x.date.substr(-2);
                         if(ifThisMonthDays&&ddd==showDate){
                           cardType='0';//打卡
@@ -295,14 +302,18 @@ export default {
                         }else{
                           cardType=''
                         }
-                    }
-                }else{
-                    if(ifThisMonthDays&&showDate<this.setDay&&dateTime>=creatTime){
-                      cardType='1'
+                      }
                     }else{
-                      cardType=''
+                      if(ifThisMonthDays&&showDate<this.setDay&&dateTime>=creatTime){
+                        cardType='1'
+                      }else{
+                        cardType=''
+                      }
                     }
                 }
+
+
+
 
                 this.ret.push({
                     month: thisMonth,
@@ -389,7 +400,8 @@ export default {
                     }
                     this.groupArr=arr;
                 }
-                this.groupCreat=res.data.created
+                this.groupCreat=res.data.created;
+                this.hideLoading();
                 //日历初始化
                 this.getMonthData(this.setYear,this.setMonth);
             })
@@ -407,6 +419,7 @@ export default {
                 that.list=[];
             }
             CardRecord.groupsCard(data).then( res => {
+                // that.hideLoading();
                 that.isScroll=true;
                 if(res){
                     if(that.pageList.pageNo>1){
@@ -434,6 +447,7 @@ export default {
                 date:str,
             }
             CardRecord.groupsUser(data).then( res => {
+                // this.hideLoading();
                 if(res.data){
                     that.cardStatistics.cardsPer=res.data.push;
                     that.cardStatistics.noCardsPer=res.data.lost;
@@ -453,6 +467,7 @@ export default {
                 that.list=[];
             }
             CardRecord.userCard(data).then( res => {
+                // this.hideLoading();
                 that.isScroll=true;
                 if(res){
                     if(that.pageList.pageNo>1){
@@ -480,6 +495,7 @@ export default {
                 date:str,
             };
             CardRecord.usersDate(data).then(res =>{
+                this.hideLoading();
                 if(res.data.list.length>0){
                     for(let x of res.data.list){
                         let data={

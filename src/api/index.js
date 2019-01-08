@@ -1,4 +1,6 @@
 import axios from 'axios'
+import Vue from 'vue'
+
 import qs from 'qs'
 var baseURL = 'https://imis.biaodaa.com/'
 // var baseURL = 'http://192.168.1.131:8081/'
@@ -49,17 +51,14 @@ axios.interceptors.request.use(function (config) {
   return Promise.reject(error)
 })
 
-// axios.interceptors.response.use(function (response) { // ①10010 token过期（30天） ②10011 token无效
-//   if (response.data.code === 402 || response.data.code === 401) {
-//     localStorage.removeItem('Authorization')
-//     this.$router.replace({
-//       path: '/login' // 到登录页重新获取token
-//     })
-//   }
-//   return response
-// }, function (error) {
-//   return Promise.reject(error)
-// })
+axios.interceptors.response.use(function (response) { // ①10010 token过期（30天） ②10011 token无效
+  if (response.status!=200) {
+    Vue.$toast('网络有问题，请稍后再试')
+  }
+  return response
+},function (error) {
+  return Promise.reject(error)
+})
 
 export const queryList = params => {
   return axios.post('authorize/user', params).then(res => res.data)

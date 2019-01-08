@@ -29,6 +29,24 @@ Vue.component('v-head', head)
 Vue.use(AlertPlugin)
 
 
+//load层
+var tpl=null;
+Vue.prototype.loading =() =>{
+  var loading = Vue.extend(require('@/components/loading.vue'));
+  tpl = new loading().$mount().$el;  // 创建实例，挂载到文档以后的地方
+  document.body.appendChild(tpl);
+  return tpl
+}
+Vue.mixin({
+  methods: {
+    hideLoading: function () {
+      if(tpl){
+        document.body.removeChild(tpl);
+      }
+    }
+  }
+})
+
 import { queryList,User } from "./api/index"
 import util from "./util/util"
 router.beforeEach((to, from, next) => {

@@ -9,7 +9,7 @@
           </div>
        </div>
 
-        <div v-for="el in bookss" :key="el.pkid" v-show="el.readCount" >
+        <div v-for="el in bookss" :key="el.pkid">
             <div class="card-b">
                <div class="card-book">
                  《{{el.title}}》共朗读{{el.readTotal + el.readCount}}遍
@@ -128,11 +128,12 @@
           <textarea  :disabled='first' rows="4" placeholder='请输入您的感谢'  v-model="thanks" class="ccc" @blur='bblur'  ></textarea>
         </div>
 
-        <div class="card-btn" @click="punch">
+        <div class="card-btn" @click="maskFn">
            <div :class="[this.btnTitle =='提交'? 'card-div' : 'card-red' ]">
               {{btnTitle}}
            </div>
         </div>
+        <v-popup :popupShow="mask" :popupType="'tip1'" :tip-text="tipTxt" @sure="punch"></v-popup>
    </div>
 </template>
 <script>
@@ -151,10 +152,18 @@ export default {
       introspective: '', //省省悟
       thanks: '', //感谢
       btnTitle:'',
-      first:false
+      first:false,
+      mask:false,
+      tipTxt:'',
     }
   },
   methods: {
+    maskFn(){
+      if(this.btnTitle=='提交'){
+        this.mask=true;
+        this.tipTxt='确认提交打卡信息？'
+      }
+    },
     gainPer() {
        recordPer({}).then( res => {
          console.log(res,157)
@@ -167,8 +176,13 @@ export default {
               } else {
                  this.btnTitle = '提交'
               }
+              res.data.books.forEach((el,i) => {
+                if( el.readCount == 0 ) {
+                   res.data.books.splice(i,1)
+                }
+              })
               this.thanks = res.data.thanks
-              this.practice = res.data.practice?res.data.practice:{character: '' ,work: '', family: ''}
+              this.practice = res.data.practice ? res.data.practice : {character: '', work: '', family: ''}
               this.classic = res.data.classic
               this.introspective = res.data.introspective
               this.bookss = res.data.books

@@ -58,7 +58,7 @@
         </div>
         <div class="left">
           <div class="sign p-line  ">
-            <div class="l-put"  > 
+            <div class="l-put"  >
               <div class="label">书本名称</div> <input type="tel" placeholder="请输入书本名称" v-model='item.title'  @blur='bblur' maxlength="5" >
             </div>
             <!-- <x-input title='书本名称' v-model='item.title' placeholder='请输入书本名称' @on-blur='bblur' placeholder-align='right' text-align='right' class="cc" ></x-input> -->
@@ -126,6 +126,11 @@
         <x-button  >提交</x-button>
       </div>
     </div>
+    <!--<van-datetime-picker-->
+      <!--type="date"-->
+      <!--:formatter="dateConfirm"-->
+      <!--v-model="pickerValue"-->
+    <!--&gt;</van-datetime-picker>-->
     <mt-datetime-picker
       ref="picker"
       type="date"
@@ -181,6 +186,14 @@
 
     },
     methods: {
+      // dateConfirm(type,value){
+      //   if (type === 'year') {
+      //     return `${value}年`;
+      //   } else if (type === 'month') {
+      //     return `${value}月`
+      //   }
+      //   return value;
+      // },
       addbook () {
         this.first.push({title: '', readCount: 1, readTotal:0})
       },
@@ -333,13 +346,15 @@
   }
   body .mask{
     max-height: 100vh;
-    // overflow: hidden;
+    overflow: hidden;
+  }
+  body  {
+     overflow-x: hidden;
+     overflow-y: auto;
   }
   .home {
     box-sizing: border-box;
-    overflow-x: hidden;
-    overflow-y: auto;
-  // position: relative;
+
     background: #f5f5f5;
   .toast {
     position: fixed;

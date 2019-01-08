@@ -2,7 +2,7 @@
 <template>
   <div class="groupUser">
       <v-head :head-txt="grupName"></v-head>
-       <van-search placeholder="请输入搜索o关键词" v-model="keywords" @blur="ajax" />
+       <van-search placeholder="请输入搜索关键词" v-model="keywords" @blur="ajax" />
       <ul class="listBox" v-show=" this.list.length" >
         <li v-for="(o,i) of list" :key="i" >
           <div class="left">
@@ -105,6 +105,7 @@
           keywords:this.keywords,
         }
         CardRecord.groupPerson(data).then(res =>{
+          this.hideLoading();
           if(res){
             that.list=res.data.list
             if(that.pageList.pageNo>1){
@@ -152,6 +153,7 @@
       },
     },
     created () {
+      this.loading();
       this.groupName=this.$route.query.name;
       this.type=this.$route.query.type;
       this.groId=this.$route.query.id;
@@ -256,7 +258,7 @@
   li:last-child{
     border-bottom: none;
   }
- 
+
 }
 .groupUser {
   .van-search {
@@ -283,5 +285,5 @@
      font-size: 40px;
   }
 }
- 
+
 </style>

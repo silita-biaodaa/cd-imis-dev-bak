@@ -78,7 +78,8 @@
       background: #fff;
       height: 100px;
       width: 100%;
-      position: fixed;
+      position: absolute;
+      z-index: 999;
       left: 0;
       bottom: 0;
       ul{
