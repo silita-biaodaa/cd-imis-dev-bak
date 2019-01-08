@@ -78,9 +78,10 @@
       background: #fff;
       height: 100px;
       width: 100%;
-      position: absolute;
-      z-index: 999;
+      position: fixed;
+      z-index: 99;
       left: 0;
+      right: 0;
       bottom: 0;
       ul{
         display: flex;
