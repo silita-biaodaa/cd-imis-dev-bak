@@ -373,16 +373,16 @@
       //     }, 0)
       //   }
       // }),
-      window.addEventListener('scroll',() => {
-            const activeElement = document.activeElement
-        if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
-          setTimeout(() => {
-            // activeElement.disabled = 'true'
-            // console.log(activeElement.tagName)
+      // window.addEventListener('scroll',() => {
+      //       const activeElement = document.activeElement
+      //   if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
+      //     setTimeout(() => {
+      //       // activeElement.disabled = 'true'
+      //       // console.log(activeElement.tagName)
 
-          }, 0)
-        } 
-      });
+      //     }, 0)
+      //   } 
+      // });
     },
     beforeDestroy() {
       // window.removeEventListener('resize', () => {
@@ -394,15 +394,15 @@
       //     }, 0)
       //   }
       // }),
-        window.addEventListener('scroll',() => {
-            const activeElement = document.activeElement
-        if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
-          setTimeout(() => {
-            // activeElement.disabled = 'false'
-            console.log(activeElement)
-          }, 0)
-        } 
-      });
+      //   window.addEventListener('scroll',() => {
+      //       const activeElement = document.activeElement
+      //   if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
+      //     setTimeout(() => {
+      //       // activeElement.disabled = 'false'
+      //       console.log(activeElement)
+      //     }, 0)
+      //   } 
+      // });
     },
 
   }
@@ -416,7 +416,7 @@
     overflow: hidden;
   }
   body  {
-     overflow-x: hidden;
+    //  overflow-x: hidden;
     //  overflow-y: auto;
   }
   .home {
