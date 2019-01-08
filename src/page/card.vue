@@ -9,7 +9,7 @@
           </div>
        </div>
 
-        <div v-for="el in bookss" :key="el.pkid" v-show="el.readCount" >
+        <div v-for="el in bookss" :key="el.pkid">
             <div class="card-b">
                <div class="card-book">
                  《{{el.title}}》共朗读{{el.readTotal + el.readCount}}遍
@@ -176,8 +176,13 @@ export default {
               } else {
                  this.btnTitle = '提交'
               }
+              res.data.books.forEach((el,i) => {
+                if( el.readCount == 0 ) {
+                   res.data.books.splice(i,1)
+                }
+              })
               this.thanks = res.data.thanks
-              this.practice = res.data.practice?res.data.practice:{character: '' ,work: '', family: ''}
+              this.practice = res.data.practice ? res.data.practice : {character: '', work: '', family: ''}
               this.classic = res.data.classic
               this.introspective = res.data.introspective
               this.bookss = res.data.books
