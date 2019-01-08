@@ -1,5 +1,5 @@
 <template>
-    <div class="groupcard" :class="{mask:popup.mask}">
+    <div class="groupcard" :class="{mask:popup.mask,isios:isIOS}">
         <div class="calender">
             <div class="ui-datepicker-wrapper ui-datepicker-wrapper-show">
                 <div class="header">
@@ -51,10 +51,10 @@
                     </p>
                 </template>
             </div>
-            <mt-popup v-model="popup.mask" position="bottom" style="width:100%">
+            <van-popup v-model="popup.mask" position="bottom" :overlay="true">
                 <mt-picker :slots="popup.slots" value-key="groName" ref="picker"></mt-picker>
                 <button @click="confirm" class="sureBtn">确定</button>
-            </mt-popup>
+            </van-popup>
             <van-popup v-model="dateObj.dateMask" position="bottom" :overlay="true">
               <van-datetime-picker
                 type="year-month"
@@ -111,11 +111,16 @@ export default {
               maxDate:new Date(),
               date:''
             },
-            mask:false
-
+            mask:false,
+            isIOS:false
         };
     },
     created() {
+        let u = navigator.userAgent;
+        let isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        if(isiOS){
+          this.isIOS=true;
+        }
         this.loading();
         //首次加载静态日历
         this.getMonthData(this.setYear,this.setMonth,true);
@@ -551,6 +556,28 @@ body .mask{
   max-height: 100vh;
   overflow: hidden;
 }
+  body .picker-items{
+    padding:45px 0;
+  }
+ .isios .van-popup--bottom{
+   bottom:0;
+    height:25vh;
+   .picker{
+     height: 100%;
+     .picker-items{
+       height: 100%;
+     }
+     .picker-item{
+       height: 44px !important;
+       line-height: 44px !important;
+     }
+      .picker-center-highlight{
+        height: 44px !important;
+      }
+   }
+ }
+
+
 .sureBtn{
     font-size: 28px;
     border: none;
