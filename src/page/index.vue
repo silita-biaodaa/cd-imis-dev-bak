@@ -58,8 +58,8 @@
         </div>
         <div class="left">
           <div class="sign p-line  ">
-            <div class="l-put"  >
-              <div class="label">书本名称</div> <input type="tel" placeholder="请输入书本名称" v-model='item.title'  @blur='bblur' maxlength="5" >
+            <div class="l-put"  > 
+              <div class="label">书本名称</div> <input type="tel" placeholder="请输入书本名称" v-model='item.title'  @blur='bblur'  >
             </div>
             <!-- <x-input title='书本名称' v-model='item.title' placeholder='请输入书本名称' @on-blur='bblur' placeholder-align='right' text-align='right' class="cc" ></x-input> -->
           </div>
@@ -73,7 +73,7 @@
           </div>
           <div class="sign" >
             <div class="l-put"  >
-              <div class="label">总朗读遍数</div> <input type="tel" placeholder="请输入" v-model='item.readTotal' @blur='bblur' maxlength="5" >
+              <div class="label five ">总朗读遍数</div> <input type="tel" placeholder="请输入" v-model='item.readTotal' @blur='bblur' >
             </div>
             <!-- <x-input title='总朗读遍数' v-model='item.readTotal' placeholder='请输入' placeholder-align='right' @on-blur='bblur' text-align='right' type='tel' :max="5"  class="cc" ></x-input> -->
           </div>
@@ -97,7 +97,7 @@
       <div>
         <datetime title='积善开始时间' v-model="begin" placeholder='请选择' text-align='right' class="cc p-line" ></datetime>
         <div class="l-put  p-line p-l">
-          <div class="label">积善持续年数</div> <input type="tel" placeholder="请输入年份"  v-model='end' maxlength="5"  @blur="bblur">
+          <div class="label five">积善持续年数</div> <input type="tel" placeholder="请输入年份"  v-model='end'   @blur="bblur">
         </div>
         <div class="card-com">
           <div class="l-pu">
@@ -106,7 +106,7 @@
           </div>
         </div>
         <div class="l-put"  >
-              <div class="label">累计积善件数</div> <input type="tel" placeholder="请输入" v-model='alls' @blur='bblur' maxlength="5" >
+              <div class="label five">累计积善件数</div> <input type="tel" placeholder="请输入" v-model='alls' @blur='bblur'  >
         </div>
         <!-- <x-input title='累计积善件数' v-model='alls'  placeholder='请输入' placeholder-align='right' text-align='right' type='tel' class="cc" :max="5" ></x-input> -->
       </div>
@@ -126,11 +126,6 @@
         <x-button  >提交</x-button>
       </div>
     </div>
-    <!--<van-datetime-picker-->
-      <!--type="date"-->
-      <!--:formatter="dateConfirm"-->
-      <!--v-model="pickerValue"-->
-    <!--&gt;</van-datetime-picker>-->
     <mt-datetime-picker
       ref="picker"
       type="date"
@@ -186,14 +181,6 @@
 
     },
     methods: {
-      // dateConfirm(type,value){
-      //   if (type === 'year') {
-      //     return `${value}年`;
-      //   } else if (type === 'month') {
-      //     return `${value}月`
-      //   }
-      //   return value;
-      // },
       addbook () {
         this.first.push({title: '', readCount: 1, readTotal:0})
       },
@@ -354,7 +341,7 @@
   }
   .home {
     box-sizing: border-box;
-
+  
     background: #f5f5f5;
   .toast {
     position: fixed;
@@ -385,6 +372,9 @@
     width: 290px;
     padding-left: 10px;
     color:#000;
+  }
+  .five {
+    width: 520px;
   }
   input {
     width: 100%;

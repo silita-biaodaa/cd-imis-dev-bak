@@ -1,7 +1,7 @@
 <template>
     <div class="apply">
       <v-head :head-txt="headName"></v-head>
-      <van-search placeholder="请输入搜索关键词" v-model="value" @blur="onSearch" />
+      <van-search placeholder="请输入搜索关键词" v-model="keyWords" @blur="onSearch" />
       <div class="apply-list" v-for="(e,i) in list" :key="i" v-show="dont" >
           <div class="ld-left apply-g" >
               <div class="apply-img">
@@ -36,19 +36,69 @@ import { Glisy,Addgroup } from '@/api/index'
 export default {
   data () {
     return {
-      value: '',
+      keyWords: '',
       list: [],
       dont: true,
-      headName:'查找群组'
+      headName:'查找群组',
+      isScroll:true,
+      noGet:false,
+      total:0,
+      pageNo:1
+    }
+  },
+  watch: {
+    keyWords() {
+      this.pageNo = 1
+      this.noGet = false
     }
   },
   methods: {
+       sh(){
+        let bodyScrollHeight = 0
+        let documentScrollHeight = 0
+        if (document.body) {
+          bodyScrollHeight = document.body.scrollHeight
+        }
+        if (document.documentElement) {
+          documentScrollHeight = document.documentElement.scrollHeight
+        }
+        return (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight
+      },
+      //监听滚轮
+      scrollgun(){
+        let getSt=document.documentElement.scrollTop || document.body.scrollTop,
+          getWh=document.documentElement.clientHeight || document.body.clientHeight;
+        let scrollBottom=this.sh()-(getSt+getWh),//滚动条距离底部距离
+          rem=parseInt(window.getComputedStyle(document.documentElement)["fontSize"]),
+          h=20;
+        if(this.noGet){
+          return false
+        }
+        if(!this.isScroll){
+          return false
+        }
+        if(scrollBottom<h){
+          this.isScroll=false;
+          this.pageNo+=1;
+          this.onSearch()
+        }
+      },
     onSearch() {
-      Glisy({pageNo: '1', pageSize: '20', keywords: this.value}).then( res => {
+      Glisy({pageNo: this.pageNo, pageSize: '10', keywords: this.keyWords}).then( res => {
+            this.isScroll=true;
           if(res.code == 1 ) {
-            console.log(res,53)
+              if(this.pageNo > 1 ){
+                this.list = this.list.concat(res.data.list);
+                this.total = res.data.total;
+              }else{
+                this.list = res.data.list;
+                this.total = res.data.total;
+              }
+              if(this.list.length == res.data.total || this.pageNo == res.data.pages ){
+                 this.noGet=true;//如果返回总条数等于当前list长度
+              }
+
               if( res.data.list.length ) {
-                 this.list = res.data.list
                  this.dont = true
               } else {
                  this.dont = false
@@ -70,6 +120,13 @@ export default {
   created () {
     this.onSearch()
   },
+   mounted(){
+      window.addEventListener('scroll',this.scrollgun,true);
+    },
+    destroyed() {
+      window.removeEventListener('scroll',this.scrollgun,true);
+      // console.group('销毁完成状态===============》destroyed');
+    },
   components: {
 
   }
