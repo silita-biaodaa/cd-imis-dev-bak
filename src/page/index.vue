@@ -46,8 +46,7 @@
                 :formatter="dateConfirm"
                 :max-date=" new Date()"
                 v-model="newTime"
-                style="height:450px;"
-                :item-height='55'
+                :item-height='65'
                 @confirm='confirm' 
               ></van-datetime-picker>
        </van-popup>
@@ -118,9 +117,8 @@
                   :formatter="dateConfirm"
                   :max-date=" new Date()"
                   v-model="begins"
-                  style="height:450px;"
-                  :item-height='55'
-                  @confirm='confirms' 
+                  :item-height='65'
+                  @confirm='confirms'
                 ></van-datetime-picker>
          </van-popup>
       </div>
@@ -716,29 +714,29 @@
 
 
   }
-  .dp-content {
-    padding: 200px 0 !important;
-  }
-  .weui-dialog__title{
-    font-size: 32px !important;
-  }
-  .weui-dialog__hd {
-    padding: 55px 38px 36px !important;
-  }
-  .weui-dialog{
-    max-width: 540px !important;
-  }
-  .weui-dialog__bd {
-    min-height: 60px !important;
-    font-size: 26px !important;
-  }
-  .weui-dialog__ft {
-    line-height: 70px !important;
-    font-size: 25px !important;
-  }
-  .dp-header .dp-item{
-    font-size: 26px !important;
-    height: 55px !important;
-    line-height: 55px !important;
-  }
+  // .dp-content {
+  //   padding: 200px 0 !important;
+  // }
+  // .weui-dialog__title{
+  //   font-size: 32px !important;
+  // }
+  // .weui-dialog__hd {
+  //   padding: 55px 38px 36px !important;
+  // }
+  // .weui-dialog{
+  //   max-width: 540px !important;
+  // }
+  // .weui-dialog__bd {
+  //   min-height: 60px !important;
+  //   font-size: 26px !important;
+  // }
+  // .weui-dialog__ft {
+  //   line-height: 70px !important;
+  //   font-size: 25px !important;
+  // }
+  // .dp-header .dp-item{
+  //   font-size: 26px !important;
+  //   height: 55px !important;
+  //   line-height: 55px !important;
+  // }
 </style>
