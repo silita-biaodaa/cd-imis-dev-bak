@@ -51,6 +51,7 @@
           data.userId=userid
         }
         User(data).then( res => {
+          this.hideLoading();
           this.name = res.data.name;
           this.imgUrl = res.data.imgUrl
           this.compang = res.data.company
@@ -69,7 +70,6 @@
         }
         Friends(data).then( res => {
           //  that.list = res.data.list;
-          that.hideLoading();
           that.isScroll=true;
         if(res){
           if(that.pageList.pageNo>1){
