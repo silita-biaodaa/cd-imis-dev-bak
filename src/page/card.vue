@@ -38,8 +38,8 @@
               </div>
            </div>
         </div>
-        <div class="card-com card-add" @click='cardBook' v-if="!first">
-            <span class="laca">
+        <div class="card-com card-add" v-if="!first">
+            <span class="laca" @click='cardBook' >
                增加书本
               <div class="laca-add"><img src="../assets/img/add (1).png" alt=""></div>
             </span>
@@ -170,8 +170,6 @@ export default {
           if(res.code == 1 || res.code == 402 ) {
 
                res.data.books.forEach((el,i) => {
-                console.log(el)
-                console.log(el.readCount)
                 if( ! el.readCount == 0 ) {
                    this.bookss.push(el)
                }
@@ -188,7 +186,6 @@ export default {
               this.practice = res.data.practice ? res.data.practice : {character: '', work: '', family: ''}
               this.classic = res.data.classic
               this.introspective = res.data.introspective
-              // this.bookss = res.data.books
               this.pushCount = res.data.pushCount
               this.volunteer = res.data.volunteer
               this.books = res.data.bookish ? res.data.bookish : []
