@@ -45,7 +45,7 @@
                 :formatter="dateConfirm"
                 :max-date=" new Date()"
                 v-model="newTime"
-                :item-height='65'
+                :item-height='40'
                 @confirm='confirm' 
               ></van-datetime-picker>
        </van-popup>
@@ -92,7 +92,7 @@
       <div class="add-b">
          <div  @click='addbook'>
            <x-button class="sign" >增加书本</x-button>
-          <span class="add-img"><img src="../assets/img/add (2).png" alt=""></span>
+           <span class="add-img"><img src="../assets/img/add (2).png" alt=""></span>
         </div> 
           
       </div>
@@ -116,7 +116,7 @@
                   :formatter="dateConfirm"
                   :max-date=" new Date()"
                   v-model="begins"
-                  :item-height='65'
+                  :item-height='40'
                   @confirm='confirms'
                 ></van-datetime-picker>
          </van-popup>
@@ -423,7 +423,13 @@
   
     background: #f5f5f5;
     .van-picker-column__item {
-      font-size: 45px;
+      font-size: 38px;
+    }
+    .van-picker {
+       height: 600px !important;
+    }
+    .van-picker-column>ul {
+      // transform:translate3d( 0px, -90px, 0px ) !important;
     }
   .toast {
     position: fixed;
