@@ -543,7 +543,6 @@ export default {
 }
 .van-picker-column__item{
   font-size: 32px;
-  margin-bottom:10px;
 }
 .van-picker{
   .van-picker__columns{
@@ -570,9 +569,11 @@ body .mask{
   body .picker-items{
     padding:45px 0;
   }
+  body  .van-popup--bottom{
+    height:25vh;
+  }
  .isios .van-popup--bottom{
    bottom:100px;
-    height:25vh;
    .picker{
      height: 100%;
      .picker-items{
