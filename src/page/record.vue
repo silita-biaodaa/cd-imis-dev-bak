@@ -127,6 +127,7 @@ export default {
         list=JSON.parse(list);
         if(list=='undefined'||list.length==0){
           this.mask=true;
+          return
         }
         this.loading();
         this.groups=list;
