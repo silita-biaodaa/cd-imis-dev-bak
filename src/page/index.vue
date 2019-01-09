@@ -116,7 +116,7 @@
                   :formatter="dateConfirm"
                   :max-date=" new Date()"
                   v-model="begins"
-                  :item-height='40'
+                  :item-height='52'
                   @confirm='confirms'
                 ></van-datetime-picker>
          </van-popup>
@@ -414,6 +414,9 @@
     max-height: 100vh;
     overflow: hidden;
   }
+  .van-picker__frame, .van-picker__loading .van-loading {
+    display: none;
+  }
   body  {
     //  overflow-x: hidden;
     //  overflow-y: auto;
@@ -423,13 +426,7 @@
   
     background: #f5f5f5;
     .van-picker-column__item {
-      font-size: 38px;
-    }
-    .van-picker {
-       height: 600px !important;
-    }
-    .van-picker-column>ul {
-      // transform:translate3d( 0px, -90px, 0px ) !important;
+      font-size: 40px;
     }
   .toast {
     position: fixed;
@@ -712,7 +709,10 @@
      display: flex;
      justify-content: space-between;
      border-bottom: 1px solid #f5f5f5;
-  }
+     .van-popup--bottom {
+       height: 42vh;
+     }
+   }
 
 
 
