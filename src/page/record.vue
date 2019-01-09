@@ -52,7 +52,7 @@
                 </template>
             </div>
             <van-popup v-model="popup.mask" position="bottom" :overlay="true">
-                <mt-picker :slots="popup.slots" value-key="groName" ref="picker"></mt-picker>
+                <van-picker :columns="popup.slots" value-key="groName" ref="picker"></van-picker>
                 <button @click="confirm" class="sureBtn">确定</button>
             </van-popup>
             <van-popup v-model="dateObj.dateMask" position="bottom" :overlay="true">
@@ -121,7 +121,6 @@ export default {
         if(isiOS){
           this.isIOS=true;
         }
-        this.loading();
         //首次加载静态日历
         this.getMonthData(this.setYear,this.setMonth,true);
         var list=localStorage.getItem('groupList');
@@ -129,6 +128,7 @@ export default {
         if(list=='undefined'||list.length==0){
           this.mask=true;
         }
+        this.loading();
         this.groups=list;
         this.popup.groupName=list[0].groName;
         this.popup.groupid=list[0].groId;
@@ -160,7 +160,7 @@ export default {
         },
         //群组选择
         groupPopup(){
-            this.popup.slots[0].values=this.groups;
+            this.popup.slots=this.groups;
             this.type='groups';
             //群组选择时,置空个人
             this.popup.userName='选择个人';
@@ -219,7 +219,7 @@ export default {
                     for(let x of res.data.list){
                         x.groName=x.name
                     }
-                    that.popup.slots[0].values=res.data.list
+                    that.popup.slots=res.data.list
                     that.type='user';
                     that.popup.mask=true;
                 }
@@ -542,7 +542,17 @@ export default {
 }
 .van-picker-column__item{
   font-size: 32px;
+  margin-bottom:10px;
 }
+.van-picker{
+  .van-picker__columns{
+    height:70% !important;
+    .van-picker-column{
+      height: 100% !important;
+    }
+  }
+}
+
 body .van-picker__cancel,body .van-picker__confirm{
   font-size: 28px;
   color: #E62129;
@@ -560,7 +570,7 @@ body .mask{
     padding:45px 0;
   }
  .isios .van-popup--bottom{
-   bottom:0;
+   bottom:100px;
     height:25vh;
    .picker{
      height: 100%;
