@@ -5,6 +5,9 @@ import router from './router/router'
 import axios from './axios/index'
 Vue.prototype.$axios = axios
 
+import './assets/js/flexible_css'
+import './assets/js/makegrid'
+
 import Vant from 'vant'
 import 'vant/lib/index.css'
 Vue.use(Vant)
