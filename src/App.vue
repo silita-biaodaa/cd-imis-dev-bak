@@ -23,9 +23,11 @@ export default {
     }
   },
   created(){
+    this.loading();
     group({}).then( res => {
       let arr=[];
       arr=res.data;
+      this.hideLoading();
       localStorage.setItem('groupList',JSON.stringify(arr));
     })
   },
