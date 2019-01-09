@@ -65,6 +65,7 @@ var webpackConfig = merge(baseWebpackConfig, {
         // https://github.com/kangax/html-minifier#options-quick-reference
       },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+      chunks: ['manifest', 'vendor', 'app'],
       chunksSortMode: 'dependency'
     }),
     // split vendor js into its own file
@@ -85,7 +86,14 @@ var webpackConfig = merge(baseWebpackConfig, {
     // prevent vendor hash from being updated whenever app bundle is updated
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
-      chunks: ['vendor']
+      minChunks: Infinity,
+      // chunks: ['vendor']
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'app',
+      async: 'vendor-async',
+      children: true,
+      minChunks: 3
     }),
     // copy custom static assets
     new CopyWebpackPlugin([
