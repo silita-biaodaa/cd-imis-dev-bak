@@ -125,10 +125,10 @@ export default {
         //首次加载静态日历
         this.getMonthData(this.setYear,this.setMonth,true);
         var list=localStorage.getItem('groupList');
-        if(list==undefined||list.length==0){
+        list=JSON.parse(list);
+        if(list=='undefined'||list.length==0){
           this.mask=true;
         }
-        list=JSON.parse(list);
         this.groups=list;
         this.popup.groupName=list[0].groName;
         this.popup.groupid=list[0].groId;
