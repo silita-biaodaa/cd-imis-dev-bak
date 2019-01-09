@@ -26,7 +26,7 @@
 
         <div  v-for="(item,index) in books" :key="index">
            <div class="card-b card-book add-book">
-             <span>书本&nbsp({{index + 3}})</span>
+             <span>书本&nbsp({{index + booklength + 1}})</span>
              <span class="del-book" @click='cardDel(index)'  v-if="!first" >删除</span>
             </div>
            <div class="pdd">
@@ -155,6 +155,7 @@ export default {
       first:false,
       mask:false,
       tipTxt:'',
+      booklength:0
     }
   },
   methods: {
@@ -166,29 +167,32 @@ export default {
     },
     gainPer() {
        recordPer({}).then( res => {
-         console.log(res,157)
           if(res.code == 1 || res.code == 402 ) {
-             console.log(res,158)
+
+               res.data.books.forEach((el,i) => {
+                console.log(el)
+                console.log(el.readCount)
+                if( ! el.readCount == 0 ) {
+                   this.bookss.push(el)
+               }
+              })
+
               if(res.code == 402 ) {
                  this.btnTitle = '今日已打卡, 请勿重复提交'
-
                  this.first = true
               } else {
                  this.btnTitle = '提交'
               }
-              res.data.books.forEach((el,i) => {
-                if( el.readCount == 0 ) {
-                   res.data.books.splice(i,1)
-                }
-              })
+              
               this.thanks = res.data.thanks
               this.practice = res.data.practice ? res.data.practice : {character: '', work: '', family: ''}
               this.classic = res.data.classic
               this.introspective = res.data.introspective
-              this.bookss = res.data.books
+              // this.bookss = res.data.books
               this.pushCount = res.data.pushCount
               this.volunteer = res.data.volunteer
               this.books = res.data.bookish ? res.data.bookish : []
+              this.booklength = this.bookss.length
           }
        })
     },
