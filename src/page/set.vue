@@ -68,8 +68,8 @@
               </div>
            </div>
         </div>
-        <div class="card-com card-add" @click='cardBook'>
-            <span class="laca">增加书本
+        <div class="card-com card-add" >
+            <span class="laca" @click='cardBook'>增加书本
               <div class="laca-add"><img src="../assets/img/add (1).png" alt=""></div>
             </span>
         </div>

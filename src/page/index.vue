@@ -39,7 +39,6 @@
       <div class="time-sel" @click='datePicker' >
          <span>打卡始于时间</span>
          <span>{{tiems}}</span>
-        <!-- <datetime title='打卡始于时间' v-model="tiems" placeholder='请选择' class="cc" ></datetime> -->
         <van-popup v-model="dateObj.dateMask" position="bottom" :overlay="true">
               <van-datetime-picker
                 type="date"
@@ -73,7 +72,6 @@
             <div class="l-put"  > 
               <div class="label">书本名称</div> <input type="text" placeholder="请输入书本名称" v-model='item.title'  @blur='bblur'  >
             </div>
-            <!-- <x-input title='书本名称' v-model='item.title' placeholder='请输入书本名称' @on-blur='bblur' placeholder-align='right' text-align='right' class="cc" ></x-input> -->
           </div>
           <div class="sign p-line">
             <div class="card-com">
@@ -87,14 +85,16 @@
             <div class="l-put"  >
               <div class="label five ">总朗读遍数</div> <input type="tel" placeholder="请输入" v-model='item.readTotal' @blur='bblur' >
             </div>
-            <!-- <x-input title='总朗读遍数' v-model='item.readTotal' placeholder='请输入' placeholder-align='right' @on-blur='bblur' text-align='right' type='tel' :max="5"  class="cc" ></x-input> -->
           </div>
         </div>
 
       </div>
-      <div class="add-b" @click='addbook'>
-        <x-button class="sign">增加书本</x-button>
-        <span class="add-img"><img src="../assets/img/add (2).png" alt=""></span>
+      <div class="add-b">
+         <div  @click='addbook'>
+           <x-button class="sign" >增加书本</x-button>
+          <span class="add-img"><img src="../assets/img/add (2).png" alt=""></span>
+        </div> 
+          
       </div>
     </div>
 
@@ -110,7 +110,6 @@
           <div class="time-sel" @click='datePickers' >
            <span>积善开始时间</span>
            <span>{{begin}}</span>
-          <!-- <datetime title='打卡始于时间' v-model="tiems" placeholder='请选择' class="cc" ></datetime> -->
           <van-popup v-model="dateObj.dateMasks" position="bottom" :overlay="true">
                 <van-datetime-picker
                   type="date"
@@ -122,7 +121,6 @@
                 ></van-datetime-picker>
          </van-popup>
       </div>
-        <!-- <datetime title='积善开始时间' v-model="begin" placeholder='请选择' text-align='right' class="cc p-line" ></datetime> -->
         <div class="l-put  p-line p-l">
           <div class="label five">积善持续年数</div> <input type="tel" placeholder="请输入年份"  v-model='end'   @blur="bblur">
         </div>
@@ -135,7 +133,6 @@
         <div class="l-put"  >
               <div class="label five">累计积善件数</div> <input type="tel" placeholder="请输入" v-model='alls' @blur='bblur'  >
         </div>
-        <!-- <x-input title='累计积善件数' v-model='alls'  placeholder='请输入' placeholder-align='right' text-align='right' type='tel' class="cc" :max="5" ></x-input> -->
       </div>
     </div>
 
