@@ -137,6 +137,7 @@ export default {
         this.getGroupsUser(this.groups[0].groId,this.setYear+'-'+this.fillZero(this.setMonth)+'-'+this.fillZero(this.setDay))
     },
     mounted: function() {
+        window.addEventListener('scroll',this.scrollgun,true);
         if(this.groups&&this.groups.length!=0){
             this.getSignData();
         }
@@ -544,7 +545,11 @@ export default {
                 this.getMonthData(this.setYear,this.setMonth);
             })
         }
-    }
+    },
+    destroyed() {
+      window.removeEventListener('scroll',this.scrollgun,true);
+      // console.group('销毁完成状态===============》destroyed');
+    },
 };
 </script>
 <style lang="less">
