@@ -236,6 +236,7 @@ export default {
                     //   id:''
                     // }];
                     // that.popup.slots=data.concat(res.data.list);
+                    that.popup.slots=res.data.list;
                     that.type='user';
                     that.popup.mask=true;
                 }
