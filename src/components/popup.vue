@@ -133,7 +133,7 @@ export default {
 .bottom-box p:first-of-type{border-right: 1px solid #e8e8e8}
 
   .tipBox{
-    padding: 60px;
+    padding: 45px;
     padding-bottom: 40px;
     font-size: 28px;
     color: #999;
