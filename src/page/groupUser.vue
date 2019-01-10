@@ -1,7 +1,7 @@
 
 <template>
   <div class="groupUser">
-      <v-head :head-txt="grupName"></v-head>
+      <v-head :head-txt="groupName"></v-head>
        <van-search placeholder="请输入搜索关键词" v-model="keywords" @blur="ajax" />
       <ul class="listBox" v-show=" this.list.length" >
         <li v-for="(o,i) of list" :key="i" >
@@ -107,7 +107,6 @@
         CardRecord.groupPerson(data).then(res =>{
           this.hideLoading();
           if(res){
-            that.list=res.data.list
             if(that.pageList.pageNo>1){
               that.list = that.list.concat(res.data.list);
               that.pageList.total = res.data.total;
@@ -146,6 +145,7 @@
           return false
         }
         if(scrollBottom<h){
+          this.loading();
           this.isScroll=false;
           this.pageList.pageNo+=1;
           this.ajax();
