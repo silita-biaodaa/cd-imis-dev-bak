@@ -197,6 +197,17 @@ export default {
                 // this.userPopup();
             }else if(this.type=='user'){
                 this.loading();
+                // if(picker.groName=='全部'&&picker.id==''){
+                //     this.popup.mask=false;
+                //     this.popup.slots=this.groups;
+                //     this.type='groups';
+                //     //群组选择时,置空个人
+                //     this.popup.userName='选择个人';
+                //     this.popup.userid='';
+                //     this.getGroupsDate(this.groups[0].groId,this.setYear+'-'+this.fillZero(this.setMonth)+'-01');
+                //     this.getGroupsUser(this.groups[0].groId,this.setYear+'-'+this.fillZero(this.setMonth)+'-'+this.fillZero(this.setDay));
+                //     return
+                // }
                 this.popup.userName=picker.name;
                 this.popup.userid=picker.pkid;
                 //个人打卡
@@ -220,7 +231,11 @@ export default {
                     for(let x of res.data.list){
                         x.groName=x.name
                     }
-                    that.popup.slots=res.data.list
+                    // let data=[{
+                    //   groName:'全部',
+                    //   id:''
+                    // }];
+                    // that.popup.slots=data.concat(res.data.list);
                     that.type='user';
                     that.popup.mask=true;
                 }
@@ -549,6 +564,10 @@ export default {
     height:70% !important;
     .van-picker-column{
       height: 100% !important;
+    }
+    .van-picker-column__item{
+      width: 70%;
+      margin: 0 auto;
     }
   }
 }
