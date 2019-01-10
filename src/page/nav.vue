@@ -3,7 +3,7 @@
     <router-view class="nav" ></router-view>
     <div class="bar-b">
       <ul>
-        <li v-for="(o,i) of navList" @click="tabClick(i)" :key="i" :class="i==tabNum?'active':''">
+        <li v-for="(o,i) of navList" @click="tabClick(i)" :key="i" :class="i==tabNo?'active':''">
           <router-link :to="o.to">
             <span class="icon" :class="o.className"></span>
             <div class="bar-s">{{o.name}}</div>
@@ -17,7 +17,6 @@
   export default {
     data () {
       return {
-        tabNum:0,
         navList:[
           {
             name:'打卡圈',
@@ -45,21 +44,10 @@
     },
     computed: {
       tabNo(){
-        if(localStorage.getItem('tabNum')) {
-            let tabNum = localStorage.getItem('tabNum');
-            return tabNum
-        }else{
-          return 0
-        }
+        console.log(this.$route.path)
+        let t=this.$route.meta.tabNo;
+        return t
       }
-    },
-    methods:{
-      tabClick(i){
-        this.tabNum=i;
-      },
-    },
-    created(){
-      this.tabNum=this.tabNo
     }
   }
 </script>
