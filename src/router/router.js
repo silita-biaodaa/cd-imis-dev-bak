@@ -32,23 +32,38 @@ export default new Router({
       children: [
         {
           path: 'friend',
-          component: friend
+          component: friend,
+          meta:{
+            tabNo:0
+          }
         },
         {
           path: 'card',
-          component: Card
+          component: Card,
+          meta:{
+            tabNo:2
+          }
         },
         {
           path: 'group',
-          component: Group
+          component: Group,
+          meta:{
+            tabNo:3
+          }
         },
         {
           path: 'record',
-          component: Record
+          component: Record,
+          meta:{
+            tabNo:1
+          }
         },
         {
           path: 'set',
           component: Sets,
+          meta:{
+            tabNo:4
+          }
         }
       ]
     },
