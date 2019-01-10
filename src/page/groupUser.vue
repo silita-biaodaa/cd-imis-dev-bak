@@ -1,8 +1,8 @@
 
 <template>
   <div class="groupUser">
-      <v-head :head-txt="grupName"></v-head>
-       <van-search placeholder="请输入搜索关键词" v-model="keywords" @blur="ajax" />
+      <v-head :head-txt="groupName"></v-head>
+       <van-search placeholder="请输入搜索关键词" v-model="keywords" @blur="ajax('search')" />
       <ul class="listBox" v-show=" this.list.length" >
         <li v-for="(o,i) of list" :key="i" >
           <div class="left">
@@ -25,6 +25,9 @@
           查询无结果
       </div>
       <v-popup :popupShow="mask" :popupType="'tip1'" :tip-text="tipTxt" @sure="maskFn"></v-popup>
+	     <div class="toast" v-show="text3">
+          删除成功
+        </div>
   </div>
 </template>
 <script>
@@ -44,6 +47,7 @@
         keywords:'',
         isScroll:true,
         noGet:false,
+		text3:false
       }
     },
     name:'groupUser',
@@ -69,9 +73,10 @@
           }
           this.list.splice(i,1);
           groupUser.removeUser(data).then(res =>{
-            if(res.code==1){
-              this.$toast('删除成功');
-            }
+            this.text3 = true
+              setTimeout(() => {
+                this.text3 = false
+              }, 1500);
           })
         }else if(this.tipTxt=='确认要转让该群组？'){
           let data={
@@ -96,7 +101,12 @@
         this.tipTxt='确认要转让该群组？';
         this.mask=true;
       },
-      ajax(){
+      ajax(type){
+		this.loading();
+		if(type=='search'){
+			this.pageList.pageNo=1;
+			this.noGet=false;
+		}
         let that=this;
         let data={
           pageNo:this.pageList.pageNo,
@@ -106,8 +116,8 @@
         }
         CardRecord.groupPerson(data).then(res =>{
           this.hideLoading();
+		  this.isScroll=true;
           if(res){
-            that.list=res.data.list
             if(that.pageList.pageNo>1){
               that.list = that.list.concat(res.data.list);
               that.pageList.total = res.data.total;
@@ -153,7 +163,6 @@
       },
     },
     created () {
-      this.loading();
       this.groupName=this.$route.query.name;
       this.type=this.$route.query.type;
       this.groId=this.$route.query.id;
@@ -192,6 +201,17 @@
     white-space:nowrap
   }
 }
+ .toast {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    background: #000;
+    padding: 20px;
+    font-size: 26px;
+    border-radius: 10px;
+    transform: translateX(-50%);
+    color:#fff;
+  }
 .serBox{
   background: #F5F5F5;
   padding: 20px 32px;
@@ -202,7 +222,6 @@
   }
 }
 .listBox{
-  background: #fff;
   padding: 0 36px;
   li{
     padding: 28px 0;

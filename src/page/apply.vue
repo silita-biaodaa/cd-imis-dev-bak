@@ -98,7 +98,7 @@ export default {
                  this.noGet=true;//如果返回总条数等于当前list长度
               }
 
-              if( res.data.list.length ) {
+              if( this.list.length ) {
                  this.dont = true
               } else {
                  this.dont = false

@@ -112,7 +112,9 @@ export default {
               date:''
             },
             mask:false,
-            isIOS:false
+            isIOS:false,
+			noGet:false,
+			isScroll:true,
         };
     },
     created() {
@@ -183,7 +185,8 @@ export default {
             let timeStr=year+'-'+mon+'-'+da;
             //每次点击确认，重置页码
             this.pageList={total: '',pageNo:1,pageSize:2};
-
+			this.noGet=false;
+			this.isScroll=true;
             if(this.type=='groups'){
                 this.loading();
                 this.popup.groupName=picker.groName;
@@ -198,17 +201,17 @@ export default {
                 // this.userPopup();
             }else if(this.type=='user'){
                 this.loading();
-                if(picker.groName=='全部'&&picker.id==''){
-                    this.popup.mask=false;
-                    this.popup.slots=this.groups;
-                    this.type='groups';
-                    //群组选择时,置空个人
-                    this.popup.userName='选择个人';
-                    this.popup.userid='';
-                    this.getGroupsDate(this.groups[0].groId,this.setYear+'-'+this.fillZero(this.setMonth)+'-01');
-                    this.getGroupsUser(this.groups[0].groId,this.setYear+'-'+this.fillZero(this.setMonth)+'-'+this.fillZero(this.setDay));
-                    return
-                }
+                // if(picker.groName=='全部'&&picker.id==''){
+                //     this.popup.mask=false;
+                //     this.popup.slots=this.groups;
+                //     this.type='groups';
+                //     //群组选择时,置空个人
+                //     this.popup.userName='选择个人';
+                //     this.popup.userid='';
+                //     this.getGroupsDate(this.groups[0].groId,this.setYear+'-'+this.fillZero(this.setMonth)+'-01');
+                //     this.getGroupsUser(this.groups[0].groId,this.setYear+'-'+this.fillZero(this.setMonth)+'-'+this.fillZero(this.setDay));
+                //     return
+                // }
                 this.popup.userName=picker.name;
                 this.popup.userid=picker.pkid;
                 //个人打卡
@@ -232,12 +235,12 @@ export default {
                     for(let x of res.data.list){
                         x.groName=x.name
                     }
-                    let data=[{
-                      groName:'全部',
-                      id:''
-                    }];
-                    that.popup.slots=data.concat(res.data.list);
-                    // that.popup.slots=res.data.list;
+                    // let data=[{
+                    //   groName:'全部',
+                    //   id:''
+                    // }];
+                    // that.popup.slots=data.concat(res.data.list);
+                    that.popup.slots=res.data.list;
                     that.type='user';
                     that.popup.mask=true;
                 }

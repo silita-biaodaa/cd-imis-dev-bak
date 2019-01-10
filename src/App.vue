@@ -18,6 +18,9 @@ export default {
     if(localStorage.getItem('userName')){
       localStorage.removeItem('userName');
     }
+    if(localStorage.getItem('tabNum')){
+      localStorage.removeItem('tabNum');
+    }
   },
   created(){
     // this.loading();

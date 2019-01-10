@@ -20,7 +20,6 @@
 <script>
   import { User,Friends,Parise,groups } from '@/api/index'
   export default {
-    name:'friend',
     data () {
       return {
         name: '',

@@ -46,7 +46,7 @@
                 :max-date=" new Date()"
                 v-model="newTime"
                 :item-height='40'
-                @confirm='confirm'
+                @confirm='confirm' 
               ></van-datetime-picker>
        </van-popup>
       </div>
@@ -69,7 +69,7 @@
         </div>
         <div class="left">
           <div class="sign p-line  ">
-            <div class="l-put"  >
+            <div class="l-put"  > 
               <div class="label">书本名称</div> <input type="text" placeholder="请输入书本名称" v-model='item.title'  @blur='bblur'  >
             </div>
           </div>
@@ -93,8 +93,8 @@
          <div  @click='addbook'>
            <x-button class="sign" >增加书本</x-button>
            <span class="add-img"><img src="../assets/img/add (2).png" alt=""></span>
-        </div>
-
+        </div> 
+          
       </div>
     </div>
 
@@ -182,7 +182,7 @@
         company: '',
         post: '',
         mobile: '',
-        tiems: '',
+        tiems: '',  
         count: 0,
         begin: '',
         end: 1,
@@ -228,7 +228,7 @@
         this.dateObj.dateMasks = !this.dateObj.dateMasks
       },
       confirms (val) {
-
+        
         this.begin = dateFormat(val, 'YYYY-MM-DD')
       },
       confirm (val) {
@@ -324,6 +324,7 @@
         if ( this.pass  ) {
           recordBook({name: this.username, phone: this.mobile, company: this.company, post: this.post, pushStart: this.tiems,total: this.count, bonaStart: this.begin, bonaEnd: this.end, bonaCount: this.number, bonaTotal: this.alls, volunteer: this.values, books: this.first}).then( res => {
             if(res.code == 1) {
+              localStorage.setItem('tabNum','2');
               localStorage.setItem('userName',this.username);
               this.$router.replace({path:'/nav/card'})
             }
@@ -379,7 +380,7 @@
       //       // console.log(activeElement.tagName)
 
       //     }, 0)
-      //   }
+      //   } 
       // });
     },
     beforeDestroy() {
@@ -399,7 +400,7 @@
       //       // activeElement.disabled = 'false'
       //       console.log(activeElement)
       //     }, 0)
-      //   }
+      //   } 
       // });
     },
 
@@ -418,7 +419,7 @@
   }
   .home {
     box-sizing: border-box;
-
+  
     background: #f5f5f5;
     .van-picker-column__item {
       font-size: 40px;
@@ -697,10 +698,10 @@
     }
   }
   .time-sel {
-     padding-left:10px;
+     padding-left:10px; 
      line-height: 96px;
      font-size: 32px;
-     color: #000;
+     color: #000; 
      display: flex;
      justify-content: space-between;
      border-bottom: 1px solid #f5f5f5;

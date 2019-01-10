@@ -27,7 +27,7 @@
             <p class="c-color">{{item.classic}}</p>
           </template>
           <!-- 行 实践 -->
-          <template v-if="item.practice!=undefined&&(item.practice.character!=''&&item.practice.family!=''&&item.practice.work!='')">
+          <template v-if="item.practice!=undefined">
             <p class="tit">【行～实践】</p>
             <template v-if="item.practice.character!=''">
               <h5>一、修身：（对自己个人）</h5>
@@ -196,16 +196,12 @@
   }
   }
   .c-content {
-    margin-bottom: 30px;
     overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    /* autoprefixer: off */
-    -webkit-box-orient: vertical;
-    /* autoprefixer: on */
+    height: 285px;
+    margin-bottom: 30px;
   }
   .c-content.active{
-    -webkit-line-clamp: 100;
+    height:auto;
   .tit{
     line-height: 2.8
   }
