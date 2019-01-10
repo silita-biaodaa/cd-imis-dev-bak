@@ -44,7 +44,7 @@
           </template>
           <!-- 积善 -->
           <p class="tit">【积善】</p>
-          <p class="c-color">发愿从{{item.pushCount.bonaStart}}起{{item.pushCount.years}}年内{{item.pushCount.bonaTotal}}善事。今日{{item.pushCount.bonaDays}}善，累计{{item.pushCount.bonaTotal}}善</p>
+          <p class="c-color">发愿从{{item.pushCount.bonaStart}}起{{item.pushCount.years}}年内{{item.pushCount.bonaCount*item.pushCount.days}}善事。今日{{item.pushCount.bonaDays}}善，累计{{item.pushCount.bonaTotal}}善</p>
           <!-- 省 觉悟 -->
           <template v-if="item.introspective">
             <p class="tit">【省～觉悟】</p>
