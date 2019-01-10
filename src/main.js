@@ -50,7 +50,7 @@ Vue.mixin({
   }
 })
 
-import { queryList,User } from "./api/index"
+import { queryList,User,group } from "./api/index"
 import util from "./util/util"
 router.beforeEach((to, from, next) => {
   let code = util.getCode('code')
@@ -65,15 +65,20 @@ router.beforeEach((to, from, next) => {
   if(!auth||to.fullPath=='/home'){
     queryList({ code: code }).then(res => {
       if ( res.code == 1 ) {
-      localStorage.setItem('Authorization', res.data.token)
-      if(res.data.isFirst==0){
-        //进入打卡设置
-        next()
-      }else{
-        User({}).then( resd => {
-          localStorage.setItem('userName',resd.data.name);
+        localStorage.setItem('Authorization', res.data.token);
+        group({}).then( resa => {
+          let arr=[];
+          arr=resa.data;
+          localStorage.setItem('groupList',JSON.stringify(arr));
         })
-      }
+        if(res.data.isFirst==0){
+          //进入打卡设置
+          next()
+        }else{
+          User({}).then( resd => {
+            localStorage.setItem('userName',resd.data.name);
+          })
+        }
 
       if(res.data.isFirst==1){
         //进入打卡

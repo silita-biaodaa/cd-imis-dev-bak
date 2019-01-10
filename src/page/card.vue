@@ -12,7 +12,7 @@
         <div v-for="el in bookss" :key="el.pkid">
             <div class="card-b">
                <div class="card-book">
-                 《{{el.title}}》共朗读{{el.readTotal + el.readCount}}遍
+                 《{{el.title}}》共朗读<span v-if="!first" >{{el.readCount + el.readTotal}}</span> <span v-else >{{el.readTotal}}</span>  遍
                </div>
             </div>
             <div class="card-com">
@@ -85,7 +85,7 @@
        </div>
        <div class="card-b">
           <div class="card-book">
-            发愿从{{pushCount.bonaStart}}起，{{pushCount.years}}年内{{pushCount.days * pushCount.bonaCount }}善事，累计{{pushCount.bonaTotal+pushCount.bonaDays}}善。
+            发愿从{{pushCount.bonaStart}}起，{{pushCount.years}}年内{{pushCount.days * pushCount.bonaCount }}善事，累计<span v-show="this.btnTitle == '提交' ? true : false" >{{pushCount.bonaTotal+pushCount.bonaDays}}</span><span v-show="this.btnTitle == '提交' ? false : true" >{{pushCount.bonaTotal}}</span>善。
           </div>
        </div>
         <div class="card-com">

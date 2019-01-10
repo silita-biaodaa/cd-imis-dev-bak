@@ -417,10 +417,6 @@
   .van-picker__frame, .van-picker__loading .van-loading {
     display: none;
   }
-  body  {
-    //  overflow-x: hidden;
-    //  overflow-y: auto;
-  }
   .home {
     box-sizing: border-box;
   
