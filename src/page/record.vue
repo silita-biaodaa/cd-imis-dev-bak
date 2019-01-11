@@ -277,6 +277,7 @@ export default {
             this.setMonth=month;
             this.setDay=day;
             let str=ye+'-'+this.fillZero(month)+'-'+day;
+            let astr=str;
             let creatStr=this.groupCreat;
             if(this.isIOS){
               str=ye+'/'+this.fillZero(month)+'/'+day;
@@ -300,11 +301,11 @@ export default {
             this.isScroll=true;
             if(this.type=='groups'){
                 //群组打卡
-                this.getGroupCard(this.popup.groupid,str);
+                this.getGroupCard(this.popup.groupid,astr);
                 //群组统计
-                this.getGroupsUser(this.popup.groupid,str);
+                this.getGroupsUser(this.popup.groupid,astr);
             }else{
-                this.getUserCard(this.popup.userid,str);
+                this.getUserCard(this.popup.userid,astr);
             }
 
         },
