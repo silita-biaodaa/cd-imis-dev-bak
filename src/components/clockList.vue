@@ -196,12 +196,16 @@
   }
   }
   .c-content {
-    overflow: hidden;
-    height: 285px;
     margin-bottom: 30px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    /* autoprefixer: off */
+    -webkit-box-orient: vertical;
+    /* autoprefixer: on */
   }
   .c-content.active{
-    height:auto;
+    -webkit-line-clamp: 100;
   .tit{
     line-height: 2.8
   }
