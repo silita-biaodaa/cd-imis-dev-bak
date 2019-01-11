@@ -94,7 +94,7 @@ export default {
                 this.list = res.data.list;
                 this.total = res.data.total;
               }
-              if(this.list.length == res.data.total || this.pageNo == res.data.pages ){
+              if(this.list.length == res.data.total || this.pageNo == res.data.pages ) {
                  this.noGet=true;//如果返回总条数等于当前list长度
               }
 
@@ -103,7 +103,6 @@ export default {
               } else {
                  this.dont = false
               }
-
           }
       })
     },

@@ -25,9 +25,12 @@
           查询无结果
       </div>
       <v-popup :popupShow="mask" :popupType="'tip1'" :tip-text="tipTxt" @sure="maskFn"></v-popup>
-	     <div class="toast" v-show="text3">
+      <div class="toast" v-show="text3">
           删除成功
-        </div>
+      </div>
+      <div class="toast" v-show="text2">
+          转让成功
+      </div>
   </div>
 </template>
 <script>
@@ -47,7 +50,8 @@
         keywords:'',
         isScroll:true,
         noGet:false,
-		text3:false
+        text3: false,
+        text2: false
       }
     },
     name:'groupUser',
@@ -73,10 +77,12 @@
           }
           this.list.splice(i,1);
           groupUser.removeUser(data).then(res =>{
-            this.text3 = true
+            if(res.code==1){
+              this.text3 = true
               setTimeout(() => {
                 this.text3 = false
               }, 1500);
+            }
           })
         }else if(this.tipTxt=='确认要转让该群组？'){
           let data={
@@ -85,8 +91,10 @@
           }
           groupUser.changeGrouper(data).then(res =>{
             if(res.code==1){
-              this.$toast('转让成功');
-              this.type=false;
+               this.text2 = true
+              setTimeout(() => {
+                this.text2 = false
+              }, 1500);
             }
           })
         }
@@ -156,6 +164,7 @@
           return false
         }
         if(scrollBottom<h){
+          this.loading();
           this.isScroll=false;
           this.pageList.pageNo+=1;
           this.ajax();
@@ -163,6 +172,7 @@
       },
     },
     created () {
+      this.loading();
       this.groupName=this.$route.query.name;
       this.type=this.$route.query.type;
       this.groId=this.$route.query.id;
