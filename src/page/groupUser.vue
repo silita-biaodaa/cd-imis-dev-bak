@@ -232,6 +232,7 @@
   }
 }
 .listBox{
+  background: #fff;
   padding: 0 36px;
   li{
     padding: 28px 0;

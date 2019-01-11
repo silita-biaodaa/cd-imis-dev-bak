@@ -173,24 +173,36 @@ export default {
         },
         //确认
         confirm(pick){
-            let picker=this.$refs.picker.getValues()[0];
+
             let year=this.setYear,
                 mon=this.fillZero(this.setMonth),
-                da=this.fillZero(this.setDay);
+                da=this.fillZero(this.setDay),
+                groid,groname;
             if(this.dateObj.dateMask){
-              year=pick.getFullYear();
-              mon=this.fillZero(pick.getMonth()+1);
-              da='01';
+              let y=new Date().getFullYear(),
+                  m=new Date().getMonth()+1;
+              if(y!=pick.getFullYear()||m!=pick.getMonth()+1){//如果不等于当前时间，则重新赋值
+                year=pick.getFullYear();
+                mon=this.fillZero(pick.getMonth()+1);
+                da='01';
+              }
+              groid=this.popup.groupid;
+              groname=this.popup.groupName;
+            }else{
+              let picker=this.$refs.picker.getValues()[0];
+              groid=picker.groId;
+              groname=picker.groName;
             }
+
             let timeStr=year+'-'+mon+'-'+da;
             //每次点击确认，重置页码
             this.pageList={total: '',pageNo:1,pageSize:2};
-			this.noGet=false;
-			this.isScroll=true;
+            this.noGet=false;
+            this.isScroll=true;
             if(this.type=='groups'){
                 this.loading();
-                this.popup.groupName=picker.groName;
-                this.popup.groupid=picker.groId;
+                this.popup.groupName=groname;
+                this.popup.groupid=groid;
                 //群组打卡
                 this.getGroupCard(this.popup.groupid,timeStr);
                 //群组日历
@@ -261,8 +273,10 @@ export default {
                 arr[i].active=true;
             }
             this.$set(this.ret,arr);
-            //每次切换日期，重置页码
+            //每次点击确认，重置页码
             this.pageList={total: '',pageNo:1,pageSize:2};
+            this.noGet=false;
+            this.isScroll=true;
             if(this.type=='groups'){
                 //群组打卡
                 this.getGroupCard(this.popup.groupid,str);
