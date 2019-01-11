@@ -3,8 +3,8 @@ import Vue from 'vue'
 
 import qs from 'qs'
 // var baseURL = 'https://imis.biaodaa.com/'
-var baseURL = '/'
-// let baseURL='http://pre-imis.biaodaa.com'
+// var baseURL = '/'
+let baseURL='http://pre-imis.biaodaa.com'
 
 
 axios.defaults.baseURL = baseURL
@@ -55,10 +55,12 @@ axios.interceptors.request.use(function (config) {
 
 axios.interceptors.response.use(function (response) { // ①10010 token过期（30天） ②10011 token无效
   if (response.status!=200) {
+    Vue.hideLoading()
     Vue.$toast('网络有问题，请稍后再试')
   }
   return response
 },function (error) {
+  Vue.hideLoading()
   return Promise.reject(error)
 })
 

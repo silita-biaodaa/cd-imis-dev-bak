@@ -38,7 +38,9 @@ export default {
        })
     },
     joinG(val) {
+      this.loading()
       Agree({groId:val.groupId,apply:val.send}).then(res => {
+        this.hideLoading()
          if(res.code == 1) {
             console.log(res)
             this.gainMessage()

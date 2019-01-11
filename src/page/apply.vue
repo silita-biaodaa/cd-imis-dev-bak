@@ -107,10 +107,13 @@ export default {
       })
     },
     addGroups(val) {
-       Addgroup({groId:val.groId}).then( res => {
+      this.loading()
+      Addgroup({groId:val.groId}).then( res => {
+        this.hideLoading()
           if(res.code == 1 ) {
               this.onSearch()
               val.isApply = 1
+
           }
        })
     }

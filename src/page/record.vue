@@ -183,7 +183,7 @@ export default {
             let year=this.setYear,
                 mon=this.fillZero(this.setMonth),
                 da=this.fillZero(this.setDay),
-                groid,groname;
+                groid,groname,userid,username;
             if(this.dateObj.dateMask){
               let y=new Date().getFullYear(),
                   m=new Date().getMonth()+1;
@@ -194,10 +194,14 @@ export default {
               }
               groid=this.popup.groupid;
               groname=this.popup.groupName;
+              userid=this.popup.userid;
+              username=this.popup.userName;
             }else{
               let picker=this.$refs.picker.getValues()[0];
               groid=picker.groId;
               groname=picker.groName;
+              userid=picker.pkid;
+              username=picker.name;
             }
 
             let timeStr=year+'-'+mon+'-'+da;
@@ -219,23 +223,23 @@ export default {
                 // this.userPopup();
             }else if(this.type=='user'){
                 this.loading();
-                // if(picker.groName=='全部'&&picker.id==''){
-                //     this.popup.mask=false;
-                //     this.popup.slots=this.groups;
-                //     this.type='groups';
-                //     //群组选择时,置空个人
-                //     this.popup.userName='选择个人';
-                //     this.popup.userid='';
-                //     this.getGroupsDate(this.groups[0].groId,this.setYear+'-'+this.fillZero(this.setMonth)+'-01');
-                //     this.getGroupsUser(this.groups[0].groId,this.setYear+'-'+this.fillZero(this.setMonth)+'-'+this.fillZero(this.setDay));
-                //     return
-                // }
-                this.popup.userName=picker.name;
-                this.popup.userid=picker.pkid;
+                if(username=='全部'&&userid==''){
+                    this.popup.mask=false;
+                    this.popup.slots=this.groups;
+                    this.type='groups';
+                    //群组选择时,置空个人
+                    this.popup.userName='选择个人';
+                    this.popup.userid='';
+                    this.getGroupsDate(this.groups[0].groId,this.setYear+'-'+this.fillZero(this.setMonth)+'-01');
+                    this.getGroupsUser(this.groups[0].groId,this.setYear+'-'+this.fillZero(this.setMonth)+'-'+this.fillZero(this.setDay));
+                    return
+                }
+                this.popup.userName=username;
+                this.popup.userid=userid;
                 //个人打卡
-                this.getUserCard(picker.pkid,timeStr);
+                this.getUserCard(userid,timeStr);
                 //个人日历
-                this.getUsersDate(picker.pkid,this.setYear+'-'+this.fillZero(this.setMonth)+'-01')
+                this.getUsersDate(userid,this.setYear+'-'+this.fillZero(this.setMonth)+'-01')
             }
             this.popup.mask=false;
             this.dateObj.dateMask=false;
@@ -253,12 +257,12 @@ export default {
                     for(let x of res.data.list){
                         x.groName=x.name
                     }
-                    // let data=[{
-                    //   groName:'全部',
-                    //   id:''
-                    // }];
-                    // that.popup.slots=data.concat(res.data.list);
-                    that.popup.slots=res.data.list;
+                    let data=[{
+                      groName:'全部',
+                      id:''
+                    }];
+                    that.popup.slots=data.concat(res.data.list);
+                    // that.popup.slots=res.data.list;
                     that.type='user';
                     that.popup.mask=true;
                 }
@@ -275,11 +279,14 @@ export default {
             let str=ye+'-'+this.fillZero(month)+'-'+day;
             let time=new Date(str+' 00:00:00').getTime();
             let nowTime=new Date().getTime();
-            if(nowTime>time){
+            let creatTime=new Date(this.groupCreat+' 00:00:00').getTime();
+            if(nowTime>time&&time>=creatTime){
                 for(let x of arr){
                     x.active=false;
                 }
                 arr[i].active=true;
+            }else{
+                return false
             }
             this.$set(this.ret,arr);
             //每次点击确认，重置页码
