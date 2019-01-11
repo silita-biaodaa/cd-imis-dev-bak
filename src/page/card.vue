@@ -155,7 +155,8 @@ export default {
       first:false,
       mask:false,
       tipTxt:'',
-      booklength:0
+      booklength:0,
+      repetition: false
     }
   },
   methods: {
@@ -197,9 +198,17 @@ export default {
       if(this.btnTitle == '今日已打卡, 请勿重复提交') {
          return false
       }
+      // if( this.repetition) {
+      //    return false
+      // }
+      // this.repetition = true
+      this.loading()
       pushCard({thanks:this.thanks,practice:this.practice,books:this.bookss,classic:this.classic,introspective:this.introspective,volunteer:this.volunteer,pushCount:this.pushCount,isPub:'1',bookish:this.books}).then( res => {
            if(res.code == 1) {
+            //  this.repetition = false
+
              localStorage.setItem('tabNum','0');
+             this.hideLoading()
               this.$router.push({path:'/nav/friend'})
            }
       })

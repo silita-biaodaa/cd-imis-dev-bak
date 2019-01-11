@@ -289,7 +289,7 @@
         }, 1500);
       },
       record () {
-        console.log(this.first,222)
+
         this.pass = true;
         if( !this.Number ) {
            return  this.layout = true
@@ -320,10 +320,11 @@
             }, 1500);
           }
         });
-
+          this.loading()
         if ( this.pass  ) {
           recordBook({name: this.username, phone: this.mobile, company: this.company, post: this.post, pushStart: this.tiems,total: this.count, bonaStart: this.begin, bonaEnd: this.end, bonaCount: this.number, bonaTotal: this.alls, volunteer: this.values, books: this.first}).then( res => {
             if(res.code == 1) {
+              this.hideLoading()
               localStorage.setItem('tabNum','2');
               localStorage.setItem('userName',this.username);
               this.$router.replace({path:'/nav/card'})
