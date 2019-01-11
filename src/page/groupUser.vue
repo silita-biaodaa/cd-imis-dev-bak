@@ -49,7 +49,7 @@
         pageList: {total: '',pageNo:1,pageSize:8},
         keywords:'',
         isScroll:true,
-        noGet:false,
+        noGet:true,
         text3: false,
         text2: false
       }
@@ -110,11 +110,11 @@
         this.mask=true;
       },
       ajax(type){
-		this.loading();
-		if(type=='search'){
-			this.pageList.pageNo=1;
-			this.noGet=false;
-		}
+        this.loading();
+        if(type=='search'){
+          this.pageList.pageNo=1;
+          this.noGet=false;
+        }
         let that=this;
         let data={
           pageNo:this.pageList.pageNo,
@@ -124,7 +124,7 @@
         }
         CardRecord.groupPerson(data).then(res =>{
           this.hideLoading();
-		  this.isScroll=true;
+		      this.isScroll=true;
           if(res){
             if(that.pageList.pageNo>1){
               that.list = that.list.concat(res.data.list);
@@ -135,6 +135,8 @@
             }
             if(res.data.total==that.list.length||that.list.length<that.pageList.pageSize){
               that.noGet=true;//如果返回总条数等于当前list长度
+            }else{
+              that.noGet=false
             }
           }
         })
@@ -164,7 +166,6 @@
           return false
         }
         if(scrollBottom<h){
-          this.loading();
           this.isScroll=false;
           this.pageList.pageNo+=1;
           this.ajax();
