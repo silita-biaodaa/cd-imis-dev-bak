@@ -63,6 +63,7 @@
                 :max-date="dateObj.maxDate"
                 v-model="dateObj.date"
                 @confirm="confirm"
+                @cancel="dateObj.dateMask=false"
               ></van-datetime-picker>
             </van-popup>
         </div>
