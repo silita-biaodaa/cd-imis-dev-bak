@@ -172,7 +172,6 @@
       },
     },
     created () {
-      this.loading();
       this.groupName=this.$route.query.name;
       this.type=this.$route.query.type;
       this.groId=this.$route.query.id;

@@ -49,6 +49,11 @@
         return t
       }
     },
+    methods:{
+      tabClick(i){
+        this.tabNum=i;
+      },
+    },
   }
 </script>
 <style lang="less" >

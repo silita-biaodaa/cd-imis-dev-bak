@@ -7,7 +7,7 @@
         <img :src="item.user.imgUrl" alt="">
       </div>
       <p class="c-name"><span class="fc-n">{{item.user.name}}</span><span v-if="item.user.company && item.user.company!=''">-{{item.user.company}}</span></p>
-      <div class="c-content" :class="{'active': item.fullTxt=='收起'}">
+      <div class="c-content" :class="{'active': item.fullTxt=='收起'}" style="-webkit-box-orient: vertical;">
         <p class="c-time"><span>{{item.pushd}}</span>打卡第{{item.pushCount.putCount}}次</p>
         <div class="c-text" >
           <!-- 知 学习 -->
@@ -200,9 +200,6 @@
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 5;
-    /* autoprefixer: off */
-    -webkit-box-orient: vertical;
-    /* autoprefixer: on */
   }
   .c-content.active{
     -webkit-line-clamp: 100;
