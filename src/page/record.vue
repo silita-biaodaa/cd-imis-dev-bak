@@ -173,6 +173,11 @@ export default {
         },
         //确认
         confirm(pick){
+            //每次点击确定 重置数据
+            this.setYear=new Date().getFullYear();
+            this.setMonth=new Date().getMonth()+1;
+            this.setDay=new Date().getDate();
+            this.groupArr=[];
 
             let year=this.setYear,
                 mon=this.fillZero(this.setMonth),
@@ -263,6 +268,9 @@ export default {
             let day=arr[i].showDate;
             let month=arr[i].month;
             let ye=this.thisMonthDays.year;
+            //选完日期后，讲日期回写到data
+            this.setMonth=month;
+            this.setDay=day;
             let str=ye+'-'+this.fillZero(month)+'-'+day;
             let time=new Date(str+' 00:00:00').getTime();
             let nowTime=new Date().getTime();
@@ -289,6 +297,7 @@ export default {
         },
         //小于10前置补0
         fillZero(s) {
+            s=s*1;
             return s < 10 ? '0' + s : s;
         },
         //日历初始化
